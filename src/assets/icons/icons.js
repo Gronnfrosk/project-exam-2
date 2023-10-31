@@ -1,5 +1,5 @@
-import { theme } from "../brand/colors";
-import { BsSun } from "react-icons/bs";
+import { theme } from "../../colors";
+import { BsSun, BsPersonFill } from "react-icons/bs";
 import {
   FaFacebookSquare,
   FaInstagram,
@@ -10,6 +10,7 @@ import {
   FaThList,
   FaRegClock,
   FaPlusCircle,
+  FaAngleRight 
 } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
 
@@ -17,6 +18,10 @@ export function LogoIcon() {
   return (
     <BsSun style={{ color: "#FFED79", fontSize: "1em", marginRight: "5px" }} />
   );
+}
+
+export function AvatarIcon() {
+  return <BsPersonFill />
 }
 
 export function NavbarIcon() {
@@ -60,4 +65,8 @@ export function ContactIcons() {
   );
 
   return { phoneIcon, mailIcon };
+}
+
+export function RightArrow() {
+  return <FaAngleRight />
 }

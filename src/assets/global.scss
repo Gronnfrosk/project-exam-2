@@ -9,3 +9,16 @@ button {
 h1 {
     font-family: "Inter", "PT sans", "sans-serif";
 }
+
+// navbar
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-menu {
+    top: 60px !important;
+    width: 250px !important;
+    border: none !important;
+    background-color: #2b3035 !important;
+    padding-top: 0 !important;
+}

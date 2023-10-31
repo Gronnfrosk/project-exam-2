@@ -1,5 +1,5 @@
 import mainTop from "../../assets/images/pexels-luis-leon-2564463.jpg";
-import { PrimaryButton } from "../../components/button.styles";
+import { PrimaryButton } from "../../components/buttons/button.styles";
 
 function MainPage() {
   return (

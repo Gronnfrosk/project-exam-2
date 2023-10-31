@@ -11,7 +11,7 @@ import Main from "./pages/main/main";
 
 //import MainPage from "./pages/main/main"
 
-import { theme } from "./assets/brand/colors";
+import { theme } from "./colors";
 import GlobalLayout from  "./layout/global"
 
 function App() {

@@ -1,21 +1,6 @@
 import styled from "styled-components";
+import { AvatarIcon } from "../../assets/icons/icons";
 
-export const PrimaryButton = styled.button`
-  display: ${(props) => props.display};
-  color: black;
-  font-size: 1.1em;
-  border: 0;
-  border-radius: 50px;
-  padding: 5px 20px;
-  width: 179px;
-  background-color: ${(props) => props.theme.color.primary};
-  cursor: pointer;
-  transition: opacity linear 200ms;
-
-  :hover {
-    opacity: 0.9;
-  }
-`;
 
 export const ButtonExpand = styled.button`
   position: relative;
@@ -72,34 +57,32 @@ export const ButtonExpand = styled.button`
   }
 `;
 
-/*
-export const BaseButton = styled.button`
-  color: black;
-  border: 0;
-  border-radius: 50px;
-  padding: 10px 20px;
-  width: 179px;
-  cursor: pointer;
-  transition:  opacity linear 200ms;
-
-  :hover {
-    opacity: 0.8;
-  }
-`;
-
-export const PrimaryButton = styled(BaseButton)`
-  background-color: #FFED79;
-`;
-
-export const CustomerButton = styled(BaseButton)`
-  background-color: #2FD2F3;
-`;
-
-export const VenueManagerButton = styled(BaseButton)`
-  background-color: #2FD2F3;
-`;
-
-export const ToppMainButton = styled(BaseButton)`
-  background-color: #2FD2F3;
-`;
-*/
+export function ButtonExpandNavbar(){
+  return (
+    <ButtonExpand className="span-btn">
+      <span className="circle" aria-hidden="true">
+        <div
+          style={{
+            width: "42px",
+          }}
+        >
+          < AvatarIcon />
+          <img
+            src=""
+            alt="Profile avatar"
+            onError={(event) => (event.target.style.display = "none")}
+            style={{
+              width: "42px",
+              height: "auto",
+              aspectRatio: "1/1",
+              objectFit: "cover",
+              borderRadius: "50px",
+            }}
+          />
+        </div>
+      </span>
+      <span className="button-text d-none">Login or register</span>
+      <span className="button-text ">John Doe </span>
+    </ButtonExpand>
+  )
+}

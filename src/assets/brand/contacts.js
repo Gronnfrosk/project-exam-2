@@ -1,5 +1,5 @@
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import { theme } from "./colors";
+import { theme } from "../../colors";
 import { ContactIcons } from "../icons/icons";
 
 const { phoneIcon, mailIcon } = ContactIcons();
