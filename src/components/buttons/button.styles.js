@@ -8,7 +8,7 @@ export const PrimaryButton = styled.button`
   border-radius: 50px;
   padding: 5px 20px;
   width: 179px;
-  background-color: ${(props) => props.theme.color.primary};
+  background-color: var(--primaryBtn_color);
   cursor: pointer;
   transition: opacity linear 200ms;
 
@@ -18,9 +18,8 @@ export const PrimaryButton = styled.button`
 `;
 
 export const EditAvatar = styled(PrimaryButton)`
- border-radius: 50px 50px 50px 50px;
- width: 45px;
- font-weight: bold;
- font-size: 1.1rem;
+  border-radius: 50px 50px 50px 50px;
+  width: 45px;
+  font-weight: bold;
+  font-size: 1.1rem;
 `;
-

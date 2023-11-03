@@ -1,0 +1,34 @@
+.ps-sidebar-root {
+  background-color: var(--body_backgroundColor);
+  color: white;
+
+  & .profile-name {
+    font-size: var(--textLarge_fontSize);
+  }
+
+  & .profile-type,
+  .profile-mail {
+    font-size: var(--textSmall_fontSize);
+  }
+
+  & .inventory-items {
+    font-size: var(--textSmall_fontSize);
+    width: 70px;
+  }
+
+  & .divider-line {
+    position: relative;
+    margin: auto;
+    width: 90%;
+    top: 52px;
+  }
+
+  .ps-menu-button {
+    font-size: var(--textSmall_fontSize);
+    height: 40px !important;
+  }
+
+  svg {
+    color: var(--body_color);
+  }
+}

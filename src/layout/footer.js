@@ -4,9 +4,9 @@ import Contact from "../assets/brand/contacts";
 import { FooterIcons } from "../assets/icons/icons";
 import { PrimaryLink } from "../components/links";
 
-const { instaIcon, pinterestIcon, twitterIcon, facebookIcon } = FooterIcons();
-
 function Footer() {
+  const { instaIcon, pinterestIcon, twitterIcon, facebookIcon } = FooterIcons();
+
   return (
     <>
       {FooterSVG}
@@ -14,7 +14,7 @@ function Footer() {
         <div className="py-4 mx-auto " style={{ maxWidth: "1320px" }}>
           <div className="d-flex flex-wrap justify-content-between gap-2 align-items-center">
             <div>
-              <BrandLogo/>
+              <BrandLogo />
               <div
                 style={{
                   maxWidth: "800px",
@@ -37,10 +37,16 @@ function Footer() {
           </div>
         </div>
         <div className="d-flex justify-content-center text-center mb-3">
-          <PrimaryLink href="https://www.instagram.com/">{instaIcon}</PrimaryLink>
-          <PrimaryLink href="https://no.pinterest.com/">{pinterestIcon}</PrimaryLink>
+          <PrimaryLink href="https://www.instagram.com/">
+            {instaIcon}
+          </PrimaryLink>
+          <PrimaryLink href="https://no.pinterest.com/">
+            {pinterestIcon}
+          </PrimaryLink>
           <PrimaryLink href="https://twitter.com/">{twitterIcon}</PrimaryLink>
-          <PrimaryLink href="https://www.facebook.com/">{facebookIcon}</PrimaryLink>
+          <PrimaryLink href="https://www.facebook.com/">
+            {facebookIcon}
+          </PrimaryLink>
         </div>
         <p className="text-center mb-0 pb-1">&copy; 2023 Holidaze</p>
       </footer>

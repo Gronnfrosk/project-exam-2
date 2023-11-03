@@ -1,24 +1,16 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled, { ThemeProvider } from "styled-components";
-
+import Theme from "./theme";
+import GlobalLayout from "./layout/global";
 import Main from "./pages/main/main";
-
-//import { ReactCalender } from "./components/calender/react-calender.js"<ReactCalender />
-//import { loginPage } from "./pages/login/login.js"
-//import { BlueButton, GreenButton, RedButton } from "./components/button.styles"
-//import { Button, BaseButton, PrimaryButton } from "./components/button.styles"
-
-//import MainPage from "./pages/main/main"
-
-import { theme } from "./colors";
-import GlobalLayout from  "./layout/global"
+import { ThemeMode } from "./components/user-color-theme";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <ThemeProvider theme={theme}>
+        <ThemeMode />
+        <Theme>
           <Routes>
             <Route path="/" element={<GlobalLayout />}>
               <Route index element={<Main />} />
@@ -26,7 +18,7 @@ function App() {
               <Route path="/:id" element={<Main />} />
             </Route>
           </Routes>
-        </ThemeProvider>
+        </Theme>
       </BrowserRouter>
     </div>
   );

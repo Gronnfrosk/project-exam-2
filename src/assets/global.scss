@@ -1,24 +1,29 @@
 @import url("https://fonts.googleapis.com/css?family=Mukta:400");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Lora&family=Oswald&family=PT+Sans&display=swap");
 
+:root {
+  --body_color: #ffed79;
+  --primaryBtn_color: #ffed79;
+  --bodyCustom_display: none;
+  --bodyManager_display: none;
+  --textSmall_fontSize: 0.9rem;
+  --textMedium_fontSize: 1rem;
+  --textLarge_fontSize: 1.5rem;
+}
+
+[data-theme="customer"] {
+  --body_color: #2fd2f3;
+}
+
+[data-theme="manager"] {
+  --body_color: #ed6c02;
+}
+
 body,
 button {
-    font-family: "Mukta", "roboto", "sans-serif" !important;
+  font-family: "Mukta", "roboto", "sans-serif" !important;
 }
 
 h1 {
-    font-family: "Inter", "PT sans", "sans-serif";
-}
-
-// navbar
-.dropdown-toggle::after {
-    display: none !important;
-}
-
-.dropdown-menu {
-    top: 60px !important;
-    width: 250px !important;
-    border: none !important;
-    background-color: #2b3035 !important;
-    padding-top: 0 !important;
+  font-family: "Inter", "PT sans", "sans-serif";
 }

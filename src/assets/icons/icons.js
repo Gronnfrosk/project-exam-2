@@ -1,4 +1,4 @@
-import { theme } from "../../colors";
+import { useTheme } from "styled-components";
 import { BsSun, BsPersonFill } from "react-icons/bs";
 import {
   FaFacebookSquare,
@@ -10,7 +10,8 @@ import {
   FaThList,
   FaRegClock,
   FaPlusCircle,
-  FaAngleRight 
+  FaAngleRight,
+  FaRegImage,
 } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
 
@@ -21,32 +22,31 @@ export function LogoIcon() {
 }
 
 export function AvatarIcon() {
-  return <BsPersonFill />
+  return <BsPersonFill />;
 }
 
+// Icons used in navbar for regular users and venue manager
 export function NavbarIcon() {
-  const upcomingIcon = (
-    <FaEarthAfrica className="me-1" style={{ color: [theme.color.customer] }} />
-  );
-  const previousIcon = (
-    <FaRegClock className="me-1" style={{ color: [theme.color.customer] }} />
-  );
-  const totalIcon = (
-    <FaThList className="me-2" style={{ color: [theme.color.customer] }} />
-  );
-  const totalVenueIcon = (
-    <FaThList className="me-2" style={{ color: [theme.color.manager] }} />
-  );
-  const createIcon = (
-    <FaPlusCircle
-      className="fs-6 me-2"
-      style={{ color: [theme.color.manager] }}
-    />
-  );
+  const UpcomingIcon = <FaEarthAfrica />;
+  const PreviousIcon = <FaRegClock />;
+  const Total = <FaThList />;
 
-  return { upcomingIcon, previousIcon, totalIcon, createIcon, totalVenueIcon };
+  const TotalVenueIcon = <FaThList className="me-2" />;
+  const CreateIcon = <FaPlusCircle className="fs-6 me-2" />;
+
+  const EditAvatar = <FaRegImage className="fs-6 me-2" />;
+
+  return {
+    UpcomingIcon,
+    PreviousIcon,
+    Total,
+    CreateIcon,
+    TotalVenueIcon,
+    EditAvatar,
+  };
 }
 
+// Social icons in the footer
 export function FooterIcons() {
   const instaIcon = <FaInstagram className="fs-2 p-1" />;
   const pinterestIcon = <FaPinterest className="fs-2 p-1" />;
@@ -56,7 +56,10 @@ export function FooterIcons() {
   return { instaIcon, pinterestIcon, twitterIcon, facebookIcon };
 }
 
+// Icons displayed with the contact information
 export function ContactIcons() {
+  const theme = useTheme();
+
   const phoneIcon = (
     <FaPhoneAlt style={{ color: [theme.color.primary], fontSize: "1.25em" }} />
   );
@@ -68,5 +71,5 @@ export function ContactIcons() {
 }
 
 export function RightArrow() {
-  return <FaAngleRight />
+  return <FaAngleRight />;
 }

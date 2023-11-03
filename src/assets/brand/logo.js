@@ -1,6 +1,9 @@
 import { LogoIcon } from "../icons/icons";
+import { useTheme } from "styled-components";
 
 export function BrandLogo() {
+  const theme = useTheme();
+
   return (
     <div
       style={{
@@ -12,7 +15,13 @@ export function BrandLogo() {
         color: "white",
       }}
     >
-      <LogoIcon />
+      <LogoIcon
+        style={{
+          color: `${theme.color.primary}`,
+          fontSize: "1em",
+          marginRight: "5px",
+        }}
+      />
       Holidaze
     </div>
   );

@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { AvatarIcon } from "../../assets/icons/icons";
-
 
 export const ButtonExpand = styled.button`
   position: relative;
@@ -20,25 +18,41 @@ export const ButtonExpand = styled.button`
     height: auto;
 
     & .circle {
-      color: ${(props) => props.theme.color.manager};
+      color: var(--body_color);
+      display: flex;
+      align-items: center;
       font-size: 1.45em;
       transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
       position: relative;
-      display: block;
       margin: 0;
       width: 3rem;
       height: 3rem;
-      border: solid 3px ${(props) => props.theme.color.manager};
+      border: solid 3px var(--body_color);
       border-radius: 1.625rem;
+
+      & svg {
+        font-size: var(--textLarge_fontSize);
+      }
+
+      & div {
+        width: 42px;
+      }
 
       & img {
         position: absolute;
         left: 0;
+        top: 0;
+        width: 42px;
+        height: auto;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        border-radius: 50px;
       }
     }
 
     & .button-text {
       transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      font-size: var(--textsmall_fontSize);
       position: absolute;
       top: 0;
       left: 15px;
@@ -56,33 +70,3 @@ export const ButtonExpand = styled.button`
     width: 100%;
   }
 `;
-
-export function ButtonExpandNavbar(){
-  return (
-    <ButtonExpand className="span-btn">
-      <span className="circle" aria-hidden="true">
-        <div
-          style={{
-            width: "42px",
-          }}
-        >
-          < AvatarIcon />
-          <img
-            src=""
-            alt="Profile avatar"
-            onError={(event) => (event.target.style.display = "none")}
-            style={{
-              width: "42px",
-              height: "auto",
-              aspectRatio: "1/1",
-              objectFit: "cover",
-              borderRadius: "50px",
-            }}
-          />
-        </div>
-      </span>
-      <span className="button-text d-none">Login or register</span>
-      <span className="button-text ">John Doe </span>
-    </ButtonExpand>
-  )
-}
