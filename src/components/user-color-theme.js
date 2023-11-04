@@ -4,7 +4,7 @@ export const ThemeMode = () => {
   //const setNoneUserMode = () => {
   //  document.querySelector("body").setAttribute("data-theme", "default");
   //};
-//
+  //
   //const setCustomerMode = () => {
   //  document.querySelector("body").setAttribute("data-theme", "customer");
   //};

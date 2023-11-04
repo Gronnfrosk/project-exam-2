@@ -9,33 +9,44 @@ import {
   SubMenu,
   menuClasses,
 } from "react-pro-sidebar";
-import { NavbarIcon, AvatarIcon } from "../assets/icons/icons";
+import { NavbarIcon } from "../assets/icons/icons";
 import { InputEditAvatar } from "../components/form-input.js";
 import Navbar from "react-bootstrap/Navbar";
 import { BrandLogo } from "../assets/brand/logo";
 import { PrimaryButton } from "../components/buttons/button.styles";
 import { AvatarImg } from "../components/profile-avatar";
-import { ButtonExpand } from "../components/buttons/expand-btn.styles";
-import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
+import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
 
-const someone = false;
-function userStatus() {
-  if (someone === null) {
-    return "Login or register";
-  } else if (someone === false) {
-    return "John Doe";
-  } else if (someone === true) {
-    return "Sara Doe";
-  }
-}
+import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
   NavbarIcon();
 
-function profileIventory() {
+function profileIventory(user) {
+  const userStatus = user;
+  const divider = <span className="text-white fs-5  my-2">|</span>;
+  const iventoryItem = (
+    <div className="inventory-items text-center">
+      <div>145</div>Total
+    </div>
+  );
+
+  const contents = (
+    <>
+      <div className="userType">Venues</div>
+      <div className="d-flex flex-row justify-content-around mt-3">
+        {iventoryItem}
+        {divider}
+        {iventoryItem}
+        {divider}
+        {iventoryItem}
+      </div>
+    </>
+  );
+
   const manager = (
-  <>
-    <div className="">Venues</div>
+    <>
+      <div className="userType">Venues</div>
       <div className="d-flex flex-row justify-content-around mt-3">
         <div className="inventory-items text-center">
           <div></div>
@@ -46,7 +57,7 @@ function profileIventory() {
         </div>
         <span className="text-white fs-5 my-2">|</span>
         <div className="inventory-items text-center">
-          <div></div> 
+          <div></div>
         </div>
       </div>
     </>
@@ -54,7 +65,7 @@ function profileIventory() {
 
   const customer = (
     <>
-    <div className="">Bookings</div>
+      <div className="">Bookings</div>
       <div className="d-flex flex-row justify-content-around mt-3">
         <div className="inventory-items text-center">
           <div>5</div> Upcoming
@@ -69,15 +80,19 @@ function profileIventory() {
         </div>
       </div>
     </>
-  )
+  );
 
-  if (someone === false) return customer;
+  if (userStatus === false) return customer;
   else return manager;
 }
 
+export function SideMenu(props) {
+  const userStatus = props.userButton;
+  console.log(userStatus);
+  const theme = useTheme();
+  const [toggled, setToggled] = React.useState(false);
 
-function ProfileInfoNav() {
-  const manager = (
+  const ManagerLinks = (
     <>
       <MenuItem icon={Total} component={<Link to="/totalVenues" />}>
         Venues list
@@ -88,7 +103,7 @@ function ProfileInfoNav() {
     </>
   );
 
-  const customer = (
+  const CustomerLinks = (
     <>
       <MenuItem icon={UpcomingIcon} component={<Link to="/totalVenues" />}>
         Upcoming bookings
@@ -101,14 +116,6 @@ function ProfileInfoNav() {
       </MenuItem>
     </>
   );
-
-  if (someone === false) return customer;
-  else return manager;
-}
-
-export function SideMenu() {
-  const theme = useTheme();
-  const [toggled, setToggled] = React.useState(false);
 
   return (
     <div>
@@ -142,11 +149,18 @@ export function SideMenu() {
             <div className="divider-line border-bottom border-white"></div>
 
             <div className="text-center mt-4">
-              {profileIventory()}
+              {profileIventory(userStatus)}
             </div>
           </div>
 
-          <div className="mt-5">{ProfileInfoNav()}</div>
+          <div className="mt-5">
+            {" "}
+            {userStatus === false
+              ? CustomerLinks
+              : userStatus === true
+              ? ManagerLinks
+              : "Hello"}{" "}
+          </div>
           <SubMenu icon={EditAvatar} label="Edit avatar" className="bg-dark">
             <MenuItem style={{ overflow: "hidden" }}>
               <InputEditAvatar style={{ marginTop: "10px" }} />
@@ -165,28 +179,14 @@ export function SideMenu() {
           </div>
         </Menu>
       </Sidebar>
-      <main style={{ display: "flex" }}>
-        <ButtonExpand
-          className="span-btn navbar-toggler sb-button shadow-none"
-          onClick={() => setToggled(!toggled)}
-        >
-          <span className="circle" aria-hidden="true">
-            <div>
-              <AvatarIcon />
-              <img
-                src={mainTop}
-                alt="Profile avatar"
-                onError={(event) => (event.target.style.display = "none")}
-              />
-            </div>
-          </span>
-          <span className="button-text">{userStatus()}</span>
-        </ButtonExpand>
+      <main onClick={() => setToggled(!toggled)}>
+        <ButtonExpandNavbar userButton={false} />
       </main>
     </div>
   );
 }
 
+//<span className="button-text">{userStatus()}</span>
 //<div className="d-flex flex-column mx-3 text-center mt-4">
 //              <div className="inventory border-bottom border-white d-flex flex-row justify-content-around">
 //                <div>Venues</div> <div>Venues</div> <div>Venues</div>

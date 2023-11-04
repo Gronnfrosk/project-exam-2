@@ -5,21 +5,16 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BrandLogo } from "../assets/brand/logo";
-import { NavbarIcon, AvatarIcon } from "../assets/icons/icons";
+import { NavbarIcon } from "../assets/icons/icons";
 import { PrimaryLink } from "../components/links";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
 import { PrimaryButton } from "../components/buttons/button.styles";
-import { InputEditAvatar } from "../components/form-input.js";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import { SideMenu } from "./menu";
-import { ButtonExpand } from "../components/buttons/expand-btn.styles";
 import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
-const Content = "John Doe";
-const userStatus = false;
+const userStatus = null;
 function ProfileInfoNav() {
-  const { UpcomingIcon, PreviousIcon, Total, CreateIcon } =
-    NavbarIcon();
+  const { UpcomingIcon, PreviousIcon, Total, CreateIcon } = NavbarIcon();
 
   const manager = (
     <>
@@ -34,7 +29,6 @@ function ProfileInfoNav() {
       <PrimaryLink href="/about" className="d-flex gap-2">
         {CreateIcon}
         <div className="one-title d-flex flex-wrap-reverse justify-content-center">
-          {" "}
           Create new
         </div>
       </PrimaryLink>
@@ -44,22 +38,22 @@ function ProfileInfoNav() {
   const customer = (
     <>
       <div className="title me-2">Bookings: </div>
-      <PrimaryLink href="/about" className="d-flex gap-2">
-        {UpcomingIcon}{" "}
+      <PrimaryLink href="/upcoming" className="d-flex gap-2">
+        {UpcomingIcon}
         <div className="one-title d-flex flex-wrap-reverse justify-content-center">
           2 <div className="title-name ms-2">Upcoming</div>
         </div>
       </PrimaryLink>
       <span className="fs-4">|</span>
       <PrimaryLink href="/previous" className="d-flex gap-2">
-        {PreviousIcon}{" "}
+        {PreviousIcon}
         <div className="one-title d-flex flex-wrap-reverse justify-content-center">
           8 <div className="title-name ms-2">Previous</div>
         </div>
       </PrimaryLink>
       <span className="fs-4 ">|</span>
       <PrimaryLink href="/total" className="d-flex gap-2">
-        {Total}{" "}
+        {Total}
         <div className="one-title d-flex flex-wrap-reverse justify-content-center">
           10 <div className="title-name mx-2">Total</div>
         </div>
@@ -70,8 +64,8 @@ function ProfileInfoNav() {
   return (
     <div className="userInfo">
       <div className="userInfo">
-        {userStatus === false ? customer : manager}
-        </div>
+        {userStatus === false ? customer : userStatus === true ? manager : ""}
+      </div>
       <div className="logout-btn d-flex justify-content-end">
         <PrimaryButton display={"block"} className="me-4">
           Log out
@@ -79,57 +73,6 @@ function ProfileInfoNav() {
       </div>
     </div>
   );
-}
-
-function ButtonNav() {
-  const noneUser = (
-    <ButtonExpand className="span-btn">
-      <span className="circle" aria-hidden="true">
-        <div>
-          <AvatarIcon />
-          <img
-            src={mainTop}
-            alt="Profile avatar"
-            onError={(event) => (event.target.style.display = "none")}
-          />
-        </div>
-      </span>
-      <span className="button-text">Login or register</span>
-    </ButtonExpand>
-  );
-
-  const userDesktop = (
-    <NavDropdown
-      title={
-        <ButtonExpandNavbar
-          imageBtn={mainTop}
-          userStatus={true}
-          text={Content}
-        />
-      }
-      id={`offcanvasNavbarDropdown-expand-lg`}
-    >
-      <div className="dropdown-container">
-        <NavDropdown.ItemText style={{ textAlign: "center" }}>
-          john@mail.com
-        </NavDropdown.ItemText>
-        <NavDropdown.ItemText className="venue-manager">
-          Venue manager
-        </NavDropdown.ItemText>
-        <NavDropdown.Divider />
-        <NavDropdown.ItemText className="ps-1 pt-3">
-          Edit avatar (URL link)
-        </NavDropdown.ItemText>
-        <InputEditAvatar />
-      </div>
-    </NavDropdown>
-  );
-
-  if (userStatus === true) {
-    return noneUser;
-  } else if (userStatus === false) {
-    return userDesktop;
-  }
 }
 
 export function CollapsibleNavbar() {
@@ -142,12 +85,19 @@ export function CollapsibleNavbar() {
       className="bg-body-tertiary"
     >
       <Container>
-        <SideMenu />
+        {userStatus !== null ? (
+          <SideMenu userButton={userStatus} />
+        ) : (
+          <ButtonExpandNavbar userButton={userStatus} />
+        )}
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <ButtonNav />
             <div className="ms-3 w-100">
-              <ProfileInfoNav />
+              {userStatus !== null ? (
+                <ProfileInfoNav userStatus={userStatus} />
+              ) : (
+                ""
+              )}
             </div>
           </Nav>
         </Navbar.Collapse>
@@ -194,3 +144,28 @@ export function CollapsibleNavbar() {
 //                </Nav>
 //              </Offcanvas.Body>
 //            </Navbar.Offcanvas>
+
+//const ButtonNav = (
+//    <NavDropdown
+//      title={
+//        <ButtonExpandNavbar
+//        userButton={userStatus}
+//        />
+//      }
+//      id={`offcanvasNavbarDropdown-expand-lg`}
+//    >
+//      <div className="dropdown-container">
+//        <NavDropdown.ItemText style={{ textAlign: "center" }}>
+//          john@mail.com
+//        </NavDropdown.ItemText>
+//        <NavDropdown.ItemText className="venue-manager">
+//          Venue manager
+//        </NavDropdown.ItemText>
+//        <NavDropdown.Divider />
+//        <NavDropdown.ItemText className="ps-1 pt-3">
+//          Edit avatar (URL link)
+//        </NavDropdown.ItemText>
+//        <InputEditAvatar />
+//      </div>
+//    </NavDropdown>
+//  );
