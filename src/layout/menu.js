@@ -88,7 +88,6 @@ function profileIventory(user) {
 
 export function SideMenu(props) {
   const userStatus = props.userButton;
-  console.log(userStatus);
   const theme = useTheme();
   const [toggled, setToggled] = React.useState(false);
 

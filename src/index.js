@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    {console.log(process.env.API_URL)}
     <App />
   </React.StrictMode>,
 );
