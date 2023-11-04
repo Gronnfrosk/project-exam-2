@@ -12,7 +12,7 @@ import { PrimaryButton } from "../components/buttons/button.styles";
 import { SideMenu } from "./menu";
 import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
-const userStatus = null;
+const userStatus = false;
 function ProfileInfoNav() {
   const { UpcomingIcon, PreviousIcon, Total, CreateIcon } = NavbarIcon();
 
@@ -94,7 +94,7 @@ export function CollapsibleNavbar() {
           <Nav>
             <div className="ms-3 w-100">
               {userStatus !== null ? (
-                <ProfileInfoNav userStatus={userStatus} />
+                <ProfileInfoNav userButton={userStatus} />
               ) : (
                 ""
               )}

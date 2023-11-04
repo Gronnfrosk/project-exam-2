@@ -24,9 +24,9 @@ export function ButtonExpandNavbar(props) {
       </span>
       <span className="button-text">
         {userButton === true
-          ? "John Doe"
+          ? "John Manager"
           : userButton === false
-          ? "Sara Doe"
+          ? "Sara Customer"
           : userButton === null
           ? "Login or register"
           : customer

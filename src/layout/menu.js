@@ -143,7 +143,7 @@ export function SideMenu(props) {
               <div className="profile-name">John Doe</div>
               <div className="profile-type">Venue manager</div>
               <AvatarImg />
-              <div className="profile-mail">john@mail.com</div>
+              <div className="profile-mail mb-3">john@mail.com</div>
             </div>
 
             <div className="divider-line border-bottom border-white"></div>
@@ -179,9 +179,9 @@ export function SideMenu(props) {
           </div>
         </Menu>
       </Sidebar>
-      <main onClick={() => setToggled(!toggled)}>
-        <ButtonExpandNavbar userButton={false} />
-      </main>
+      <div className="toggleBtn" onClick={() => setToggled(!toggled)}>
+        <ButtonExpandNavbar userButton={userStatus} />
+      </div>
     </div>
   );
 }
