@@ -8,7 +8,7 @@ export const PrimaryButton = styled.button`
   border-radius: 50px;
   padding: 5px 20px;
   width: 179px;
-  background-color: var(--primaryBtn_color);
+  background-color: var(--primary_color);
   cursor: pointer;
   transition: opacity linear 200ms;
 

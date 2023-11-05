@@ -12,6 +12,12 @@ import {
   FaPlusCircle,
   FaAngleRight,
   FaRegImage,
+  FaSearch,
+  FaTimes,
+  FaWifi,
+  FaParking,
+  FaCoffee,
+  FaPaw
 } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
 
@@ -72,4 +78,20 @@ export function ContactIcons() {
 
 export function RightArrow() {
   return <FaAngleRight />;
+}
+
+export function InputIcons() {
+  const SearchIcon = <FaSearch />
+  const XIcon = <FaTimes />
+  
+  return { SearchIcon, XIcon};
+}
+
+export function VenueCardIcons() {
+  const WifiIcon = <FaWifi />
+  const ParkIcon = <FaParking />
+  const BreakfastIcon = <FaCoffee />
+  const PetIcon = <FaPaw />
+  
+  return { WifiIcon, ParkIcon, BreakfastIcon, PetIcon  };
 }

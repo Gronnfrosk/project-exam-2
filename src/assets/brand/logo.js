@@ -5,7 +5,7 @@ export function BrandLogo() {
   const theme = useTheme();
 
   return (
-    <div
+    <div className="logo-container"
       style={{
         fontFamily: `"Georgia", "sans-serif", "PT sans"`,
         fontSize: "1.5rem",

@@ -2,8 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Theme from "./theme";
 import GlobalLayout from "./layout/global";
-import Main from "./pages/main/main";
+import Main from "./pages/home/home";
 import { ThemeMode } from "./components/user-color-theme";
+//import RegisterPage from "./pages/registration/register";
 
 function App() {
   return (

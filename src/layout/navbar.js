@@ -101,7 +101,7 @@ export function CollapsibleNavbar() {
             </div>
           </Nav>
         </Navbar.Collapse>
-        <Navbar.Brand href="/" className="p-0">
+        <Navbar.Brand href="/" className="p-0 collapse navbar-collapse">
           <BrandLogo />
         </Navbar.Brand>
       </Container>

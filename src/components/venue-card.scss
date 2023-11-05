@@ -1,0 +1,101 @@
+.card {
+    max-width: 450px;
+    height: 160px;
+    display: flex;
+    flex-direction: row;
+    border: none;
+    margin-top: 20px;
+
+    & .card-text {
+        display: flex;
+        flex-direction: column;
+        font-size: var(--textSmall_fontSize);
+        max-height: 100px;
+        overflow: hidden;
+    }
+
+    & .part-1 {
+        max-width: 160px;
+
+        & .card-img-top {
+            height: 140px;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        & .price {
+            width: fit-content;
+            padding: 5px 20px;
+            border-radius: 50px;
+            background-color: var(--primary_color);
+            font-size: var(--textSmall_fontSize);
+            position: relative;
+            top: -15px;
+            left: 115px;
+        }
+    }
+
+    & .card-body {
+        width: 197px;
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+        padding-left: 10px;
+
+        & .venue-description {
+            display: flex;
+            flex-direction: column;
+
+            & .card-title {
+                font-size: var(--textMedium_fontSize);
+                font-weight: 600;
+                margin: 0;
+            }
+
+            & .rating {
+                font-size: var(--textMedium_fontSize);
+                flex-direction: row;
+                justify-content: end;
+                align-items: end;
+
+                & div {
+                    font-weight: bold;
+                    font-size: var(--textMedium_fontSize);
+
+                    &.this-rating {
+                        font-size: var(--textLarge_fontSize);
+                    }
+                }
+            }
+        }
+
+        & .amenities {
+            text-align: center;
+            min-width: 75px;
+            font-size: var(--textSmall_fontSize);
+
+            & .card-text {
+                width: fit-content;
+                margin: 0 auto 5px auto;
+                font-weight: bold;
+                background-color: var(--primary_color);
+                padding: 8px 7px;
+                border-radius: 50px
+            }
+
+            & .count {
+                padding: 2px 8px
+            }
+
+            & .amenity-list {
+                display: flex;
+                gap: 9px;
+                font-size: var(--textMedium_fontSize);
+            }
+        }
+
+
+    }
+
+
+}
