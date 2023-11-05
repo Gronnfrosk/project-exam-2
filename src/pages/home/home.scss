@@ -91,17 +91,19 @@ section {
             padding: 5px;
             position: absolute;
             margin: 60px auto 0 auto;
-            transition: margin-top 0.3s ease-in-out;
+            transition: margin-top 0.1s ease-in-out;
         }
 
-        & a:hover .arrow {
-            margin-top: 70px;
-        }
+
 
         & .down {
             transform: rotate(45deg);
             -webkit-transform: rotate(45deg);
         }
+    }
+
+    & a:hover .arrow {
+        margin-top: 70px;
     }
 }
 
