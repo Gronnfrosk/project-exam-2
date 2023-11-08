@@ -1,6 +1,5 @@
 import React from "react";
 import "./navbar.scss";
-
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -10,7 +9,7 @@ import { PrimaryLink } from "../components/links";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
 import { PrimaryButton } from "../components/buttons/button.styles";
 import { SideMenu } from "./menu";
-import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
+//import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
 const userStatus = false;
 function ProfileInfoNav() {

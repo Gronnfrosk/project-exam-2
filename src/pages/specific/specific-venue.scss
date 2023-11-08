@@ -7,8 +7,8 @@
         height: 375px;
         display: flex;
         flex-direction: column;
-        justify-content: end;
-        align-items: end;
+        justify-content: flex-end;
+        align-items: flex-end;
 
         & .carousel {
             height: 400px;
@@ -66,7 +66,7 @@
             display: flex;
             font-size: var(--textMedium_fontSize);
             flex-direction: row;
-            align-items: end;
+            align-items: flex-end;
 
             & div {
                 font-weight: bold;
@@ -98,7 +98,7 @@
     & .venue-location-amenities {
         display: flex;
         flex-direction: row;
-        justify-content: start;
+        justify-content: flex-start;
         flex-wrap: wrap;
         gap: 25px;
         max-width: 500px;
@@ -193,8 +193,8 @@
             height: 235px;
             display: flex;
             flex-direction: column;
-            justify-content: end;
-            align-items: end;
+            justify-content: flex-end;
+            align-items: flex-end;
             margin-bottom: 30px;
 
             & .price {

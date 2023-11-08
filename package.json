@@ -2,7 +2,6 @@
   "name": "project-exam-2",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/build",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@hookform/resolvers": "^3.3.2",
@@ -51,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "prettier": "^3.0.3"
   }
 }

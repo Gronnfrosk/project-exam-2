@@ -16,33 +16,32 @@ import { BrandLogo } from "../assets/brand/logo";
 import { PrimaryButton } from "../components/buttons/button.styles";
 import { AvatarImg } from "../components/profile-avatar";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
-
-import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
+//import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
   NavbarIcon();
 
 function profileIventory(user) {
   const userStatus = user;
-  const divider = <span className="text-white fs-5  my-2">|</span>;
-  const iventoryItem = (
-    <div className="inventory-items text-center">
-      <div>145</div>Total
-    </div>
-  );
+  //const divider = <span className="text-white fs-5  my-2">|</span>;
+  //const iventoryItem = (
+  //  <div className="inventory-items text-center">
+  //    <div>145</div>Total
+  //  </div>
+  //);
 
-  const contents = (
-    <>
-      <div className="userType">Venues</div>
-      <div className="d-flex flex-row justify-content-around mt-3">
-        {iventoryItem}
-        {divider}
-        {iventoryItem}
-        {divider}
-        {iventoryItem}
-      </div>
-    </>
-  );
+  //const contents = (
+  //  <>
+  //    <div className="userType">Venues</div>
+  //    <div className="d-flex flex-row justify-content-around mt-3">
+  //      {iventoryItem}
+  //      {divider}
+  //      {iventoryItem}
+  //      {divider}
+  //      {iventoryItem}
+  //    </div>
+  //  </>
+  //);
 
   const manager = (
     <>

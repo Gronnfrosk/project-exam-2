@@ -12,7 +12,7 @@ import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
 //type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function ReactCalender(props) {
-  const { Guests, UserStatus } = props;
+  const { UserStatus } = props;
   //const [value, onChange] = useState(new Date());
   const [date, setDate] = useState(new Date());
 
