@@ -138,7 +138,11 @@ export function SideMenu(props) {
           }}
         >
           <div className="proifile-info my-4">
-            <AvatarImg Name={"John Doe"} UserType={"Venue manager"} Email={"john@mail.com"}/>
+            <AvatarImg
+              Name={"John Doe"}
+              UserType={"Venue manager"}
+              Email={"john@mail.com"}
+            />
 
             <div className="divider-line border-bottom border-white"></div>
 

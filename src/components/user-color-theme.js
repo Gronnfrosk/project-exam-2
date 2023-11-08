@@ -4,7 +4,7 @@ export const ThemeMode = () => {
   //const setNoneUserMode = () => {
   //  document.querySelector("body").setAttribute("data-theme", "noneUser");
   //  localStorage.setItem("selectedUserTheme", "noneUser");
-  // 
+  //
   //};
   //
   //const setCustomerMode = () => {
@@ -17,11 +17,11 @@ export const ThemeMode = () => {
     localStorage.setItem("selectedUserTheme", "manager");
   };
 
-const selectedTheme = localStorage.getItem("selectedTheme");
+  const selectedTheme = localStorage.getItem("selectedTheme");
 
-if (selectedTheme === "manager") {
-  setManagerMode();
-}
+  if (selectedTheme === "manager") {
+    setManagerMode();
+  }
 
   //const UserStatus = (e) => {
   //  if (localStorage === "") setNoneUserMode();

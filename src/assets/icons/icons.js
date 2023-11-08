@@ -18,11 +18,10 @@ import {
   FaParking,
   FaCoffee,
   FaPaw,
-  FaTrashAlt
-
+  FaTrashAlt,
 } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
-import { PiGearSixFill } from "react-icons/pi"
+import { PiGearSixFill } from "react-icons/pi";
 
 export function LogoIcon() {
   return (
@@ -84,24 +83,24 @@ export function RightArrow() {
 }
 
 export function InputIcons() {
-  const SearchIcon = <FaSearch />
-  const XIcon = <FaTimes />
-  
-  return { SearchIcon, XIcon};
+  const SearchIcon = <FaSearch />;
+  const XIcon = <FaTimes />;
+
+  return { SearchIcon, XIcon };
 }
 
 export function VenueCardIcons() {
-  const WifiIcon = <FaWifi />
-  const ParkIcon = <FaParking />
-  const BreakfastIcon = <FaCoffee />
-  const PetIcon = <FaPaw />
-  
-  return { WifiIcon, ParkIcon, BreakfastIcon, PetIcon  };
+  const WifiIcon = <FaWifi />;
+  const ParkIcon = <FaParking />;
+  const BreakfastIcon = <FaCoffee />;
+  const PetIcon = <FaPaw />;
+
+  return { WifiIcon, ParkIcon, BreakfastIcon, PetIcon };
 }
 
 export function SpecificIcons() {
-  const EditIcon = <PiGearSixFill />
-  const DeleteIcon = <FaTrashAlt />
-  
+  const EditIcon = <PiGearSixFill />;
+  const DeleteIcon = <FaTrashAlt />;
+
   return { EditIcon, DeleteIcon };
 }

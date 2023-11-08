@@ -1,7 +1,7 @@
 import React from "react";
 import { ButtonExpand } from "./expand-btn.styles";
 import { AvatarIcon, RightArrow } from "../../assets/icons/icons";
-import { useTheme } from "styled-components"
+import { useTheme } from "styled-components";
 
 import mainTop from "../../assets/images/pexels-luis-leon-2564463.jpg";
 
@@ -10,17 +10,30 @@ export function ButtonExpandNavbar(props) {
   const { userButton, customer, manager, custom, color, arrow } = props;
   const blueBtn = theme.customer.primary;
   const orangeBtn = theme.manager.primary;
-  const colorBtn = (color === true ? orangeBtn :  color === false ? blueBtn : theme.color.primary)
-  const colorBtnBtn = (!arrow ? colorBtn : arrow) 
-  const blue = (color === false ? blueBtn : "")
+  const colorBtn =
+    color === true
+      ? orangeBtn
+      : color === false
+      ? blueBtn
+      : theme.color.primary;
+  const colorBtnBtn = !arrow ? colorBtn : arrow;
+  const blue = color === false ? blueBtn : "";
 
   return (
     <ButtonExpand className="span-btn">
-      <span className="circle" aria-hidden="true" style={{color: colorBtnBtn, borderColor: colorBtn, backgroundColor: blue}}>
+      <span
+        className="circle"
+        aria-hidden="true"
+        style={{
+          color: colorBtnBtn,
+          borderColor: colorBtn,
+          backgroundColor: blue,
+        }}
+      >
         <div>
           {userButton === true ? <AvatarIcon /> : <RightArrow />}
           <img
-            src={userButton === true ? {mainTop} : "" }
+            src={userButton === true ? { mainTop } : ""}
             alt="Profile avatar"
             onError={(event) => (event.target.style.display = "none")}
           />

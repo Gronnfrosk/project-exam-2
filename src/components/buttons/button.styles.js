@@ -8,7 +8,7 @@ export const PrimaryButton = styled.button`
   border: 0;
   border-radius: 50px;
   padding: 5px 20px;
-  width: 179px; 
+  width: 179px;
   cursor: pointer;
   transition: opacity linear 200ms;
 

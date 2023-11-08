@@ -1,6 +1,6 @@
 import "./react-calender.scss";
 import "react-calendar/dist/Calendar.css";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { dateFormat } from "../../constants/date-format";
@@ -12,59 +12,78 @@ import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
 //type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function ReactCalender(props) {
-  const { Guests, UserStatus } = props
+  const { Guests, UserStatus } = props;
   //const [value, onChange] = useState(new Date());
   const [date, setDate] = useState(new Date());
 
   return (
     <div className="booking-form column-gap-5">
-      { UserStatus === null ? <ButtonExpandNavbar custom={"Login or register to place booking"} color={false} arrow={"black"} /> :
-      <> 
-      <div>
-      <Calendar
-        className="costumer"
-        view="month"
-        // viser dato dagens dato
-        minDate={new Date()}
-        maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
-        onChange={setDate}
-        //value={date}
-        onClickDay={(date) => console.log(date)}
-        selectRange={true}
-      /></div>
-      {date.length > 0 ? (
-        <Form>
-          <InputForm title={"Check-in"} placeholder={dateFormat(date[0])}/>
-          <InputForm title={"Check-out"} placeholder={dateFormat(date[1])}/>
-          <InputForm title={"Guests"} placeholder={"4"}/>
-          <p>
-            <span>Total days selected:</span> 
-            {dateFormat(date[1])}
-            {dateFormat(date[0])}
-          </p>
-          <div className="mt-5 text-center">
-          <ButtonExpandNavbar custom={"Place booking"} color={false} arrow={"black"}/>
-          </div>
-        </Form> 
+      {UserStatus === null ? (
+        <ButtonExpandNavbar
+          custom={"Login or register to place booking"}
+          color={false}
+          arrow={"black"}
+        />
       ) : (
-        <Form>
-          <InputForm title={"Check-in"} placeholder="dd/mm/yyyy"/>
-          <InputForm title={"Check-out"} placeholder="dd/mm/yyyy"/>
-          <InputForm title={"Guests"} placeholder={"4"}/>
-          <p className="mt-4">
-            <span >Total days selected: 0</span> 
-          </p>
-          <div className="mt-5 text-center">
-            <ButtonExpandNavbar custom={"Place booking"} color={false} arrow={"black"} />
+        <>
+          <div>
+            <Calendar
+              className="costumer"
+              view="month"
+              // viser dato dagens dato
+              minDate={new Date()}
+              maxDate={
+                new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+              }
+              onChange={setDate}
+              //value={date}
+              onClickDay={(date) => console.log(date)}
+              selectRange={true}
+            />
           </div>
-        </Form>
-      )}</> }      
+          {date.length > 0 ? (
+            <Form>
+              <InputForm title={"Check-in"} placeholder={dateFormat(date[0])} />
+              <InputForm
+                title={"Check-out"}
+                placeholder={dateFormat(date[1])}
+              />
+              <InputForm title={"Guests"} placeholder={"4"} />
+              <p>
+                <span>Total days selected:</span>
+                {dateFormat(date[1])}
+                {dateFormat(date[0])}
+              </p>
+              <div className="mt-5 text-center">
+                <ButtonExpandNavbar
+                  custom={"Place booking"}
+                  color={false}
+                  arrow={"black"}
+                />
+              </div>
+            </Form>
+          ) : (
+            <Form>
+              <InputForm title={"Check-in"} placeholder="dd/mm/yyyy" />
+              <InputForm title={"Check-out"} placeholder="dd/mm/yyyy" />
+              <InputForm title={"Guests"} placeholder={"4"} />
+              <p className="mt-4">
+                <span>Total days selected: 0</span>
+              </p>
+              <div className="mt-5 text-center">
+                <ButtonExpandNavbar
+                  custom={"Place booking"}
+                  color={false}
+                  arrow={"black"}
+                />
+              </div>
+            </Form>
+          )}
+        </>
+      )}
     </div>
   );
 }
-
-
-          
 
 //<Calendar
 //        className="Venue manager"
