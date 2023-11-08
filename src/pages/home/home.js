@@ -6,7 +6,6 @@ import { InputBase } from "../../components/form-input"
 import { InputIcons } from "../../assets/icons/icons"
 import VenueCard from "../../components/venue-card"
 
-
 function MainPage() {
   const { SearchIcon, XIcon} = InputIcons()
   return (

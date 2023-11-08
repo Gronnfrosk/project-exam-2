@@ -138,12 +138,7 @@ export function SideMenu(props) {
           }}
         >
           <div className="proifile-info my-4">
-            <div className="profile text-center d-flex flex-column align-items-center">
-              <div className="profile-name">John Doe</div>
-              <div className="profile-type">Venue manager</div>
-              <AvatarImg />
-              <div className="profile-mail mb-3">john@mail.com</div>
-            </div>
+            <AvatarImg Name={"John Doe"} UserType={"Venue manager"} Email={"john@mail.com"}/>
 
             <div className="divider-line border-bottom border-white"></div>
 

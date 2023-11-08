@@ -17,9 +17,12 @@ import {
   FaWifi,
   FaParking,
   FaCoffee,
-  FaPaw
+  FaPaw,
+  FaTrashAlt
+
 } from "react-icons/fa";
 import { FaEarthAfrica } from "react-icons/fa6";
+import { PiGearSixFill } from "react-icons/pi"
 
 export function LogoIcon() {
   return (
@@ -94,4 +97,11 @@ export function VenueCardIcons() {
   const PetIcon = <FaPaw />
   
   return { WifiIcon, ParkIcon, BreakfastIcon, PetIcon  };
+}
+
+export function SpecificIcons() {
+  const EditIcon = <PiGearSixFill />
+  const DeleteIcon = <FaTrashAlt />
+  
+  return { EditIcon, DeleteIcon };
 }

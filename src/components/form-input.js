@@ -14,17 +14,20 @@ export function InputBase(props) {
   );
 }
 
-export function InputForm() {
+export function InputForm(props) {
+  const { title, placeholder } = props
   return (
     <InputGroup className="mb-3 w-100">
-      <Form.Control
-        placeholder="Recipient's username"
-        aria-label="Recipient's username"
-        aria-describedby="basic-addon2"
-      />
-      <Button variant="outline-secondary" id="button-addon2">
-        {">"}
+      <Button variant="outline-secondary" id="button-addon2" className="rounded-start-pill">
+        {title}
       </Button>
+      <Form.Control
+        placeholder={placeholder}
+        aria-label="Recipient's username"
+        aria-describedby="basic-addon1"
+        className="rounded-end-pill shadow-none"
+      />
+      
     </InputGroup>
   );
 }

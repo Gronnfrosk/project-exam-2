@@ -1,19 +1,29 @@
 import "./react-calender.scss";
 import "react-calendar/dist/Calendar.css";
-import { dateFormat } from "../../constants/date-format";
+import Form from 'react-bootstrap/Form';
 import { useState } from "react";
 import Calendar from "react-calendar";
+import { dateFormat } from "../../constants/date-format";
+import { InputForm } from "../../components/form-input";
+import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
 
 //{formattedToday}
 //type ValuePiece = Date | null;
 //type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-export function ReactCalender() {
-  const [value, onChange] = useState(new Date());
+export default function ReactCalender(props) {
+  const { Guests, UserStatus } = props
+  //const [value, onChange] = useState(new Date());
   const [date, setDate] = useState(new Date());
 
   return (
-    <div>
+    <div className="booking-form">
+      { UserStatus === null ? <ButtonExpandNavbar custom={"Login or register to place booking"} color={false} arrow={"black"} /> :
+      <> 
+      <div>
+      <p className="text-center mb-1">
+          <span className="fw-bold ">Start booking today</span>
+        </p>
       <Calendar
         className="costumer"
         view="month"
@@ -24,41 +34,51 @@ export function ReactCalender() {
         //value={date}
         onClickDay={(date) => console.log(date)}
         selectRange={true}
-      />
+      /></div>
       {date.length > 0 ? (
-        <p className="text-center">
-          <span className="bold">Booking from:</span> {dateFormat(date[0])}
-          {date[0].toLocaleDateString()}
-          &nbsp;|&nbsp;
-          <span className="bold">Booking ends:</span>
-          {dateFormat(date[1])}
-          {date[1].toLocaleDateString()}
-          &nbsp;|&nbsp;
-          <span className="bold">Total days:</span>
-          {dateFormat(date[1])}
-          {dateFormat(date[0])}
-        </p>
+        <Form>
+          <InputForm title={"Check-in"} placeholder={dateFormat(date[0])}/>
+          <InputForm title={"Check-out"} placeholder={dateFormat(date[1])}/>
+          <InputForm title={"Guests"} placeholder={"4"}/>
+          <p>
+            <span>Total days selected:</span> 
+            {dateFormat(date[1])}
+            {dateFormat(date[0])}
+          </p>
+          <div className="mt-5 text-center">
+          <ButtonExpandNavbar custom={"Place booking"} color={false} arrow={"black"}/>
+          </div>
+        </Form> 
       ) : (
-        <p className="text-center">
-          <span className="bold">You can Start booking from today:</span>{" "}
-          {dateFormat(date)}
+        <Form>
+          <InputForm title={"Check-in"} placeholder="dd/mm/yyyy"/>
+          <InputForm title={"Check-out"} placeholder="dd/mm/yyyy"/>
+          <InputForm title={"Guests"} placeholder={"4"}/>
+          <p>
+          <span>Total days selected: 0</span> 
         </p>
-      )}
-
-      <Calendar
-        className="Venue manager"
-        view="month"
-        // viser dato fra 1 januar 2023
-        minDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
-        maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
-        onChange={onChange}
-        value={value}
-        onClickDay={(date) => console.log(date)}
-      />
+        <div className="mt-5 text-center">
+          <ButtonExpandNavbar custom={"Place booking"} color={false} arrow={"black"} />
+          </div>
+        </Form>
+      )}</> }      
     </div>
   );
 }
 
+
+          
+
+//<Calendar
+//        className="Venue manager"
+//        view="month"
+//        // viser dato fra 1 januar 2023
+//        minDate={new Date(new Date().setFullYear(new Date().getFullYear() - 1))}
+//        maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
+//        onChange={onChange}
+//        value={value}
+//        onClickDay={(date) => console.log(date)}
+//      />
 //import { useState } from 'react';
 //import Calendar from 'react-calendar';
 //
@@ -75,3 +95,8 @@ export function ReactCalender() {
 //    </div>
 //  );
 //}
+
+//<p className="fw-bold">
+//          <span className="bold">You can Start booking from today:</span>{" "}
+//          {dateFormat(date)}
+//        </p>

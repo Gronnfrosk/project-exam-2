@@ -12,13 +12,13 @@ export const ButtonExpand = styled.button`
   padding: 0;
   font-size: inherit;
   font-family: inherit;
+  font-weight: bold;
 
   &.span-btn {
     width: 12rem;
     height: auto;
 
     & .circle {
-      color: var(--body_color);
       display: flex;
       align-items: center;
       font-size: 1.45em;
@@ -27,7 +27,7 @@ export const ButtonExpand = styled.button`
       margin: 0;
       width: 3rem;
       height: 3rem;
-      border: solid 3px var(--body_color);
+      border: solid 3px;
       border-radius: 1.625rem;
 
       & svg {

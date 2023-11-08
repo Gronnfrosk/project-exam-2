@@ -2,7 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Theme from "./theme";
 import GlobalLayout from "./layout/global";
-import Main from "./pages/home/home";
+import Home from "./pages/home/home";
+import SpecificVenuePage from "./pages/specific/specific-venue";
 import { ThemeMode } from "./components/user-color-theme";
 //import RegisterPage from "./pages/registration/register";
 
@@ -14,9 +15,9 @@ function App() {
         <Theme>
           <Routes>
             <Route path="/" element={<GlobalLayout />}>
-              <Route index element={<Main />} />
-              <Route path="/main" element={<Main />} />
-              <Route path="/:id" element={<Main />} />
+              <Route index element={<Home />} />
+              <Route path="/main" element={<Home />} />
+              <Route path="/:id" element={<SpecificVenuePage />} />
             </Route>
           </Routes>
         </Theme>
