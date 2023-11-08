@@ -19,6 +19,10 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/" element={<Home />} />
               <Route path="/:id" element={<SpecificVenuePage />} />
+              <Route path="/venue-list" element={<VenueList />} />
+              <Route path="/booking-list" element={<BookingList />} />
+              <Route path="/create-venue" element={<CreateVenue />} />
+              <Route path="/test" element={<SpecificVenuePage />} />
             </Route>
           </Routes>
         </Theme>
