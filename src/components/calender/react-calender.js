@@ -17,13 +17,10 @@ export default function ReactCalender(props) {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div className="booking-form">
+    <div className="booking-form column-gap-5">
       { UserStatus === null ? <ButtonExpandNavbar custom={"Login or register to place booking"} color={false} arrow={"black"} /> :
       <> 
       <div>
-      <p className="text-center mb-1">
-          <span className="fw-bold ">Start booking today</span>
-        </p>
       <Calendar
         className="costumer"
         view="month"
@@ -54,11 +51,11 @@ export default function ReactCalender(props) {
           <InputForm title={"Check-in"} placeholder="dd/mm/yyyy"/>
           <InputForm title={"Check-out"} placeholder="dd/mm/yyyy"/>
           <InputForm title={"Guests"} placeholder={"4"}/>
-          <p>
-          <span>Total days selected: 0</span> 
-        </p>
-        <div className="mt-5 text-center">
-          <ButtonExpandNavbar custom={"Place booking"} color={false} arrow={"black"} />
+          <p className="mt-4">
+            <span >Total days selected: 0</span> 
+          </p>
+          <div className="mt-5 text-center">
+            <ButtonExpandNavbar custom={"Place booking"} color={false} arrow={"black"} />
           </div>
         </Form>
       )}</> }      

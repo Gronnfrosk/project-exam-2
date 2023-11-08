@@ -1,0 +1,14 @@
+.input-group {
+    & button {
+        width: 100px;
+        text-align: start;
+        background-color: var(--body_backgroundColor);
+        font-size: var(--textSmall_fontSize);
+        padding-left: 10px;
+    }
+
+    & .form-control {
+        border: 1px solid black;
+        padding-left: 15px;
+    }
+}

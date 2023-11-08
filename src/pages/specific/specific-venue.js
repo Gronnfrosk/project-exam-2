@@ -93,6 +93,7 @@ return (
             </div>
             </section>
             <section className="part-4 mt-5">
+            <h2 className="fw-bold text-center mb-2 text-center position-relative">Start booking today</h2>
             <ReactCalender Guests={10} UserStatus={false}/>
             </section>
         </main>

@@ -1,3 +1,4 @@
+import "./form-input.scss"
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -18,7 +19,7 @@ export function InputForm(props) {
   const { title, placeholder } = props
   return (
     <InputGroup className="mb-3 w-100">
-      <Button variant="outline-secondary" id="button-addon2" className="rounded-start-pill">
+      <Button variant="dark" id="button-addon2" className="rounded-start-pill">
         {title}
       </Button>
       <Form.Control

@@ -3,7 +3,6 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 40px;
 
   & .react-calendar {
     width: 400px;
@@ -120,5 +119,11 @@
 
   & form {
     height: 100%;
+
+    & .input-group:nth-child(3) .form-control {
+      max-width: 60px;
+    }
   }
+
+
 }
