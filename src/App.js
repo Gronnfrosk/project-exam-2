@@ -14,9 +14,10 @@ function App() {
         <ThemeMode />
         <Theme>
           <Routes>
+
             <Route path="/" element={<GlobalLayout />}>
               <Route index element={<Home />} />
-              <Route path="/main" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/:id" element={<SpecificVenuePage />} />
             </Route>
           </Routes>

@@ -1,243 +1,243 @@
 .specific {
-  max-width: 800px;
-  margin: auto;
+    max-width: 800px;
+    margin: auto;
 
-  & .part-1 {
-    max-width: 625px;
-    height: 375px;
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-
-    & .carousel {
-      height: 400px;
-      max-width: 600px;
-      margin: auto;
-
-      & .carousel-control-next {
-        position: absolute;
-        right: -65px;
-        top: -40px;
-      }
-
-      .carousel-control-prev {
-        position: absolute;
-        left: -65px;
-        top: -40px;
-      }
-
-      & .carousel-indicators {
-        bottom: -25px;
-      }
-
-      & .carousel-item {
-        text-align: center;
-        height: 360px;
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-
-        & img {
-          height: auto;
-          width: 100%;
-          aspect-ratio: 1/1;
-          object-fit: cover;
-          text-align: center;
-        }
-      }
-    }
-
-    & .price {
-      width: fit-content;
-      padding: 8px 15px;
-      border-radius: 8px;
-      background-color: var(--primary_color);
-      font-size: var(--textLarge_fontSize);
-      position: absolute;
-      z-index: 2;
-    }
-  }
-
-  & .part-2 {
-    & h1 {
-      margin-left: 20px;
-    }
-
-    & .rating {
-      display: flex;
-      font-size: var(--textMedium_fontSize);
-      flex-direction: row;
-      align-items: end;
-
-      & div {
-        font-weight: bold;
-        font-size: var(--textMedium_fontSize);
-
-        &.this-rating {
-          font-size: var(--textLarge_fontSize);
-        }
-      }
-    }
-
-    & .user-feature {
-      display: flex;
-      gap: 5px;
-    }
-  }
-
-  & .profile {
-    & .name {
-      font-size: var(--textLarge_fontSize);
-    }
-
-    & .type,
-    .mail {
-      font-size: var(--textSmall_fontSize);
-    }
-  }
-
-  & .venue-location-amenities {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    flex-wrap: wrap;
-    gap: 25px;
-    max-width: 500px;
-    margin-top: 10px;
-    padding: 0 10px;
-    align-items: baseline;
-
-    & .venue-location,
-    .amenity-list {
-      width: 147.5px;
-      height: 170px;
-    }
-
-    & .venue-location {
-      & .location-country-address {
-        background-image: url("../../assets/images/destination-pattern.PNG");
-        background-size: cover;
-        background-position: center;
-        height: 100%;
-        color: white;
+    & .part-1 {
+        max-width: 625px;
+        height: 375px;
         display: flex;
         flex-direction: column;
-        padding: 5px 12px;
-        width: 100%;
-        object-fit: cover;
+        justify-content: end;
+        align-items: end;
 
-        & div {
-          font-size: var(--textLarge_fontSize);
-          padding-bottom: 5px;
+        & .carousel {
+            height: 400px;
+            max-width: 600px;
+            margin: auto;
+
+            & .carousel-control-next {
+                position: absolute;
+                right: -65px;
+                top: -40px;
+            }
+
+            .carousel-control-prev {
+                position: absolute;
+                left: -65px;
+                top: -40px;
+            }
+
+            & .carousel-indicators {
+                bottom: -25px;
+            }
+
+            & .carousel-item {
+                text-align: center;
+                height: 360px;
+                box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+
+                & img {
+                    height: auto;
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    object-fit: cover;
+                    text-align: center;
+                }
+            }
         }
-      }
+
+        & .price {
+            width: fit-content;
+            padding: 8px 15px;
+            border-radius: 8px;
+            background-color: var(--primary_color);
+            font-size: var(--textLarge_fontSize);
+            position: absolute;
+            z-index: 2;
+        }
     }
 
-    & .amenities {
-      width: 147.5px;
+    & .part-2 {
+        & h1 {
+            margin-left: 20px;
+        }
 
-      & .amenity-list {
+        & .rating {
+            display: flex;
+            font-size: var(--textMedium_fontSize);
+            flex-direction: row;
+            align-items: end;
+
+            & div {
+                font-weight: bold;
+                font-size: var(--textMedium_fontSize);
+
+                &.this-rating {
+                    font-size: var(--textLarge_fontSize);
+                }
+            }
+        }
+
+        & .user-feature {
+            display: flex;
+            gap: 5px;
+        }
+    }
+
+    & .profile {
+        & .name {
+            font-size: var(--textLarge_fontSize);
+        }
+
+        & .type,
+        .mail {
+            font-size: var(--textSmall_fontSize);
+        }
+    }
+
+    & .venue-location-amenities {
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 10px 8px;
-        background-color: var(--primary_color);
-        font-size: var(--textMedium_fontSize);
-        width: 36px;
-        border-radius: 50px;
-        margin: 0;
+        flex-direction: row;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 25px;
+        max-width: 500px;
+        margin-top: 10px;
+        padding: 0 10px;
+        align-items: baseline;
 
-        & li {
-          display: flex;
-          gap: 1.1rem;
-          width: 165px;
-
-          & svg {
-            font-size: 1.25rem;
-          }
+        & .venue-location,
+        .amenity-list {
+            width: 147.5px;
+            height: 170px;
         }
-      }
+
+        & .venue-location {
+            & .location-country-address {
+                background-image: url("../../assets/images/destination-pattern.PNG");
+                background-size: cover;
+                background-position: center;
+                height: 100%;
+                color: white;
+                display: flex;
+                flex-direction: column;
+                padding: 5px 12px;
+                width: 100%;
+                object-fit: cover;
+
+                & div {
+                    font-size: var(--textLarge_fontSize);
+                    padding-bottom: 5px;
+                }
+            }
+        }
+
+        & .amenities {
+            width: 147.5px;
+
+            & .amenity-list {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 10px 8px;
+                background-color: var(--primary_color);
+                font-size: var(--textMedium_fontSize);
+                width: 36px;
+                border-radius: 50px;
+                margin: 0;
+
+                & li {
+                    display: flex;
+                    gap: 1.1rem;
+                    width: 165px;
+
+                    & svg {
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+        }
     }
-  }
 
-  & .venue-manager-profile {
-    display: flex;
-    align-items: center;
-    height: fit-content;
-    justify-content: center;
-    padding: 30px;
-    box-shadow: #1d1d1d11 1px 1px 25px 2px;
-  }
-
-  & .part-4 {
-    margin-bottom: 50px;
-
-    .gsahwO.span-btn {
-      width: 20rem;
+    & .venue-manager-profile {
+        display: flex;
+        align-items: center;
+        height: fit-content;
+        justify-content: center;
+        padding: 30px;
+        box-shadow: #1d1d1d11 1px 1px 25px 2px;
     }
 
-    & form .gsahwO.span-btn {
-      width: 12rem;
-    }
+    & .part-4 {
+        margin-bottom: 50px;
 
-    & .button-text {
-      color: black !important;
+        .gsahwO.span-btn {
+            width: 20rem;
+        }
+
+        & form .gsahwO.span-btn {
+            width: 12rem;
+        }
+
+        & .button-text {
+            color: black !important;
+        }
     }
-  }
 }
 
 /*mobile styles*/
 @media only screen and (max-width: 700px) {
-  .specific {
-    & .part-1 {
-      max-width: 325px;
-      height: 235px;
-      display: flex;
-      flex-direction: column;
-      justify-content: end;
-      align-items: end;
-      margin-bottom: 30px;
+    .specific {
+        & .part-1 {
+            max-width: 325px;
+            height: 235px;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: end;
+            margin-bottom: 30px;
 
-      & .price {
-        width: fit-content;
-        padding: 8px 15px;
-        border-radius: 8px;
-        background-color: var(--primary_color);
-        font-size: var(--textMedium_fontSize);
-        position: absolute;
-        /*
+            & .price {
+                width: fit-content;
+                padding: 8px 15px;
+                border-radius: 8px;
+                background-color: var(--primary_color);
+                font-size: var(--textMedium_fontSize);
+                position: absolute;
+                /*
                 top: -55px;*/
-        z-index: 2;
-      }
+                z-index: 2;
+            }
 
-      .carousel {
-        height: 260px;
-        width: 300px;
-        margin: auto;
+            .carousel {
+                height: 260px;
+                width: 300px;
+                margin: auto;
 
-        & .carousel-control-next {
-          right: -40px;
+                & .carousel-control-next {
+                    right: -40px;
+                }
+
+                .carousel-control-prev {
+                    left: -40px;
+                }
+
+                & .carousel-indicators {
+                    bottom: -35px;
+
+                    & button {
+                        width: 20px;
+                    }
+                }
+
+                & .carousel-item {
+                    height: 220px;
+                }
+            }
         }
 
-        .carousel-control-prev {
-          left: -40px;
+        & .rating {
+            font-size: var(--textSmall_fontSize);
         }
-
-        & .carousel-indicators {
-          bottom: -35px;
-
-          & button {
-            width: 20px;
-          }
-        }
-
-        & .carousel-item {
-          height: 220px;
-        }
-      }
     }
-
-    & .rating {
-      font-size: var(--textSmall_fontSize);
-    }
-  }
 }

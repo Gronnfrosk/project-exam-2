@@ -55,8 +55,8 @@
       & .rating {
         font-size: var(--textMedium_fontSize);
         flex-direction: row;
-        justify-content: end;
-        align-items: end;
+        justify-content: flex-end;
+        align-items: flex-end;
 
         & div {
           font-weight: bold;
