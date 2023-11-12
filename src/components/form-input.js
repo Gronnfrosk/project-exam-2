@@ -49,6 +49,7 @@ export function InputEditAvatar() {
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           className="rounded-start-pill border-0 shadow-none"
+          style={{fontSize: "var(--textMedium_fontSize)"}}
         />
         <EditAvatar>{">"}</EditAvatar>
       </InputGroup>

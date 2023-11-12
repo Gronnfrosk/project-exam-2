@@ -24,11 +24,11 @@ export default function VenueCard() {
             Relax and enjoy a good view over the city. This is a big Apartment
             in the city...
           </Card.Text>
-          <Card.Text className="rating mt-auto">
+          <div className="rating ms-2">
             Rating
             <div className="this-rating ms-2">5/</div>
             <div className="max-rating">5</div>
-          </Card.Text>
+          </div>
         </div>
         <div className="amenities">
           <small>Max guests</small>

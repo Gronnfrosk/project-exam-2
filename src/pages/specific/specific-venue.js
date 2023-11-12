@@ -1,4 +1,5 @@
 import "./specific-venue.scss";
+import {Helmet} from "react-helmet";
 import mainTop from "../../assets/images/pexels-luis-leon-2564463.jpg";
 import { VenueCardIcons, SpecificIcons } from "../../assets/icons/icons";
 import Carousel from "react-bootstrap/Carousel";
@@ -13,8 +14,15 @@ import {
 function SpecificVenuePage() {
   const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = VenueCardIcons();
   const { EditIcon, DeleteIcon } = SpecificIcons();
+  const BigCityApartment = " Big city apartment";
+  const description = ("Info about the" + BigCityApartment)
 
   return (
+    <>
+    <Helmet>
+      <title>Venue - Big city apartment</title>
+      <meta name="description" content={description} />
+    </Helmet>
     <main className="specific mb-5 mt-3">
       <section className="part-1">
         <Carousel fade data-bs-theme="dark">
@@ -111,6 +119,7 @@ function SpecificVenuePage() {
         <ReactCalender Guests={10} UserStatus={false} />
       </section>
     </main>
+    </>
   );
 }
 

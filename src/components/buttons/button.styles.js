@@ -18,10 +18,10 @@ export const PrimaryButton = styled.button`
 `;
 
 export const EditAvatar = styled(PrimaryButton)`
+  background-color: var(--primary_color)!important;
   border-radius: 50px;
-  width: 45px;
+  width: 45px!important;
   font-weight: bold;
-  font-size: 1.1rem;
 `;
 
 export const EditVenueBtn = styled.button`
