@@ -5,7 +5,7 @@ import GlobalLayout from "./layout/global";
 import Home from "./pages/home/home";
 import SpecificVenuePage from "./pages/specific/specific-venue";
 import { ThemeMode } from "./components/user-color-theme";
-//import RegisterPage from "./pages/registration/register";
+import Login from "./pages/login&register/login";
 import VenueList  from "./pages/booking-venue-list/venue-list"
 import BookingList from "./pages/booking-venue-list/booking-list"
 import CreateVenue from "./pages/create-venue/create-venue"
@@ -31,6 +31,7 @@ function App() {
               <Route path="/booking-list-previous" element={<BookingList />} />
               <Route path="/booking-list-total" element={<BookingList />} />       
               <Route path="/create-venue" element={<CreateVenue />} />
+              <Route path="/login-register" element={<Login />} />
               <Route path="/test" element={<SpecificVenuePage />} />
               <Route path="/*" element={<SpecificVenuePage />} />
             </Route>

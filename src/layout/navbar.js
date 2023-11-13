@@ -1,7 +1,7 @@
 import React from "react";
 import "./navbar.scss";
 import { NavLink } from "react-router-dom"
-
+import { Link } from "react-router-dom"
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -13,7 +13,7 @@ import { SideMenu } from "./menu";
 //import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
 const divider = <span style={{fontSize: "2rem"}}>|</span>;
-const userStatus = false;
+const userStatus = null;
 
 function ProfileInfoNav() {
   const { UpcomingIcon, PreviousIcon, Total, CreateIcon } = NavbarIcon();
@@ -71,6 +71,18 @@ function ProfileInfoNav() {
 }
 
 export function CollapsibleNavbar() {
+  const path = window.location.pathname;
+
+  if( path==="/login-register" ) {
+    return <Navbar
+    collapseOnSelect
+    expand="lg"
+    data-bs-theme="dark"
+    bg={"dark"}
+    className="bg-body-tertiary"
+  ></Navbar>
+  }
+
   return (
     <Navbar
       collapseOnSelect
@@ -83,7 +95,9 @@ export function CollapsibleNavbar() {
         {userStatus !== null ? (
           <SideMenu userButton={userStatus} />
         ) : (
-          <ButtonExpandNavbar userButton={userStatus} />
+          <Link to="login-register">
+            <ButtonExpandNavbar userButton={userStatus}/>
+          </Link>
         )}
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
