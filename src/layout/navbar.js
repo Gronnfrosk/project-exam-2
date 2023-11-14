@@ -1,7 +1,7 @@
 import React from "react";
 import "./navbar.scss";
-import { NavLink } from "react-router-dom"
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -12,53 +12,92 @@ import { PrimaryButton } from "../components/buttons/button.styles";
 import { SideMenu } from "./menu";
 //import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
-const divider = <span style={{fontSize: "2rem"}}>|</span>;
+const divider = <span style={{ fontSize: "2rem" }}>|</span>;
 const userStatus = null;
 
 function ProfileInfoNav() {
   const { UpcomingIcon, PreviousIcon, Total, CreateIcon } = NavbarIcon();
-  const navbarContentCustomer = [{ name: "Upcomming", amount: "2", icon: UpcomingIcon, link: "/booking-list-upcoming",dividerNav: divider}, {name: "Previous", amount: "8", icon: PreviousIcon, link: "/booking-list-previous", dividerNav: divider }, {name: "Total", amount: "10", icon: Total, link: "/booking-list-total", dividerNav: ""}];
-  const navbarContentManager = [{ name: "Total", amount: "10", icon: Total, link: "/venue-list", dividerNav: divider}, {name: "Create", icon: CreateIcon, link: "/create-venue", dividerNav: ""}]
-  const navbarLink = ( userStatus === false ? navbarContentCustomer : navbarContentManager )
+  const navbarContentCustomer = [
+    {
+      name: "Upcomming",
+      amount: "2",
+      icon: UpcomingIcon,
+      link: "/booking-list-upcoming",
+      dividerNav: divider,
+    },
+    {
+      name: "Previous",
+      amount: "8",
+      icon: PreviousIcon,
+      link: "/booking-list-previous",
+      dividerNav: divider,
+    },
+    {
+      name: "Total",
+      amount: "10",
+      icon: Total,
+      link: "/booking-list-total",
+      dividerNav: "",
+    },
+  ];
+  const navbarContentManager = [
+    {
+      name: "Total",
+      amount: "10",
+      icon: Total,
+      link: "/venue-list",
+      dividerNav: divider,
+    },
+    { name: "Create", icon: CreateIcon, link: "/create-venue", dividerNav: "" },
+  ];
+  const navbarLink =
+    userStatus === false ? navbarContentCustomer : navbarContentManager;
 
-  const navLinkUserType = (navbarLink.map((navLink) => {
-    const {name, amount, icon, link, dividerNav } = navLink;
+  const navLinkUserType = navbarLink.map((navLink) => {
+    const { name, amount, icon, link, dividerNav } = navLink;
     return (
-    <div key={name} className="userInfo link">
-    <NavLink key={name} to={link} style={({ isPending, isTransitioning }) => {
-      return {
-        display: "flex",
-        gap: "0.5rem",
-        fontSize: "0.9rem",
-        color: isPending ? "red" : "white",
-        viewTransitionName: isTransitioning ? "slide" : "",
-        color: "white",
-        textDecoration: "none",
-        margin: "0 15px",
-        alignItems: "center",
-        lineHeight: "normal",
+      <div key={name} className="userInfo link">
+        <NavLink
+          key={name}
+          to={link}
+          style={({ isPending, isTransitioning }) => {
+            return {
+              display: "flex",
+              gap: "0.5rem",
+              fontSize: "0.9rem",
+              color: isPending ? "red" : "white",
+              viewTransitionName: isTransitioning ? "slide" : "",
+              color: "white",
+              textDecoration: "none",
+              margin: "0 15px",
+              alignItems: "center",
+              lineHeight: "normal",
 
-        "&:hover": {
-          cursor: "pointer",
-        }
-      };
-    }}
-    >
-      {icon}
-      <div className="d-flex flex-wrap-reverse justify-content-center">
-        { !amount ? "" : <span className="me-2">{amount}</span>}
-      {name}
+              "&:hover": {
+                cursor: "pointer",
+              },
+            };
+          }}
+        >
+          {icon}
+          <div className="d-flex flex-wrap-reverse justify-content-center">
+            {!amount ? "" : <span className="me-2">{amount}</span>}
+            {name}
+          </div>
+        </NavLink>
+        {dividerNav}
       </div>
-    </NavLink>
-    {dividerNav}
-    </div>
-    )
-}))
+    );
+  });
 
   return (
     <div className="userInfo">
       <div className="userInfo">
-      { userStatus === false ? <div className="title me-3">Bookings: </div> : <div className="title me-2">Venues: </div>}
+        {userStatus === false ? (
+          <div className="title me-3">Bookings: </div>
+        ) : (
+          <div className="title me-2">Venues: </div>
+        )}
         {navLinkUserType}
       </div>
       <div className="logout-btn d-flex justify-content-end">
@@ -73,14 +112,16 @@ function ProfileInfoNav() {
 export function CollapsibleNavbar() {
   const path = window.location.pathname;
 
-  if( path==="/login-register" ) {
-    return <Navbar
-    collapseOnSelect
-    expand="lg"
-    data-bs-theme="dark"
-    bg={"dark"}
-    className="bg-body-tertiary"
-  ></Navbar>
+  if (path === "/login-register") {
+    return (
+      <Navbar
+        collapseOnSelect
+        expand="lg"
+        data-bs-theme="dark"
+        bg={"dark"}
+        className="bg-body-tertiary"
+      ></Navbar>
+    );
   }
 
   return (
@@ -96,7 +137,7 @@ export function CollapsibleNavbar() {
           <SideMenu userButton={userStatus} />
         ) : (
           <Link to="login-register">
-            <ButtonExpandNavbar userButton={userStatus}/>
+            <ButtonExpandNavbar userButton={userStatus} />
           </Link>
         )}
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -110,7 +151,10 @@ export function CollapsibleNavbar() {
             </div>
           </Nav>
         </Navbar.Collapse>
-        <NavLink to="/" className="p-0 collapse navbar-collapse flex-grow-0 text-decoration-none">
+        <NavLink
+          to="/"
+          className="p-0 collapse navbar-collapse flex-grow-0 text-decoration-none"
+        >
           <BrandLogo />
         </NavLink>
       </Container>

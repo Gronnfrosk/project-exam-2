@@ -1,5 +1,5 @@
-import { API_URL_AUTH_LOGIN } from "./constants"
-import { save } from "../state/save_load_remove.js";
+import { API_URL_AUTH_LOGIN } from "../api/constants";
+import { save } from "../../contexts/save_load_remove_local_storage";
 
 const loginURL = API_URL_AUTH_LOGIN;
 const method = "post";
@@ -13,21 +13,21 @@ const method = "post";
  * @param {string} user This is the localStorage user profile data value.
  */
 export async function login(profile) {
-	const response = await fetch(loginURL, {
-		headers: { "Content-type": "application/json" },
-		method,
-		body: JSON.stringify(profile),
-	});
+  const response = await fetch(loginURL, {
+    headers: { "Content-type": "application/json" },
+    method,
+    body: JSON.stringify(profile),
+  });
 
-	if (response.ok) {
-		const { accessToken, ...user } = await response.json();
+  if (response.ok) {
+    const { accessToken, ...user } = await response.json();
 
-		save("token", accessToken);
-		save("profile", user);
+    save("token", accessToken);
+    save("profile", user);
 
-		alert("You are now logged in at AuctionPoint.");
-		window.location.href = "../index.html";
-	} else {
-		alert("Error! You have entered invalid username or password combination.");
-	}
+    alert("You are now logged in at AuctionPoint.");
+    window.location.href = "../index.html";
+  } else {
+    alert("Error! You have entered invalid username or password combination.");
+  }
 }

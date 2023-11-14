@@ -5,8 +5,13 @@ import { FooterIcons } from "../assets/icons/icons";
 
 function Footer() {
   const { instaIcon, pinterestIcon, twitterIcon, facebookIcon } = FooterIcons();
-  const LinksSocial = [ {link: "https://www.facebook.com/", icon: facebookIcon}, {link: "https://twitter.com/", icon: twitterIcon}, {link: "https://no.pinterest.com/", icon: pinterestIcon}, {link: "https://www.instagram.com/", icon: instaIcon}]
-  
+  const LinksSocial = [
+    { link: "https://www.facebook.com/", icon: facebookIcon },
+    { link: "https://twitter.com/", icon: twitterIcon },
+    { link: "https://no.pinterest.com/", icon: pinterestIcon },
+    { link: "https://www.instagram.com/", icon: instaIcon },
+  ];
+
   return (
     <>
       {FooterSVG}
@@ -38,14 +43,13 @@ function Footer() {
         </div>
         <div className="d-flex justify-content-center text-center mb-3">
           {LinksSocial.map((socialLink) => {
-            const {link, icon} = socialLink
+            const { link, icon } = socialLink;
             return (
-            <a href={link} className="text-white mx-2" key={link}>
-              {icon}
-            </a>
-            )
+              <a href={link} className="text-white mx-2" key={link}>
+                {icon}
+              </a>
+            );
           })}
-         
         </div>
         <p className="text-center mb-0 pb-1">&copy; 2023 Holidaze</p>
       </footer>

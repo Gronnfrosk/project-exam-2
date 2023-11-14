@@ -7,10 +7,10 @@ const token = load("token");
  * @param {string} token This is the localStorage key with access token value.
  */
 export function headers() {
-	return {
-		"Content-Type": "application/json",
-		Authorization: `Bearer ${token}`,
-	};
+  return {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${token}`,
+  };
 }
 
 /**
@@ -18,8 +18,8 @@ export function headers() {
  * @function headers() This function contains the header for HTTP request methods.
  */
 export async function authFetch(url, options = {}) {
-	return fetch(url, {
-		...options,
-		headers: headers(),
-	});
+  return fetch(url, {
+    ...options,
+    headers: headers(),
+  });
 }

@@ -10,9 +10,9 @@ const userToken = load("profile");
  */
 
 export function checkUserToken() {
-	if (!token && !userToken) {
-		window.location.href = "../index.html";
-	}
+  if (!token && !userToken) {
+    window.location.href = "../index.html";
+  }
 }
 
 /**
@@ -21,11 +21,10 @@ export function checkUserToken() {
  * @param {Object} userToken This is the localStorage key with user profile data value.
  */
 export function checkUserTokenLogin() {
-	if (token && userToken) {
-		window.location.href = "../index.html";
-	}
+  if (token && userToken) {
+    window.location.href = "../index.html";
+  }
 }
-
 
 /**
  * This function stores the JSON Web Token as JSON to localStorage.
@@ -33,7 +32,7 @@ export function checkUserTokenLogin() {
  * @param {*} value The value of the key.
  */
 export function save(key, value) {
-	localStorage.setItem(key, JSON.stringify(value));
+  localStorage.setItem(key, JSON.stringify(value));
 }
 
 /**
@@ -41,12 +40,12 @@ export function save(key, value) {
  * @param {string} key name of key in localStorage
  */
 export function load(key) {
-	try {
-		const value = localStorage.getItem(key);
-		return JSON.parse(value);
-	} catch {
-		return null;
-	}
+  try {
+    const value = localStorage.getItem(key);
+    return JSON.parse(value);
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -54,5 +53,5 @@ export function load(key) {
  * @param {string} key name of key in localStorage
  */
 export function remove(key) {
-	localStorage.removeItem(key);
+  localStorage.removeItem(key);
 }

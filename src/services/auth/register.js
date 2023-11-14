@@ -1,4 +1,4 @@
-import { API_URL_AUTH_REGISTER } from "./constants"
+import { API_URL_AUTH_REGISTER } from "./constants";
 
 const registerURL = API_URL_AUTH_REGISTER;
 const method = "post";
@@ -11,16 +11,18 @@ const method = "post";
  * @param {String} registerURL This is the complete url needed for "POST" request.
  */
 export async function register(profile) {
-	const response = await fetch(registerURL, {
-		headers: { "Content-type": "application/json" },
-		method,
-		body: JSON.stringify(profile),
-	});
+  const response = await fetch(registerURL, {
+    headers: { "Content-type": "application/json" },
+    method,
+    body: JSON.stringify(profile),
+  });
 
-	if (response.ok) {
-		alert("Account successfully created. You may now proceed to login.");
-		window.location.href = "signin.html";
-	} else {
-		alert("Error! Your account was not register. Maybe username or email are already registered at AuctionPoint");
-	}
+  if (response.ok) {
+    alert("Account successfully created. You may now proceed to login.");
+    window.location.href = "signin.html";
+  } else {
+    alert(
+      "Error! Your account was not register. Maybe username or email are already registered at AuctionPoint",
+    );
+  }
 }

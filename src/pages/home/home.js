@@ -1,7 +1,7 @@
 import "./home.scss";
 import Form from "react-bootstrap/Form";
-import { Helmet } from "react-helmet";
-import AllVenues from "../../services/api/venues"
+import { Helmet } from "react-helmet-async";
+import AllVenues from "../../services/api/venues";
 import { PrimaryButton } from "../../components/buttons/button.styles";
 import { BrandLogo } from "../../assets/brand/logo";
 import { InputBase } from "../../components/form-input";
@@ -13,12 +13,12 @@ function MainPage() {
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Home - Holidaze</title>
-        <meta name="description" content="Get info about available bookings"/>
+        <meta name="description" content="Get info about available bookings" />
       </Helmet>
       <header>
-      <AllVenues />
+        <AllVenues />
         <div className="top-picture" alt="background of city at night">
           <div className="homeContainer">
             <BrandLogo />

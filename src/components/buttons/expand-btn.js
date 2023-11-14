@@ -7,7 +7,7 @@ import mainTop from "../../assets/images/pexels-luis-leon-2564463.jpg";
 
 export function ButtonExpandNavbar(props) {
   const theme = useTheme();
-  const { userButton, customer, manager, custom, color, arrow, type} = props;
+  const { userButton, customer, manager, custom, color, arrow, type, dataBsTarget, value, name } = props;
   const blueBtn = theme.customer.primary;
   const orangeBtn = theme.manager.primary;
   const colorBtn =
@@ -21,7 +21,7 @@ export function ButtonExpandNavbar(props) {
   const blue = color === false ? blueBtn : "";
 
   return (
-    <ButtonExpand className="span-btn" type={type}>
+    <ButtonExpand name={name} className="span-btn" type={type} data-bs-target={dataBsTarget} value={value} >
       <span
         className="circle"
         aria-hidden="true"
@@ -40,7 +40,7 @@ export function ButtonExpandNavbar(props) {
           />
         </div>
       </span>
-      <span className="button-text" style={{color: colorBtnText}}>
+      <span className="button-text" style={{ color: colorBtnText }}>
         {userButton === true
           ? "John Manager"
           : userButton === false

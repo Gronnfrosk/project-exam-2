@@ -22,10 +22,16 @@ export function InputBase(props) {
 }
 
 export function InputForm(props) {
-  const { title, placeholder, type, val } = props;
+  const { title, placeholder, type, autocomplete, validate } = props;
+
   return (
-    <InputGroup className="mb-3 w-100">
-      <Form.Label htmlFor={title} className="rounded-start-pill shadow-sm text-white">{title}</Form.Label>
+    <InputGroup className="w-100">
+      <Form.Label
+        htmlFor={title}
+        className="rounded-start-pill shadow-sm text-white"
+      >
+        {title}
+      </Form.Label>
       <Form.Control
         id={title}
         placeholder={placeholder}
@@ -33,7 +39,8 @@ export function InputForm(props) {
         aria-describedby="basic-addon1"
         className="rounded-end-pill shadow-sm"
         type={type}
-        val
+        autoComplete={autocomplete}
+        {...validate(title)}
       />
     </InputGroup>
   );
@@ -49,7 +56,7 @@ export function InputEditAvatar() {
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           className="rounded-start-pill border-0 shadow-none"
-          style={{fontSize: "var(--textMedium_fontSize)"}}
+          style={{ fontSize: "var(--textMedium_fontSize)" }}
         />
         <EditAvatar>{">"}</EditAvatar>
       </InputGroup>
