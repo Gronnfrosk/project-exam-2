@@ -22,7 +22,7 @@ export function InputBase(props) {
 }
 
 export function InputForm(props) {
-  const { title, placeholder, type, autocomplete, validate } = props;
+  const { title, placeholder, type, autocomplete, validate, onChange } = props;
 
   return (
     <InputGroup className="w-100">
@@ -40,6 +40,7 @@ export function InputForm(props) {
         className="rounded-end-pill shadow-sm"
         type={type}
         autoComplete={autocomplete}
+        onChange={onChange}
         {...validate(title)}
       />
     </InputGroup>

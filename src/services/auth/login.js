@@ -12,21 +12,21 @@ const method = "post";
  * @param {string} accessToken This is the localStorage access token value.
  * @param {string} user This is the localStorage user profile data value.
  */
-export async function login(profile) {
+export async function LoginUser(profile) {
   const response = await fetch(loginURL, {
     headers: { "Content-type": "application/json" },
     method,
     body: JSON.stringify(profile),
-  });
-
+  })
   if (response.ok) {
-    const { accessToken, ...user } = await response.json();
+    const { accessToken, venueManager, ...user } = await response.json();
 
     save("token", accessToken);
+    save("venueManager", venueManager);
     save("profile", user);
 
     alert("You are now logged in at AuctionPoint.");
-    window.location.href = "../index.html";
+    //window.location.href = "/";
   } else {
     alert("Error! You have entered invalid username or password combination.");
   }
