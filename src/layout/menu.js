@@ -16,104 +16,87 @@ import { BrandLogo } from "../assets/brand/logo";
 import { PrimaryButton } from "../components/buttons/button.styles";
 import { AvatarImg } from "../components/profile-avatar";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
-//import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
+//import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg"
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
   NavbarIcon();
-
-function profileIventory(user) {
-  const userStatus = user;
-  //const divider = <span className="text-white fs-5  my-2">|</span>;
-  //const iventoryItem = (
-  //  <div className="inventory-items text-center">
-  //    <div>145</div>Total
-  //  </div>
-  //);
-
-  //const contents = (
-  //  <>
-  //    <div className="userType">Venues</div>
-  //    <div className="d-flex flex-row justify-content-around mt-3">
-  //      {iventoryItem}
-  //      {divider}
-  //      {iventoryItem}
-  //      {divider}
-  //      {iventoryItem}
-  //    </div>
-  //  </>
-  //);
-
-  const manager = (
-    <>
-      <div className="userType">Venues</div>
-      <div className="d-flex flex-row justify-content-around mt-3">
-        <div className="inventory-items text-center">
-          <div></div>
-        </div>
-        <span className="text-white fs-5  my-2">|</span>
-        <div className="inventory-items text-center">
-          <div>145</div> Total
-        </div>
-        <span className="text-white fs-5 my-2">|</span>
-        <div className="inventory-items text-center">
-          <div></div>
-        </div>
-      </div>
-    </>
-  );
-
-  const customer = (
-    <>
-      <div className="">Bookings</div>
-      <div className="d-flex flex-row justify-content-around mt-3">
-        <div className="inventory-items text-center">
-          <div>5</div> Upcoming
-        </div>
-        <span className="text-white fs-5  my-2">|</span>
-        <div className="inventory-items text-center">
-          <div>140</div> Previous
-        </div>
-        <span className="text-white fs-5 my-2">|</span>
-        <div className="inventory-items text-center">
-          <div>145</div> Total
-        </div>
-      </div>
-    </>
-  );
-
-  if (userStatus === false) return customer;
-  else return manager;
-}
+const divider = (
+  <span className="d-flex text-white fs-2 align-items-center mt-3">|</span>
+);
 
 export function SideMenu(props) {
   const userStatus = props.userButton;
   const theme = useTheme();
   const [toggled, setToggled] = React.useState(false);
 
-  const ManagerLinks = (
-    <>
-      <MenuItem icon={Total} component={<Link to="/totalVenues" />}>
-        Venues list
-      </MenuItem>
-      <MenuItem icon={CreateIcon} component={<Link to="/createVenue" />}>
-        Create venues
-      </MenuItem>
-    </>
+  const navbarProfileCustomer = [
+    { name: "Upcoming", amount: "2" },
+    { name: "Previous", amount: "8", dividerNav: divider },
+    { name: "Total", amount: "10" },
+  ];
+  const navbarManagerProfile = [
+    {},
+    { name: "Total", amount: "10", dividerNav: divider },
+    {},
+  ];
+  const navbarProfile =
+    userStatus === false ? navbarProfileCustomer : navbarManagerProfile;
+
+  const navbarManager = [
+    { name: "See your venues", icon: Total },
+    { name: "Create venue", icon: CreateIcon },
+  ];
+  const navbarCustomer = [
+    { name: "Upcoming booking", icon: UpcomingIcon },
+    { name: "Previous bookings", icon: PreviousIcon },
+    { name: "All bookings", icon: Total },
+  ];
+  const navbarLink = userStatus === false ? navbarCustomer : navbarManager;
+
+  const navLinkUserType = navbarProfile.map((navLink) => {
+    const { name, amount, dividerNav } = navLink;
+
+    return (
+      <div className="d-flex" key={name}>
+        {dividerNav}
+        <div className="d-flex flex-row justify-content-around mt-3">
+          <div className="inventory-items text-center">
+            <div> {!amount ? "" : amount}</div> {!name ? "" : name}
+          </div>
+        </div>
+        {dividerNav}
+      </div>
+    );
+  });
+
+  const navProfile = (
+    <div className="text-center mt-3">
+      {userStatus === false ? (
+        <div className="fs-4">Bookings </div>
+      ) : (
+        <div className="fs-4">Venues </div>
+      )}
+      <div className="d-flex flex-row justify-content-evenly">
+        {navLinkUserType}
+      </div>
+    </div>
   );
 
-  const CustomerLinks = (
-    <>
-      <MenuItem icon={UpcomingIcon} component={<Link to="/totalVenues" />}>
-        Upcoming bookings
+  const userLinks = navbarLink.map((navLink) => {
+    const { name, icon } = navLink;
+
+    return (
+      <MenuItem
+        key={name}
+        icon={icon}
+        component={
+          <Link to="/venue-list" onClick={() => setToggled(!toggled)} />
+        }
+      >
+        {name}
       </MenuItem>
-      <MenuItem icon={PreviousIcon} component={<Link to="/createVenue" />}>
-        Previous bookings
-      </MenuItem>
-      <MenuItem icon={Total} component={<Link to="/createVenue" />}>
-        All bookings
-      </MenuItem>
-    </>
-  );
+    );
+  });
 
   return (
     <div>
@@ -142,21 +125,15 @@ export function SideMenu(props) {
               UserType={"Venue manager"}
               Email={"john@mail.com"}
             />
-
             <div className="divider-line border-bottom border-white"></div>
-
-            <div className="text-center mt-4">
-              {profileIventory(userStatus)}
-            </div>
+            {navProfile}
           </div>
-
-          <div className="mt-5">
-            {" "}
+          <div className="mt-5 pt-3">
             {userStatus === false
-              ? CustomerLinks
+              ? userLinks
               : userStatus === true
-              ? ManagerLinks
-              : "Hello"}{" "}
+              ? userLinks
+              : "Hello"}
           </div>
           <SubMenu icon={EditAvatar} label="Edit avatar" className="bg-dark">
             <MenuItem style={{ overflow: "hidden" }}>
@@ -182,53 +159,3 @@ export function SideMenu(props) {
     </div>
   );
 }
-
-//<span className="button-text">{userStatus()}</span>
-//<div className="d-flex flex-column mx-3 text-center mt-4">
-//              <div className="inventory border-bottom border-white d-flex flex-row justify-content-around">
-//                <div>Venues</div> <div>Venues</div> <div>Venues</div>
-//              </div>
-//              <div className="d-flex flex-row justify-content-around my-2">
-//              <div className="inventory-items">
-//                  120 <br /> Total
-//                </div>
-//                <span className="text-white fs-5 mx-3 my-2">|</span>
-//                <div className="inventory-items">
-//                  120 <br /> Total
-//                </div>
-//                <span className="text-white fs-5 mx-3 my-2">|</span>
-//                <div className="inventory-items">
-//                  120 <br /> Total
-//                </div>
-//              </div>
-//            </div>
-
-//const listManager = [
-//  { Venueslist:  `${Total}`
-//},
-//{
-//  Createvenues: `${CreateIcon }`}]
-//
-//const listCustomer = ["Upcoming bookings", "Previous bookings", "Previous bookings" ]
-//
-//const VenueManager = (
-//  listManager.map((e) => {
-//    <MenuItem key={e.id} icon={e.Venueslist} component={<Link to="/createVenue" />}>
-//      Create venues
-//    </MenuItem>})
-//)
-//
-//const Customer = ("Hello");
-
-//{listManager.map((e) => { return (
-//  <>
-//<MenuItem key={e.id} icon={e.Venueslist} component={<Link to="/createVenue" />}>
-//  Create venues
-//</MenuItem>
-//<MenuItem icon={Total} component={<Link to="/totalVenues" />}>
-//Venues list
-//</MenuItem>
-//  </>)
-//  })
-//
-//}

@@ -37,8 +37,8 @@ export function AvatarImg(props) {
   const { Name, UserType, Email } = props;
   const colorProfile =
     UserType === "Venue manager" ? "var(--third_color)" : "var(--body_color)";
-  console.log(UserType);
-  console.log(colorProfile);
+  //console.log(UserType);
+  //console.log(colorProfile);
 
   return (
     <div className="profile text-center d-flex flex-column align-items-center">

@@ -1,10 +1,11 @@
 const FooterSVG = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="-webkit-fill-available;"
+    width="100%"
     height="127.401"
     viewBox="0 0 191.131 127.401"
     text-align="center"
+    className="footer-travel"
   >
     <g id="Group_269" data-name="Group 269" transform="translate(0 0)">
       <path

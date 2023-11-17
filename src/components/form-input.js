@@ -1,11 +1,10 @@
 import "./form-input.scss";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import { EditAvatar } from "./buttons/button.styles";
 
 export function InputBase(props) {
-  const { placeholder, type, label } = props;
+  const { placeholder, type, label, validation } = props;
 
   return (
     <Form.Group
@@ -23,17 +22,26 @@ export function InputBase(props) {
 }
 
 export function InputForm(props) {
-  const { title, placeholder } = props;
+  const { title, placeholder, type, autocomplete, validate, onChange } = props;
+
   return (
-    <InputGroup className="mb-3 w-100">
-      <Button variant="dark" id="button-addon2" className="rounded-start-pill">
+    <InputGroup className="w-100">
+      <Form.Label
+        htmlFor={title}
+        className="rounded-start-pill shadow-sm text-white"
+      >
         {title}
-      </Button>
+      </Form.Label>
       <Form.Control
+        id={title}
         placeholder={placeholder}
         aria-label="Recipient's username"
         aria-describedby="basic-addon1"
-        className="rounded-end-pill shadow-none"
+        className="rounded-end-pill shadow-sm"
+        type={type}
+        autoComplete={autocomplete}
+        onChange={onChange}
+        {...validate(title)}
       />
     </InputGroup>
   );
@@ -49,6 +57,7 @@ export function InputEditAvatar() {
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
           className="rounded-start-pill border-0 shadow-none"
+          style={{ fontSize: "var(--textMedium_fontSize)" }}
         />
         <EditAvatar>{">"}</EditAvatar>
       </InputGroup>

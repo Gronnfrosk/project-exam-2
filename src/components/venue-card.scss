@@ -53,6 +53,7 @@
       }
 
       & .rating {
+        display: flex;
         font-size: var(--textMedium_fontSize);
         flex-direction: row;
         justify-content: flex-end;
@@ -71,7 +72,7 @@
 
     & .amenities {
       text-align: center;
-      min-width: 75px;
+      min-width: 65px;
       font-size: var(--textSmall_fontSize);
 
       & .card-text {

@@ -2,10 +2,6 @@
   background-color: var(--body_backgroundColor);
   color: white;
 
-  & .profile-name {
-    font-size: var(--textLarge_fontSize);
-  }
-
   & .profile-type,
   .profile-mail {
     font-size: var(--textSmall_fontSize);
@@ -13,7 +9,7 @@
 
   & .inventory-items {
     font-size: var(--textSmall_fontSize);
-    width: 70px;
+    width: 90px;
   }
 
   & .divider-line {

@@ -56,10 +56,10 @@ export function NavbarIcon() {
 
 // Social icons in the footer
 export function FooterIcons() {
-  const instaIcon = <FaInstagram className="fs-2 p-1" />;
-  const pinterestIcon = <FaPinterest className="fs-2 p-1" />;
-  const twitterIcon = <FaTwitter className="fs-2 p-1" />;
-  const facebookIcon = <FaFacebookSquare className="fs-2 p-1" />;
+  const instaIcon = <FaInstagram className="fs-1 p-1" />;
+  const pinterestIcon = <FaPinterest className="fs-1 p-1" />;
+  const twitterIcon = <FaTwitter className="fs-1 p-1" />;
+  const facebookIcon = <FaFacebookSquare className="fs-1 p-1" />;
 
   return { instaIcon, pinterestIcon, twitterIcon, facebookIcon };
 }

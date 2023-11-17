@@ -2,10 +2,15 @@ import { BrandLogo } from "../assets/brand/logo";
 import FooterSVG from "../assets/images/footer-image";
 import Contact from "../assets/brand/contacts";
 import { FooterIcons } from "../assets/icons/icons";
-import { PrimaryLink } from "../components/links";
 
 function Footer() {
   const { instaIcon, pinterestIcon, twitterIcon, facebookIcon } = FooterIcons();
+  const LinksSocial = [
+    { link: "https://www.facebook.com/", icon: facebookIcon },
+    { link: "https://twitter.com/", icon: twitterIcon },
+    { link: "https://no.pinterest.com/", icon: pinterestIcon },
+    { link: "https://www.instagram.com/", icon: instaIcon },
+  ];
 
   return (
     <>
@@ -31,22 +36,20 @@ function Footer() {
                 and bookings at those venues.
               </div>
             </div>
-            <div className="ms-5 mt-4 ps-5">
+            <div className="ms-4 mt-4 ps-5">
               <Contact />
             </div>
           </div>
         </div>
         <div className="d-flex justify-content-center text-center mb-3">
-          <PrimaryLink href="https://www.instagram.com/">
-            {instaIcon}
-          </PrimaryLink>
-          <PrimaryLink href="https://no.pinterest.com/">
-            {pinterestIcon}
-          </PrimaryLink>
-          <PrimaryLink href="https://twitter.com/">{twitterIcon}</PrimaryLink>
-          <PrimaryLink href="https://www.facebook.com/">
-            {facebookIcon}
-          </PrimaryLink>
+          {LinksSocial.map((socialLink) => {
+            const { link, icon } = socialLink;
+            return (
+              <a href={link} className="text-white mx-2" key={link}>
+                {icon}
+              </a>
+            );
+          })}
         </div>
         <p className="text-center mb-0 pb-1">&copy; 2023 Holidaze</p>
       </footer>
