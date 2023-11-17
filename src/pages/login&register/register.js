@@ -32,7 +32,7 @@ export function RegisterForm({change}) {
   ) : formSuccess === null ? (
     <ModalInfo userError={true}
       showModalText={
-        "Error! Something went wrong or user already registered."
+        "Error! Something went wrong. User may already be registered."
       }
       ModalTitle={"Failed user registrating"}
     />

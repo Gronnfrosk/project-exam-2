@@ -11,7 +11,7 @@ export const schemaRegister = yup
     Email: yup
       .string()
       .email("Please enter valid email")
-      .matches(/^[\w\-.]+@noroff\.no$|[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no and @noroff.no emails are allowed to register.')
+      .matches(/^[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no email are allowed to register.')
       .required("Please enter your email."),
     Password: yup
       .string()
@@ -36,7 +36,7 @@ export const schemaLogin = yup
     Email: yup
       .string()
       .email("Please enter valid email")
-      .matches(/^[\w\-.]+@noroff\.no$|[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no and @noroff.no emails.')
+      .matches(/^[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no may register and login.')
       .required("Please enter your email."),
     Password: yup
       .string()
