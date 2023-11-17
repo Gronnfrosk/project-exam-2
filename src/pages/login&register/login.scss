@@ -60,7 +60,7 @@
 @media only screen and (max-width: 700px) {
   .container-signup {
     border-top-color: var(--body_backgroundColor);
-    height: 643px;
+    min-height: 643px;
 
     & .login-register {
       padding-bottom: 30px;
@@ -70,7 +70,7 @@
       box-shadow: none;
       position: relative;
       top: -83px;
-      margin-top: 0;
+      margin: 0 auto;
 
       & .input-login {
         margin: 40px 10px;
@@ -78,93 +78,3 @@
     }
   }
 }
-
-/*
-.signin-body {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 55px;
-  height: 100vh;
-
-  & h1 {
-    font-size: 2em;
-  }
-}
-
-.signin-main {
-  margin: auto;
-  max-width: 500px;
-  padding: 15px;
-
-  & form {
-    border: 40px solid white;
-    border-left-width: 100px;
-    border-right-width: 100px;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.37);
-  }
-
-  & label {
-    font-size: 0.85em;
-  }
-
-  & i {
-    font-size: 2.5em;
-  }
-
-  & .form-floating:focus-within {
-    z-index: 2;
-  }
-
-  & input[type="text"],
-  .login-email {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  & .middle-input {
-    margin-bottom: -1px;
-    border-radius: 0;
-  }
-
-  & input[type="url"],
-  .login-password {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  & .btn {
-    font-size: 1em;
-  }
-
-  & .delete-url {
-    position: absolute;
-    right: 1px;
-    border: none;
-    top: 2px;
-    padding: 15px 12px;
-
-    & i {
-      font-size: 1.15em;
-    }
-  }
-
-  & input,
-  .form-control,
-  .delete-url {
-    background-color: white;
-
-    &:focus {
-      background-color: white;
-    }
-  }
-}
-
-.invalid-feedback {
-  text-align: left;
-  font-size: 0.8em;
-  font-weight: bold;
-}
-*/

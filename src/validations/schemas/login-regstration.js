@@ -6,17 +6,15 @@ export const schemaRegister = yup
       .string()
       .min(3, "Your name should be at least 3 characters.")
       .max(30, "Your name cannot be longer than 30 characters.")
-      //.pattern("Hello", "No", "^[\w]+$")
-      // value must not contain punctuation symbols apart from underscore (_)
+      .matches( /^[\w]+$/, 'Please enter username. It must not contain punctuation symbols apart from underscore (_)')
       .required("Please enter your name."),
     Email: yup
       .string()
       .email("Please enter valid email")
-      //.match (/^[\w\-.]+@stud\.noroff\.no$/, "The email value must be a valid stud.noroff.no or noroff.no email address")
+      .matches(/^[\w\-.]+@noroff\.no$|[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no and @noroff.no emails are allowed to register.')
       .required("Please enter your email."),
     Password: yup
       .string()
-      //.password("Not a valid password")
       .min(8, "Your password should be at least 8 characters.")
       .max(30, "Your password cannot be longer than 30 characters.")
       .required("Please enter password."),
@@ -25,12 +23,11 @@ export const schemaRegister = yup
       .test("passwords-match", "Passwords must match", function (value) {
         return this.parent.Password === value;
       })
-      //.password("Not a valid password")
       .required("Please confirm password."),
     Avatar: yup
       .string()
       .url("Please enter a valid url")
-      .required("Please enter an url for your avata."),
+      .required("Please enter an url for your avatar."),
   })
   .required();
 
@@ -39,11 +36,10 @@ export const schemaLogin = yup
     Email: yup
       .string()
       .email("Please enter valid email")
-      //.match (/^[\w\-.]+@stud\.noroff\.no$/, "The email value must be a valid stud.noroff.no or noroff.no email address")
+      .matches(/^[\w\-.]+@noroff\.no$|[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no and @noroff.no emails.')
       .required("Please enter your email."),
     Password: yup
       .string()
-      //.password("Not a valid password")
       .min(8, "Your password should be at least 8 characters.")
       .max(30, "Your password cannot be longer than 30 characters.")
       .required("Please enter password."),

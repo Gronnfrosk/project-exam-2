@@ -1,6 +1,6 @@
 const name = {
   title: "Name",
-  placeholder: "e.g.  John_Doe",
+  placeholder: "e.g.  user_name123",
   type: "text",
 };
 
