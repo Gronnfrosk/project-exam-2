@@ -34,7 +34,7 @@ export const schemaRegister = yup
   })
   .required();
 
-  export const schemaLogin = yup
+export const schemaLogin = yup
   .object({
     Email: yup
       .string()
