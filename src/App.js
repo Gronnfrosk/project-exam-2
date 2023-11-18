@@ -42,8 +42,7 @@ function App() {
                 <Route path="/booking-list-total" element={<BookingList />} />
                 <Route path="/create-venue" element={<CreateVenue />} />
                 <Route path="/login-register" element={<LoginRegisterPage />} />
-                <Route path="/login" element={<LoginRegisterPage />} />
-                <Route path="/test" element={<SpecificVenuePage />} />
+                <Route path="/:id" element={<SpecificVenuePage />} />
                 <Route path="/*" element={<SpecificVenuePage />} />
               </Route>
             </Routes>

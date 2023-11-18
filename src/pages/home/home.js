@@ -2,16 +2,42 @@ import "./home.scss";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
-import AllVenues from "../../services/api/venues";
+import useAllVenues from "../../services/api/venues";
 import { PrimaryButton } from "../../components/buttons/button.styles";
 import { BrandLogo } from "../../assets/brand/logo";
-import { InputBase } from "../../components/form-input";
+//import { InputBase } from "../../components/form-input";
 import { InputIcons } from "../../assets/icons/icons";
-//
-
+import { API_URL_VENUES } from "../../services/api/constants";
+import VenueCard from "../../components/venue-card";
+ 
+const submitHandler = (event) => {
+  event.preventDefault();
+};
+  
 function MainPage() {
+  const [data, isLoading, isError] = useAllVenues(API_URL_VENUES);
   const { SearchIcon } = InputIcons();
-  //const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("");
+  
+  let filterName = data.filter((venue) => {
+    return search.toLowerCase() === ""
+      ? venue
+      : venue.name.toLowerCase().includes(search);})
+  
+  let filterCountry = data.filter((venue) => {
+    return search.toLowerCase() === ""
+      ? venue
+      : venue.location.country.toLowerCase().includes(search);})
+  let filteredArray = [ ...filterName, ...filterCountry]; 
+  let mergedArr = [...new Set(filteredArray)]
+ 
+  if (isLoading) {
+    return "<SpinnerLoad />";
+  }
+
+  if (isError) {
+    return "Error";
+  }
 
   return (
     <>
@@ -53,18 +79,26 @@ function MainPage() {
       </header>
       <main>
         <section>
-          <Form className="search">
-            <InputBase
-              placeholder={" Search here..."}
-              type={"text"}
-              label={""}
-            />
+          <Form onSubmit={submitHandler} className="search">
+          <Form.Group
+      className="mb-3 w-100 d-flex"
+      controlId="exampleForm.ControlInput1"
+    >
+      <Form.Control
+        type={"text"}
+        placeholder={"Search here for specific venue or venues located in specific country..."}
+        className="rounded-pill border-2 shadow-none border-black text-center"
+        onChange={(e) => setSearch(e.target.value.toLowerCase())}
+      />
+    </Form.Group>
             <div className="search-icon">{SearchIcon}</div>
           </Form>
         </section>
         <div className="divider dropdown-toggle gap-2 ps-3">Recent</div>
         <section className="all-venues d-flex flex-wrap gap-5 justify-content-center">
-         < AllVenues />
+        {mergedArr.map((venue, index) => (
+              <VenueCard key={index} data={venue} />
+            ))}
         </section>
         <section className="d-flex my-5 justify-content-center">
           <PrimaryButton> More </PrimaryButton>
@@ -75,17 +109,3 @@ function MainPage() {
 }
 
 export default MainPage;
-
-//{data.map((venue, index) => (
-//  <VenueCard key={index} data={venue} />
-//))}
-
-
-//{data.filter((venue) => {
-//  return search.toLowerCase() === ""
-//    ? venue
-//    : venue.title.toLowerCase().includes(search);
-//})
-//.map((venue, index) => (
-//  <VenueCard key={index} data={venue} />
-//))}

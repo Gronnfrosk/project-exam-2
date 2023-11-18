@@ -47,12 +47,12 @@ export default function VenueCard(props) {
         <div className="amenities">
           <small>Guests max. </small>
           <Card.Text className="count">{maxGuests}</Card.Text>
-          <Card.Text className="amenity-list">
+          <div className="amenity-list card-text">
             <div>{WifiIcon}</div> 
             <div>{ParkIcon}</div> 
             <div>{BreakfastIcon}</div> 
             <div>{PetIcon}</div>
-          </Card.Text>
+          </div>
         </div>
       </Card.Body>
     </Card>
