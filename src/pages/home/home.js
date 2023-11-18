@@ -1,4 +1,5 @@
 import "./home.scss";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
 import AllVenues from "../../services/api/venues";
@@ -6,10 +7,11 @@ import { PrimaryButton } from "../../components/buttons/button.styles";
 import { BrandLogo } from "../../assets/brand/logo";
 import { InputBase } from "../../components/form-input";
 import { InputIcons } from "../../assets/icons/icons";
-import VenueCard from "../../components/venue-card";
+//
 
 function MainPage() {
   const { SearchIcon } = InputIcons();
+  //const [search, setSearch] = useState("");
 
   return (
     <>
@@ -18,7 +20,6 @@ function MainPage() {
         <meta name="description" content="Get info about available bookings" />
       </Helmet>
       <header>
-        <AllVenues />
         <div className="top-picture" alt="background of city at night">
           <div className="homeContainer">
             <BrandLogo />
@@ -62,8 +63,8 @@ function MainPage() {
           </Form>
         </section>
         <div className="divider dropdown-toggle gap-2 ps-3">Recent</div>
-        <section>
-          <VenueCard />
+        <section className="all-venues d-flex flex-wrap gap-5 justify-content-center">
+         < AllVenues />
         </section>
         <section className="d-flex my-5 justify-content-center">
           <PrimaryButton> More </PrimaryButton>
@@ -75,26 +76,16 @@ function MainPage() {
 
 export default MainPage;
 
-//        <div id="container">
-//          <button className="learn-more">
-//            <span className="circle" aria-hidden="true">
-//              <span className="icon arrow"></span>
-//            </span>
-//            <span className="button-text">Learn More</span>
-//          </button>
-//        </div>
-//      </header>
-//      <div className="container">
-//        <a href="http://marcel-pirnay.be/" className="btn">
-//          <svg width="277" height="62">
-//            <defs>
-//                <linearGradient id="grad1">
-//                    <stop offset="0%" stopColor="#FF8282"/>
-//                    <stop offset="100%" stopColor="#E178ED" />
-//                </linearGradient>
-//            </defs>
-//            <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
-//          </svg>
-//          <span>Start Booking Adventure</span>
-//        </a>
-//      </div>
+//{data.map((venue, index) => (
+//  <VenueCard key={index} data={venue} />
+//))}
+
+
+//{data.filter((venue) => {
+//  return search.toLowerCase() === ""
+//    ? venue
+//    : venue.title.toLowerCase().includes(search);
+//})
+//.map((venue, index) => (
+//  <VenueCard key={index} data={venue} />
+//))}

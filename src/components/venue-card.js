@@ -1,43 +1,61 @@
 import "./venue-card.scss";
-import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { VenueCardIcons } from "../assets/icons/icons";
+import { useTextLessener } from "../helpers/textSlice"
 
-export default function VenueCard() {
+export default function VenueCard(props) {
   const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = VenueCardIcons();
+  const { id,
+    name,
+    description,
+    media,
+    price,
+    maxGuests,
+    rating,
+    meta,
+    location
+ } = props.data
 
+  const { wifi, parking, breakfast, pets } = meta
+  const showIconsAmaneties = wifi===true ? <div>WifiIcon</div> : "";
+  
   return (
+    <Link to={`/id:${id}`} className="text-decoration-none">
     <Card>
       <div className="part-1">
         <Card.Img
           variant="top"
-          src={mainTop}
+          src={media[0]}
           className="img-fluid rounded-0"
           alt="A specific venue"
         />
-        <div className="price">999 kr/d</div>
+        <div className="price">{price} kr/d</div>
       </div>
       <Card.Body>
         <div className="venue-description">
-          <Card.Title>Big city apartment</Card.Title>
-          <Card.Text className="pt-2">
-            Relax and enjoy a good view over the city. This is a big Apartment
-            in the city...
+          <Card.Title>{useTextLessener(name, 50)}</Card.Title>
+          <Card.Text className="py-3 mb-0">
+            Country: {location.country}
           </Card.Text>
           <div className="rating ms-2">
             Rating
-            <div className="this-rating ms-2">5/</div>
-            <div className="max-rating">5</div>
+            <div className="ms-2">{rating}</div>
+            <div>/5</div>
           </div>
         </div>
         <div className="amenities">
-          <small>Max guests</small>
-          <Card.Text className="count">10</Card.Text>
+          <small>Guests max. </small>
+          <Card.Text className="count">{maxGuests}</Card.Text>
           <Card.Text className="amenity-list">
-            {WifiIcon} {ParkIcon} {BreakfastIcon} {PetIcon}
+            <div>{WifiIcon}</div> 
+            <div>{ParkIcon}</div> 
+            <div>{BreakfastIcon}</div> 
+            <div>{PetIcon}</div>
           </Card.Text>
         </div>
       </Card.Body>
     </Card>
+    </Link>
   );
 }
