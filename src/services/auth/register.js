@@ -11,9 +11,9 @@ export async function RegisterProfile(profile) {
   });
 
   if (response.ok) {
-	const userType = profile.venueManager
+    const userType = profile.venueManager;
 
-    return userType
+    return userType;
   } else {
     return null;
   }

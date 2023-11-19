@@ -35,13 +35,21 @@
         text-align: center;
         height: 360px;
         box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        width: 100%;
 
         & img {
-          height: auto;
+          vertical-align: middle;
           width: 100%;
-          aspect-ratio: 1/1;
-          object-fit: cover;
-          text-align: center;
+          height: auto;
+          //height: auto;
+          // width: auto;
+          //height: 100%;
+          //aspect-ratio: 1/1;
+          //object-fit: cover;
+          // object-position: 50% 50%;
+          //style={{objectPosition: "50% 50%",}}
         }
       }
     }
@@ -138,13 +146,15 @@
       & .amenity-list {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        padding: 10px 8px;
+        gap: 14px;
+        padding: 15px 8px;
         background-color: var(--primary_color);
         font-size: var(--textMedium_fontSize);
         width: 36px;
         border-radius: 50px;
         margin: 0;
+        height: 170px;
+
 
         & li {
           display: flex;

@@ -9,35 +9,30 @@ import { BrandLogo } from "../../assets/brand/logo";
 import { InputIcons } from "../../assets/icons/icons";
 import { API_URL_VENUES } from "../../services/api/constants";
 import VenueCard from "../../components/venue-card";
- 
+import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
+
 const submitHandler = (event) => {
   event.preventDefault();
 };
-  
+
 function MainPage() {
   const [data, isLoading, isError] = useAllVenues(API_URL_VENUES);
   const { SearchIcon } = InputIcons();
   const [search, setSearch] = useState("");
-  
+
   let filterName = data.filter((venue) => {
     return search.toLowerCase() === ""
       ? venue
-      : venue.name.toLowerCase().includes(search);})
-  
+      : venue.name.toLowerCase().includes(search);
+  });
+
   let filterCountry = data.filter((venue) => {
     return search.toLowerCase() === ""
       ? venue
-      : venue.location.country.toLowerCase().includes(search);})
-  let filteredArray = [ ...filterName, ...filterCountry]; 
-  let mergedArr = [...new Set(filteredArray)]
- 
-  if (isLoading) {
-    return "<SpinnerLoad />";
-  }
-
-  if (isError) {
-    return "Error";
-  }
+      : venue.location.country.toLowerCase().includes(search);
+  });
+  let filteredArray = [...filterName, ...filterCountry];
+  let mergedArr = [...new Set(filteredArray)];
 
   return (
     <>
@@ -80,25 +75,33 @@ function MainPage() {
       <main>
         <section>
           <Form onSubmit={submitHandler} className="search">
-          <Form.Group
-      className="mb-3 w-100 d-flex"
-      controlId="exampleForm.ControlInput1"
-    >
-      <Form.Control
-        type={"text"}
-        placeholder={"Search here for specific venue or venues located in specific country..."}
-        className="rounded-pill border-2 shadow-none border-black text-center"
-        onChange={(e) => setSearch(e.target.value.toLowerCase())}
-      />
-    </Form.Group>
+            <Form.Group
+              className="mb-3 w-100 d-flex"
+              controlId="exampleForm.ControlInput1"
+            >
+              <Form.Control
+                type={"text"}
+                placeholder={
+                  "Search here for specific venue or venues located in specific country..."
+                }
+                className="rounded-pill border-2 shadow-none border-black text-center"
+                onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              />
+            </Form.Group>
             <div className="search-icon">{SearchIcon}</div>
           </Form>
         </section>
         <div className="divider dropdown-toggle gap-2 ps-3">Recent</div>
         <section className="all-venues d-flex flex-wrap gap-5 justify-content-center">
-        {mergedArr.map((venue, index) => (
+          {isLoading ? (
+            <SpinnerLoad />
+          ) : isError ? (
+            <ErrorLoad />
+          ) : (
+            mergedArr.map((venue, index) => (
               <VenueCard key={index} data={venue} />
-            ))}
+            ))
+          )}
         </section>
         <section className="d-flex my-5 justify-content-center">
           <PrimaryButton> More </PrimaryButton>

@@ -10,36 +10,41 @@ import { RegisterProfile } from "../../services/auth/register";
 import { lowerize } from "../../helpers/lowercase";
 import { ModalInfo } from "../../components/modal.js";
 
-export function RegisterForm({change}) {
+export function RegisterForm({ change }) {
   const [userType, setUserType] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
   const [passConfirm, setConfirmPass] = useState("");
   const [modal, setModal] = useState("");
 
-  const viewModal = formSuccess === false ? (<ModalInfo registerSuccess={change}
-      showModalText={
-        "Welcome! You can now login and start booking venues for your next trip."
-      }
-      ModalTitle={"You have successfuly logged in"}
-    />)
-    : formSuccess === true ? (
-    <ModalInfo registerSuccess={change}
-      showModalText={
-        "Welcome! You can now login as a venue manager and start renting out venues."
-      }
-      ModalTitle={"You have successfuly logged in"}
-    />
-  ) : formSuccess === null ? (
-    <ModalInfo userError={true}
-      showModalText={
-        "Error! Something went wrong. User may already be registered."
-      }
-      ModalTitle={"Failed user registrating"}
-    />
-  ) : (
-    ""
-  )
-    
+  const viewModal =
+    formSuccess === false ? (
+      <ModalInfo
+        registerSuccess={change}
+        showModalText={
+          "Welcome! You can now login and start booking venues for your next trip."
+        }
+        ModalTitle={"You have successfuly logged in"}
+      />
+    ) : formSuccess === true ? (
+      <ModalInfo
+        registerSuccess={change}
+        showModalText={
+          "Welcome! You can now login as a venue manager and start renting out venues."
+        }
+        ModalTitle={"You have successfuly logged in"}
+      />
+    ) : formSuccess === null ? (
+      <ModalInfo
+        userError={true}
+        showModalText={
+          "Error! Something went wrong. User may already be registered."
+        }
+        ModalTitle={"Failed user registrating"}
+      />
+    ) : (
+      ""
+    );
+
   const {
     register,
     handleSubmit,
@@ -49,7 +54,7 @@ export function RegisterForm({change}) {
   });
 
   async function onSubmit(data) {
-    setModal("")
+    setModal("");
     const profile = lowerize(data);
     profile.venueManager = userType;
     delete profile.confirm;
@@ -61,13 +66,13 @@ export function RegisterForm({change}) {
     });
 
     const result = await promiseAwait;
-    setFormSuccess(result)
-    setModal(viewModal)
+    setFormSuccess(result);
+    setModal(viewModal);
   }
 
-  useEffect(()=>{
-    setModal(viewModal)
-  },[formSuccess])
+  useEffect(() => {
+    setModal(viewModal);
+  }, [formSuccess]);
 
   return (
     <>

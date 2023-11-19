@@ -8,10 +8,10 @@ import { LoginForm } from "./login";
 
 export default function LoginRegisterPage() {
   const [currentForm, setCurrentForm] = useState("Login");
-   function handleState() {
+  function handleState() {
     setCurrentForm("Login");
-   }
-  
+  }
+
   return (
     <>
       <Helmet>
@@ -51,7 +51,11 @@ export default function LoginRegisterPage() {
               </div>
             </div>
           </div>
-          {currentForm === "Login" ? <LoginForm /> : <RegisterForm  change={handleState}/>}
+          {currentForm === "Login" ? (
+            <LoginForm />
+          ) : (
+            <RegisterForm change={handleState} />
+          )}
         </div>
       </div>
     </>

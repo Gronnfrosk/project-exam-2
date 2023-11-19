@@ -6,12 +6,18 @@ export const schemaRegister = yup
       .string()
       .min(3, "Your name should be at least 3 characters.")
       .max(30, "Your name cannot be longer than 30 characters.")
-      .matches( /^[\w]+$/, 'Please enter username. It must not contain punctuation symbols apart from underscore (_)')
+      .matches(
+        /^[\w]+$/,
+        "Please enter username. It must not contain punctuation symbols apart from underscore (_)",
+      )
       .required("Please enter your name."),
     Email: yup
       .string()
       .email("Please enter valid email")
-      .matches(/^[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no email are allowed to register.')
+      .matches(
+        /^[\w\-.]+@stud\.noroff\.no$/,
+        "Only @stud.noroff.no email are allowed to register.",
+      )
       .required("Please enter your email."),
     Password: yup
       .string()
@@ -36,7 +42,10 @@ export const schemaLogin = yup
     Email: yup
       .string()
       .email("Please enter valid email")
-      .matches(/^[\w\-.]+@stud\.noroff\.no$/, 'Only @stud.noroff.no may register and login.')
+      .matches(
+        /^[\w\-.]+@stud\.noroff\.no$/,
+        "Only @stud.noroff.no may register and login.",
+      )
       .required("Please enter your email."),
     Password: yup
       .string()

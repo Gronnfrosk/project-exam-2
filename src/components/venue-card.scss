@@ -38,7 +38,6 @@
   }
 
   & .card-body {
-
     display: flex;
     flex-direction: row;
     padding: 0;
@@ -52,7 +51,7 @@
       & .card-title {
         font-size: var(--textMedium_fontSize);
         font-weight: 600;
-        margin: 0;
+        margin: 10px 0 0 0;
         height: 100%;
       }
 
@@ -86,11 +85,11 @@
       }
 
       & .card-text {
-        width: fit-content;
+        width: 45px;
         margin: 0 auto 5px auto;
         font-weight: bold;
         background-color: var(--primary_color);
-        padding: 8px 7px;
+        padding: 5px 7px 8px 7px;
         border-radius: 50px;
       }
 
@@ -100,7 +99,8 @@
 
       & .amenity-list {
         display: flex;
-
+        height: 100%;
+        width: 30px;
         font-size: var(--textSmall_fontSize);
       }
     }
@@ -108,9 +108,7 @@
 }
 
 @media only screen and (max-width: 700px) {
-
   .all-venues {
-    justify-content: flex-start !important;
     gap: 20px !important;
   }
 }

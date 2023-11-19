@@ -10,7 +10,7 @@ export async function LoginUser(profile) {
     method,
     body: JSON.stringify(profile),
   });
-  
+
   if (response.ok) {
     const { accessToken, venueManager, ...user } = await response.json();
 

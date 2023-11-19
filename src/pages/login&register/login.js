@@ -14,27 +14,34 @@ export function LoginForm() {
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
 
-  const viewModal = formSuccess === false ? (<ModalInfo userSuccess={"/"}
-      showModalText={
-        "Welcome! You can now start booking venues for your next trip."
-      }
-      ModalTitle={"You have successfuly logged in"}
-    />
-  ) : formSuccess === true ? (
-    <ModalInfo userSuccess={"/"}
-      showModalText={"Welcome! As a venue manager you can now start renting out venues."}
-      ModalTitle={"You have successfuly logged in"}
-    />
-  ) : formSuccess === null ? (
-    <ModalInfo userError={true}
-      showModalText={
-        "Error! You have entered invalid username or password combination."
-      }
-      ModalTitle={"Invalid login credentials"}
-    />
-  ) : (
-    ""
-  )
+  const viewModal =
+    formSuccess === false ? (
+      <ModalInfo
+        userSuccess={"/"}
+        showModalText={
+          "Welcome! You can now start booking venues for your next trip."
+        }
+        ModalTitle={"You have successfuly logged in"}
+      />
+    ) : formSuccess === true ? (
+      <ModalInfo
+        userSuccess={"/"}
+        showModalText={
+          "Welcome! As a venue manager you can now start renting out venues."
+        }
+        ModalTitle={"You have successfuly logged in"}
+      />
+    ) : formSuccess === null ? (
+      <ModalInfo
+        userError={true}
+        showModalText={
+          "Error! You have entered invalid username or password combination."
+        }
+        ModalTitle={"Invalid login credentials"}
+      />
+    ) : (
+      ""
+    );
 
   const {
     register,
@@ -45,7 +52,7 @@ export function LoginForm() {
   });
 
   async function onSubmit(data) {
-    setModal("")
+    setModal("");
     const profile = lowerize(data);
 
     const promiseAwait = new Promise((resolve, reject) => {
@@ -56,13 +63,13 @@ export function LoginForm() {
 
     const result = await promiseAwait;
     setFormSuccess(result);
-    setModal(viewModal)
+    setModal(viewModal);
   }
 
-  useEffect(()=>{
-    setModal(viewModal)
-  },[formSuccess])
-  
+  useEffect(() => {
+    setModal(viewModal);
+  }, [formSuccess]);
+
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)} className="input-login">
