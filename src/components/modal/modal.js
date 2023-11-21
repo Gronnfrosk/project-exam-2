@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
-import { PrimaryButton } from ".//buttons/button.styles";
+import { PrimaryButton } from "../buttons/button.styles";
 import Button from "react-bootstrap/Button";
 
 export function ModalInfo(props) {
-  const { showModalText, ModalTitle, userError, userSuccess, registerSuccess } =
-    props;
+  const {
+    showModalText,
+    ModalTitle,
+    userError,
+    userSuccess,
+    registerSuccess,
+    bookingSuccess,
+  } = props;
   const [show, setShow] = useState(true);
   const handleClose = () => setShow(false);
   let navigate = useNavigate();
@@ -19,26 +25,42 @@ export function ModalInfo(props) {
     : registerSuccess
     ? () => registerSuccess()
     : console.log("Error");
+
+  const bookingBtns = (
+    <>
+      <Button variant="link" onClick={handleClose} className="modal-btn">
+        Book more from this venue
+      </Button>
+      <PrimaryButton display={"block"} onClick={loginRegisterRoute}>
+        Back to venue list
+      </PrimaryButton>
+    </>
+  );
+
   const userBtn = (
-    <PrimaryButton display={"block"} className="" onClick={loginRegisterRoute}>
+    <PrimaryButton display={"block"} onClick={loginRegisterRoute}>
       Continue
     </PrimaryButton>
   );
+
   const closeBtn = (
     <Button variant="secondary" onClick={handleClose}>
       Close
     </Button>
   );
+
   const modalButton = userError
-    ? closeBtn
+    ? closeBtn : bookingSuccess && userSuccess
+    ? bookingBtns
     : userSuccess
     ? userBtn
     : registerSuccess
     ? userBtn
+   
     : "";
 
   return (
-    <Modal show={show} backdrop="static" keyboard={false}>
+    <Modal show={show} backdrop={bookingSuccess ? "true" : "static"} keyboard={false}>
       <Modal.Header>
         <Modal.Title>{ModalTitle}</Modal.Title>
       </Modal.Header>

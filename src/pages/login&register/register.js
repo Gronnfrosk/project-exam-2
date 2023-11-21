@@ -8,42 +8,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { registerInputs } from "./input-fields";
 import { RegisterProfile } from "../../services/auth/register";
 import { lowerize } from "../../helpers/lowercase";
-import { ModalInfo } from "../../components/modal.js";
+import viewRegisterModal from "../../components/modal/Register";
 
 export function RegisterForm({ change }) {
   const [userType, setUserType] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
   const [passConfirm, setConfirmPass] = useState("");
   const [modal, setModal] = useState("");
-
-  const viewModal =
-    formSuccess === false ? (
-      <ModalInfo
-        registerSuccess={change}
-        showModalText={
-          "Welcome! You can now login and start booking venues for your next trip."
-        }
-        ModalTitle={"You have successfuly logged in"}
-      />
-    ) : formSuccess === true ? (
-      <ModalInfo
-        registerSuccess={change}
-        showModalText={
-          "Welcome! You can now login as a venue manager and start renting out venues."
-        }
-        ModalTitle={"You have successfuly logged in"}
-      />
-    ) : formSuccess === null ? (
-      <ModalInfo
-        userError={true}
-        showModalText={
-          "Error! Something went wrong. User may already be registered."
-        }
-        ModalTitle={"Failed user registrating"}
-      />
-    ) : (
-      ""
-    );
+  const viewModal = viewRegisterModal(formSuccess, change);
 
   const {
     register,
@@ -92,7 +64,6 @@ export function RegisterForm({ change }) {
                 : title === "Avatar"
                 ? errors.Avatar?.message
                 : "";
-
             return (
               <Form.Group key={title}>
                 <InputForm

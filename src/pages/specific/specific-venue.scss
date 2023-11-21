@@ -43,13 +43,6 @@
           vertical-align: middle;
           width: 100%;
           height: auto;
-          //height: auto;
-          // width: auto;
-          //height: 100%;
-          //aspect-ratio: 1/1;
-          //object-fit: cover;
-          // object-position: 50% 50%;
-          //style={{objectPosition: "50% 50%",}}
         }
       }
     }
@@ -155,7 +148,6 @@
         margin: 0;
         height: 170px;
 
-
         & li {
           display: flex;
           gap: 1.1rem;
@@ -181,7 +173,8 @@
   & .part-4 {
     margin-bottom: 50px;
 
-    .gsahwO.span-btn {
+    & button.span-btn {
+      //width: 12rem;
       width: 20rem;
     }
 
@@ -192,6 +185,7 @@
     & .button-text {
       color: black !important;
     }
+
   }
 }
 
@@ -248,6 +242,33 @@
 
     & .rating {
       font-size: var(--textSmall_fontSize);
+    }
+  }
+}
+
+.list-top {
+  background-color: var(--body_backgroundColor);
+  font-size: var(--textMedium_fontSize);
+  color: white;
+}
+
+.modal-content {
+  & li {
+    font-size: var(--textSmall_fontSize);
+  }
+
+
+
+  & .modal-footer {
+    flex-direction: column;
+    align-items: end;
+
+    & .modal-btn {
+      align-self: center;
+      margin: auto;
+      position: relative;
+      bottom: 65px;
+      height: 10px;
     }
   }
 }

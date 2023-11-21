@@ -8,40 +8,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginInputs } from "./input-fields";
 import { lowerize } from "../../helpers/lowercase";
 import { LoginUser } from "../../services/auth/login";
-import { ModalInfo } from "../../components/modal.js";
+import viewLoginModal from "../../components/modal/login";
 
 export function LoginForm() {
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
-
-  const viewModal =
-    formSuccess === false ? (
-      <ModalInfo
-        userSuccess={"/"}
-        showModalText={
-          "Welcome! You can now start booking venues for your next trip."
-        }
-        ModalTitle={"You have successfuly logged in"}
-      />
-    ) : formSuccess === true ? (
-      <ModalInfo
-        userSuccess={"/"}
-        showModalText={
-          "Welcome! As a venue manager you can now start renting out venues."
-        }
-        ModalTitle={"You have successfuly logged in"}
-      />
-    ) : formSuccess === null ? (
-      <ModalInfo
-        userError={true}
-        showModalText={
-          "Error! You have entered invalid username or password combination."
-        }
-        ModalTitle={"Invalid login credentials"}
-      />
-    ) : (
-      ""
-    );
+  const viewModal = viewLoginModal(formSuccess)
 
   const {
     register,
@@ -58,7 +30,7 @@ export function LoginForm() {
     const promiseAwait = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(LoginUser(profile));
-      }, 1000);
+      }, 500);
     });
 
     const result = await promiseAwait;

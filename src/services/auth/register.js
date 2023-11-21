@@ -1,10 +1,9 @@
 import { API_URL_AUTH_REGISTER } from "../api/constants";
 
-const registerURL = API_URL_AUTH_REGISTER;
 const method = "post";
 
 export async function RegisterProfile(profile) {
-  const response = await fetch(registerURL, {
+  const response = await fetch(API_URL_AUTH_REGISTER, {
     headers: { "Content-type": "application/json" },
     method,
     body: JSON.stringify(profile),

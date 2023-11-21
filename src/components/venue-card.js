@@ -50,10 +50,20 @@ export default function VenueCard(props) {
             <small>Guests max. </small>
             <Card.Text className="count">{maxGuests}</Card.Text>
             <div className="amenity-list card-text">
-              <div className={wifi === false ? "opacity-25": ""}>{WifiIcon}</div>
-              <div className={parking === false ? "opacity-25" : ""}> {ParkIcon}</div>
-              <div className={breakfast === false ? "opacity-25" : ""}> {BreakfastIcon}</div>
-              <div className={pets === false ? "opacity-25" : ""}>{PetIcon}</div>
+              <div className={wifi === false ? "opacity-25" : ""}>
+                {WifiIcon}
+              </div>
+              <div className={parking === false ? "opacity-25" : ""}>
+                {" "}
+                {ParkIcon}
+              </div>
+              <div className={breakfast === false ? "opacity-25" : ""}>
+                {" "}
+                {BreakfastIcon}
+              </div>
+              <div className={pets === false ? "opacity-25" : ""}>
+                {PetIcon}
+              </div>
             </div>
           </div>
         </Card.Body>

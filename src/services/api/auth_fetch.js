@@ -1,4 +1,4 @@
-import { load } from "../localstorage/save_load_remove.js";
+import { load } from "../../utilities/save_load_remove_local_storage";
 
 const token = load("token");
 

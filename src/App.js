@@ -10,6 +10,7 @@ import VenueList from "./pages/booking-venue-list/venue-list";
 import BookingList from "./pages/booking-venue-list/booking-list";
 import CreateVenue from "./pages/create-venue/create-venue";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import ScrollToTop from "./helpers/scroll-top";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           </Helmet>
           <ThemeMode />
           <Theme>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<GlobalLayout />}>
                 <Route index element={<Home />} />

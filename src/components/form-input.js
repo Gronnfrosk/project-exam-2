@@ -22,7 +22,19 @@ export function InputBase(props) {
 }
 
 export function InputForm(props) {
-  const { title, placeholder, type, autocomplete, validate, onChange } = props;
+  const {
+    title,
+    placeholder,
+    type,
+    autocomplete,
+    validate,
+    onChange,
+    min,
+    value,
+    name,
+  } = props;
+  //const valllues = type==="date" ? (date) => date.toLocaleDateString('en-GB') : ""
+  const nameTitle = name ? name : title;
 
   return (
     <InputGroup className="w-100">
@@ -30,7 +42,7 @@ export function InputForm(props) {
         htmlFor={title}
         className="rounded-start-pill shadow-sm text-white"
       >
-        {title}
+        {nameTitle}
       </Form.Label>
       <Form.Control
         id={title}
@@ -41,6 +53,8 @@ export function InputForm(props) {
         type={type}
         autoComplete={autocomplete}
         onChange={onChange}
+        min={min}
+        value={value}
         {...validate(title)}
       />
     </InputGroup>

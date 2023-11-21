@@ -1,10 +1,8 @@
 import "./specific-venue.scss";
 import React from "react";
-
 import { Helmet } from "react-helmet-async";
 import { API_URL_VENUES } from "../../services/api/constants";
 import useAllVenues from "../../services/api/venues";
-//import mainTop from "../../assets/images/pexels-luis-leon-2564463.jpg";
 import { VenueCardIcons, SpecificIcons } from "../../assets/icons/icons";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
@@ -16,17 +14,20 @@ import {
   DeleteVenueBtn,
 } from "../../components/buttons/button.styles";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load"
+//import getBookedDates from "../../helpers/get-dates"
 
 function SpecificVenuePage() {
   const params = useParams();
   const url = `${API_URL_VENUES}/${params.id}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
-
   const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = VenueCardIcons();
   const { EditIcon, DeleteIcon } = SpecificIcons();
   const description = "Info about the venue - " + data.name;
+  //const bookedDates = getBookedDates(data.bookings)
 
-return isLoading ? <SpinnerLoad /> : isError ? <ErrorLoad /> : data.name ? 
+  //console.log(bookedDates)
+
+  return isLoading ? <SpinnerLoad /> : isError ? <ErrorLoad /> : data.name ? 
     <>
       <Helmet>
         <title>Venue - {data.name}</title>
@@ -47,9 +48,8 @@ return isLoading ? <SpinnerLoad /> : isError ? <ErrorLoad /> : data.name ?
                     margin: "auto",
                   }} alt="No image of venue"/>
                   }
-             
           <div className="price">
-            <b>999</b> kr/d
+            <b>{data.price}</b> kr/d
           </div></section> 
         <section className="part-2 mt-4">
           <h1>{data.name}</h1>
@@ -115,7 +115,7 @@ return isLoading ? <SpinnerLoad /> : isError ? <ErrorLoad /> : data.name ?
           <h2 className="fw-bold text-center mb-2 text-center position-relative">
             Start booking today
           </h2>
-          <ReactCalender userStatus={null}/>
+          <ReactCalender userStatus={false} venueData={data}/>
         </section>
       </main>
     </> : <ErrorLoad />
