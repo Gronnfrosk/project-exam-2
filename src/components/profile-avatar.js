@@ -34,7 +34,7 @@ export const AvatarDisplay = styled.div`
 `;
 
 export function AvatarImg(props) {
-  const { Name, UserType, Email } = props;
+  const { Name, UserType, Email, Avatar } = props;
   const colorProfile =
     UserType === "Venue manager" ? "var(--third_color)" : "var(--body_color)";
   //console.log(UserType);
@@ -63,7 +63,7 @@ export function AvatarImg(props) {
           <div>
             <AvatarIcon />
             <img
-              src={mainTop}
+              src={Avatar}
               alt="Profile avatar"
               onError={(event) => (event.target.style.display = "none")}
               style={{

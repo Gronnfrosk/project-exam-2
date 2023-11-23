@@ -17,7 +17,7 @@ export const PrimaryButton = styled.button`
   }
 `;
 
-export const EditAvatar = styled(PrimaryButton)`
+export const EditAvatarBtn = styled(PrimaryButton)`
   background-color: var(--primary_color) !important;
   border-radius: 50px;
   width: 45px !important;

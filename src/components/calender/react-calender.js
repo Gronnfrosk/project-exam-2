@@ -1,5 +1,5 @@
 import "./react-calender.scss";
-import "react-calendar/dist/Calendar.css"; 
+import "react-calendar/dist/Calendar.css";
 import Form from "react-bootstrap/Form";
 import { useForm } from "react-hook-form";
 import React, { useEffect, useState } from "react";
@@ -9,23 +9,25 @@ import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
 import { schemaBooking } from "../../validations/schemas/booking";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
-import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroup from "react-bootstrap/ListGroup";
 //import {useCreateBid } from "../../services/api/create-booking";
 //import useAllVenues from "../../services/api/venues";
 import viewBookingModal from "../../components/modal/booking";
-import { differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays } from "date-fns";
 
-const error = <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
-                * Please enter dates for booking.
-              </Form.Text>
+const error = (
+  <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
+    * Please enter dates for booking.
+  </Form.Text>
+);
 
 const disabledDates = [new Date("2023-11-25"), new Date("2023-11-27")];
 
 function tileDisabled({ date, view }) {
   // Disable tiles in month view only
-  if (view === 'month') {
+  if (view === "month") {
     // Check if a date React-Calendar wants to check is on the list of disabled dates
-    return disabledDates.find(dDate => isSameDay(dDate, date));
+    return disabledDates.find((dDate) => isSameDay(dDate, date));
   }
 }
 
@@ -59,35 +61,36 @@ export default function ReactCalender(props) {
   const getDates = () => {
     const datess = [];
     if (bookings.length > 2) {
-     bookings.map((booking) => {
-      const start = new Date(booking.dateFrom)
-      const end = new Date(booking.dateTo);
-      const days = Math.floor((end - start) / (1000 * 60 * 60 * 24));
-      const dates = [];
-      for (let i = 0; i <= days; i++) {
-          const currentDate = new Date(start.getTime() + i * 24 * 60 * 60 * 1000);
+      bookings.map((booking) => {
+        const start = new Date(booking.dateFrom);
+        const end = new Date(booking.dateTo);
+        const days = Math.floor((end - start) / (1000 * 60 * 60 * 24));
+        const dates = [];
+        for (let i = 0; i <= days; i++) {
+          const currentDate = new Date(
+            start.getTime() + i * 24 * 60 * 60 * 1000,
+          );
           datess.push(currentDate);
           //console.log( dates)
-          return datess
-      }
-      //return dates
-      return
-    })
-  }
-  //console.log(datess)
-      //const start = new Date(new Date(bookings[x].dateFrom));
-      //const end = new Date(bookings[x].dateTo);
-      //const datesBooked = []
-      //const days = Math.floor((end - start) / (1000 * 60 * 60 * 24));
-//
-      //for (let i = 0; i <= days; i++) {
-      //    const currentDate = new Date(start.getTime() + i * 24 * 60 * 60 * 1000);
-      //    datesBooked.push(currentDate);
-      //}
-      
+          return datess;
+        }
+        //return dates
+        return;
+      });
+    }
+    //console.log(datess)
+    //const start = new Date(new Date(bookings[x].dateFrom));
+    //const end = new Date(bookings[x].dateTo);
+    //const datesBooked = []
+    //const days = Math.floor((end - start) / (1000 * 60 * 60 * 24));
+    //
+    //for (let i = 0; i <= days; i++) {
+    //    const currentDate = new Date(start.getTime() + i * 24 * 60 * 60 * 1000);
+    //    datesBooked.push(currentDate);
+    //}
   };
 
-console.log(getDates())
+  //console.log(getDates())
 
   function dateCalc(dateFrom, dateEnd) {
     const dateDiffer = require("date-differ");
@@ -96,8 +99,8 @@ console.log(getDates())
       to: dateEnd,
       days: true,
     });
-  
-    return result
+
+    return result;
   }
 
   const {
@@ -109,61 +112,95 @@ console.log(getDates())
   });
 
   function onSubmit(data) {
-    setDateError("")
+    setDateError("");
     setModal("");
-    
-    if(!date[1]) {
-      setDateError(error)
-      return
+
+    if (!date[1]) {
+      setDateError(error);
+      return;
     }
 
-    data.checkIn = date[0].toLocaleDateString('en-GB')
-    data.checkOut = date[1].toLocaleDateString('en-GB')
-    data.venueId = bookingID 
+    data.checkIn = date[0].toLocaleDateString("en-GB");
+    data.checkOut = date[1].toLocaleDateString("en-GB");
+    data.venueId = bookingID;
     //console.log(data);
-    
-    setFormSuccess(data)
+
+    setFormSuccess(data);
     //setModal(viewBookingModal(formSuccess))
   }
 
   useEffect(() => {
-    {formSuccess ? setModal(viewBookingModal(formSuccess)) : setModal("")}
+    {
+      formSuccess ? setModal(viewBookingModal(formSuccess)) : setModal("");
+    }
   }, [formSuccess]);
 
-  return <div className="booking-form column-gap-5 mt-4">
-      {UserStatus === null ? 
-        <Link to="/login-register"><ButtonExpandNavbar
-          custom={"Login or register to place booking"}
-          color={false}
-          arrow={"black"}
-        /></Link>
-       : 
-        <><Form onSubmit={handleSubmit(onSubmit)}>
-          <div>
-            <Calendar
-              className="costumer"
-              view="month"
-              // viser dato dagens dato
-              minDate={new Date()}
-              maxDate={
-                new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-              }
-              onChange={setDate}
-              //value={date}
-              //onClickDay={(date) => console.log(date)}
-              selectRange={true}
-              tileDisabled={tileDisabled}
-            />
-          </div>
+  return (
+    <div className="booking-form column-gap-5 mt-4">
+      {UserStatus === null ? (
+        <Link to="/login-register">
+          <ButtonExpandNavbar
+            custom={"Login or register to place booking"}
+            color={false}
+            arrow={"black"}
+          />
+        </Link>
+      ) : (
+        <>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <Calendar
+                className="costumer"
+                view="month"
+                // viser dato dagens dato
+                minDate={new Date()}
+                maxDate={
+                  new Date(new Date().setFullYear(new Date().getFullYear() + 1))
+                }
+                onChange={setDate}
+                //value={date}
+                //onClickDay={(date) => console.log(date)}
+                selectRange={true}
+                tileDisabled={tileDisabled}
+              />
+            </div>
             <div className="form">
-            <ListGroup as="ul">
-              <ListGroup.Item as="li" className="list-top text-center">
-                Selected booking period
-              </ListGroup.Item>
-              <ListGroup.Item as="li" className="d-flex justify-content-between px-4">Check-in: <div>{date[0] ? date[0].toLocaleDateString('en-GB') : " dd/mm/yyyy"}</div></ListGroup.Item>
-              <ListGroup.Item as="li" className="d-flex justify-content-between px-4">Check-out: <div>{date[1] ? date[1].toLocaleDateString('en-GB') : " dd/mm/yyyy"}</div></ListGroup.Item>
-              <ListGroup.Item as="li" className="d-flex justify-content-between px-4">Duration: <div>{date.length > 1 ? dateCalc(date[0], date[1]) : "0 days"}</div></ListGroup.Item>
-            </ListGroup>
+              <ListGroup as="ul">
+                <ListGroup.Item as="li" className="list-top text-center">
+                  Selected booking period
+                </ListGroup.Item>
+                <ListGroup.Item
+                  as="li"
+                  className="d-flex justify-content-between px-4"
+                >
+                  Check-in:{" "}
+                  <div>
+                    {date[0]
+                      ? date[0].toLocaleDateString("en-GB")
+                      : " dd/mm/yyyy"}
+                  </div>
+                </ListGroup.Item>
+                <ListGroup.Item
+                  as="li"
+                  className="d-flex justify-content-between px-4"
+                >
+                  Check-out:{" "}
+                  <div>
+                    {date[1]
+                      ? date[1].toLocaleDateString("en-GB")
+                      : " dd/mm/yyyy"}
+                  </div>
+                </ListGroup.Item>
+                <ListGroup.Item
+                  as="li"
+                  className="d-flex justify-content-between px-4"
+                >
+                  Duration:{" "}
+                  <div>
+                    {date.length > 1 ? dateCalc(date[0], date[1]) : "0 days"}
+                  </div>
+                </ListGroup.Item>
+              </ListGroup>
               {dateError}
               <Form.Group>
                 <InputForm
@@ -178,51 +215,50 @@ console.log(getDates())
                   {errors.guests?.message}
                 </Form.Text>
               </Form.Group>
-              <div className="mt-4 text-center">  
+              <div className="mt-4 text-center">
                 <ButtonExpandNavbar
                   custom={"Place booking"}
                   color={false}
                   arrow={"black"}
                   type={"submit"}
-                />    
+                />
               </div>
-              </div>
-            </Form>
-            
-        </> 
-      }
+            </div>
+          </Form>
+        </>
+      )}
       {modal}
     </div>
+  );
 }
 
 //<Form.Group>
-              //  <InputForm
-              //    title={"CheckIn"}
-              //    placeholder={date[0] ? dateFormat(date[0]) : "dd/mm/yyyy"}
-              //    //value={(date) => setDate([date.selection])}
-              //    value={date[0] ? dateFormat(date[0]) : ""}
-              //    type={"text"}
-              //    validate={register}
-              //    onChange={(e) => this.setDate(e.target.value)}
-              //  />
-              //  <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
-              //    {errors.CheckIn?.message}
-              //  </Form.Text>
-              //</Form.Group>
-              //<Form.Group>
-              //  <InputForm
-              //    title={"CheckOut"}
-              //    placeholder={date[1] ? dateFormat(date[1]) : "dd/mm/yyyy"}
-              //    //value={(date) => setDate([date.selection])}
-              //    //value={date[1] ? dateFormat(date[1]) : "dd/mm/yyyy"}
-              //    type={"text"}
-              //    validate={register}
-              //  />
-              //  <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
-              //    {errors.CheckOut?.message}
-              //  </Form.Text>
-              //</Form.Group>
-
+//  <InputForm
+//    title={"CheckIn"}
+//    placeholder={date[0] ? dateFormat(date[0]) : "dd/mm/yyyy"}
+//    //value={(date) => setDate([date.selection])}
+//    value={date[0] ? dateFormat(date[0]) : ""}
+//    type={"text"}
+//    validate={register}
+//    onChange={(e) => this.setDate(e.target.value)}
+//  />
+//  <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
+//    {errors.CheckIn?.message}
+//  </Form.Text>
+//</Form.Group>
+//<Form.Group>
+//  <InputForm
+//    title={"CheckOut"}
+//    placeholder={date[1] ? dateFormat(date[1]) : "dd/mm/yyyy"}
+//    //value={(date) => setDate([date.selection])}
+//    //value={date[1] ? dateFormat(date[1]) : "dd/mm/yyyy"}
+//    type={"text"}
+//    validate={register}
+//  />
+//  <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
+//    {errors.CheckOut?.message}
+//  </Form.Text>
+//</Form.Group>
 
 //{date.length > 0 ? dateFormat(date): "dd/mm/yyyy"}
 //{dateFormat(date[0])}

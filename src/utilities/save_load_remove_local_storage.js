@@ -52,6 +52,8 @@ export function load(key) {
  * This function removes the JSON Web Token from localStorage.
  * @param {string} key name of key in localStorage
  */
-export function remove(key) {
-  localStorage.removeItem(key);
+export function remove(key1, key2, key3) {
+  localStorage.removeItem(key1);
+  localStorage.removeItem(key2);
+  localStorage.removeItem(key3);
 }

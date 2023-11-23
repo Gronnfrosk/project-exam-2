@@ -1,22 +1,36 @@
 import React from "react";
 import { ButtonExpand } from "./expand-btn.styles";
 import { AvatarIcon, RightArrow } from "../../assets/icons/icons";
-import { useTheme } from "styled-components";
-
-import mainTop from "../../assets/images/pexels-luis-leon-2564463.jpg";
 
 export function ButtonExpandNavbar(props) {
-  const theme = useTheme();
-  const { userButton, customer, manager, custom, color, arrow, type, onClick } =
-    props;
-  const blueBtn = theme.customer.primary;
-  const orangeBtn = theme.manager.primary;
+
+  const {
+    userStatus,
+    name,
+    nav,
+    avatar,
+    customer,
+    manager,
+    custom,
+    color,
+    arrow,
+    type,
+    onClick,
+  } = props;
+
+  //const colorSett = nav ? "var(--body_color)" : customer ? theme.customer.primary : manager ? theme.manager.primary : theme.manager.primary
+  const blueBtn = "var(--primary_color)";
+  const orangeBtn = "var(--primary_color)";
   const colorBtn =
     color === true
       ? orangeBtn
       : color === false
       ? blueBtn
-      : theme.color.primary;
+      : userStatus === false
+      ? "var( --secondary_color)"
+      : userStatus === true
+      ? "var(--third_color)"
+      : "var(--primary_color)"
   const colorBtnBtn = !arrow ? colorBtn : arrow;
   const colorBtnText = custom ? arrow : "";
   const blue = color === false ? blueBtn : "";
@@ -32,22 +46,19 @@ export function ButtonExpandNavbar(props) {
           backgroundColor: blue,
         }}
       >
-        <div>
-          {userButton === true ? <AvatarIcon /> : <RightArrow />}
+          {avatar ? <div><AvatarIcon /> 
           <img
-            src={userButton === true ? { mainTop } : ""}
+            src= {avatar}
             alt="Profile avatar"
             onError={(event) => (event.target.style.display = "none")}
-          />
-        </div>
+          /></div> : <div><RightArrow /></div>}
+        
       </span>
       <span className="button-text" style={{ color: colorBtnText }}>
-        {userButton === true
-          ? "John Manager"
-          : userButton === false
-          ? "Sara Customer"
-          : userButton === null
-          ? "Login or register"
+        {name
+          ? name
+          : nav
+          ? nav
           : customer
           ? "Customer"
           : manager
@@ -57,22 +68,3 @@ export function ButtonExpandNavbar(props) {
     </ButtonExpand>
   );
 }
-
-//Login or register
-//const theme = useTheme();
-//const ProfileIcon = props.userButton;
-//const customer = props.customer;
-//const
-//const [btnContent, setBtnContent] = useState("Login or register")
-
-//const imageBtn = props.imageBtn
-//if (props.btns[0].imageBtn !== undefined) {
-//  console.log(props.btns[0].imageBtn)
-//}
-
-//console.log(imageBtn)
-//console.log(text)
-//setBtnContent("John Doe")
-//console.log(props)
-
-//console.log(props.userStatus)

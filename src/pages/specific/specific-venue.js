@@ -13,7 +13,7 @@ import {
   EditVenueBtn,
   DeleteVenueBtn,
 } from "../../components/buttons/button.styles";
-import { SpinnerLoad, ErrorLoad } from "../../components/error-load"
+import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
 //import getBookedDates from "../../helpers/get-dates"
 
 function SpecificVenuePage() {
@@ -27,30 +27,42 @@ function SpecificVenuePage() {
 
   //console.log(bookedDates)
 
-  return isLoading ? <SpinnerLoad /> : isError ? <ErrorLoad /> : data.name ? 
+  return isLoading ? (
+    <SpinnerLoad />
+  ) : isError ? (
+    <ErrorLoad />
+  ) : data.name ? (
     <>
       <Helmet>
         <title>Venue - {data.name}</title>
         <meta name="description" content={description} />
       </Helmet>
       <main className="specific mb-5 mt-3">
-          <section className="part-1">
-            {data.media && data.media.length > 0 ? 
+        <section className="part-1">
+          {data.media && data.media.length > 0 ? (
             <Carousel fade data-bs-theme="dark">
               {data.media.map((image, index) => (
-              <Carousel.Item key={index}>
-                <Image src={image} alt="Image of venue"/>
-              </Carousel.Item>))} 
-            </Carousel> : 
-                <Image src={"https://img.freepik.com/free-vector/flat-design-no-photo-sign_23-2149279003.jpg?size=626&ext=jpg&ga=GA1.1.933137767.1681841899&semt=ais"}
-                  style={{
-                    height: "100%",
-                    margin: "auto",
-                  }} alt="No image of venue"/>
-                  }
+                <Carousel.Item key={index}>
+                  <Image src={image} alt="Image of venue" />
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          ) : (
+            <Image
+              src={
+                "https://img.freepik.com/free-vector/flat-design-no-photo-sign_23-2149279003.jpg?size=626&ext=jpg&ga=GA1.1.933137767.1681841899&semt=ais"
+              }
+              style={{
+                height: "100%",
+                margin: "auto",
+              }}
+              alt="No image of venue"
+            />
+          )}
           <div className="price">
             <b>{data.price}</b> kr/d
-          </div></section> 
+          </div>
+        </section>
         <section className="part-2 mt-4">
           <h1>{data.name}</h1>
           <div className="d-flex flex-row align-items-center justify-content-between py-1  border-top border-bottom border-black">
@@ -64,7 +76,8 @@ function SpecificVenuePage() {
               <DeleteVenueBtn title="Delete venue">{DeleteIcon}</DeleteVenueBtn>
             </div>
             <div className="rating">
-              Max guests: <div className="fw-bold ms-2 me-3">{data.maxGuests}</div>
+              Max guests:{" "}
+              <div className="fw-bold ms-2 me-3">{data.maxGuests}</div>
             </div>
           </div>
         </section>
@@ -82,14 +95,44 @@ function SpecificVenuePage() {
             <div className="amenities">
               <div className="title">Amenities:</div>
               <ul className="amenity-list">
-                 <li className={data.meta.wifi === false ? "list-group-item text-decoration-line-through text-danger" : ""}> {WifiIcon}  Free WIFI</li>
-                <li className={data.meta.parking === false ? "list-group-item text-decoration-line-through text-danger" : ""}>
-                 {ParkIcon}  Parking available
+                <li
+                  className={
+                    data.meta.wifi === false
+                      ? "list-group-item text-decoration-line-through text-danger"
+                      : ""
+                  }
+                >
+                  {" "}
+                  {WifiIcon} Free WIFI
                 </li>
-                <li className={data.meta.breakfast === false ? "list-group-item text-decoration-line-through text-danger" : ""}>
-                 {BreakfastIcon}  Breakfast included
-                </li> 
-                <li className={data.meta.pets === false ?"list-group-item text-decoration-line-through text-danger": "list-group-item"}> {PetIcon} Pets allowed</li> 
+                <li
+                  className={
+                    data.meta.parking === false
+                      ? "list-group-item text-decoration-line-through text-danger"
+                      : ""
+                  }
+                >
+                  {ParkIcon} Parking available
+                </li>
+                <li
+                  className={
+                    data.meta.breakfast === false
+                      ? "list-group-item text-decoration-line-through text-danger"
+                      : ""
+                  }
+                >
+                  {BreakfastIcon} Breakfast included
+                </li>
+                <li
+                  className={
+                    data.meta.pets === false
+                      ? "list-group-item text-decoration-line-through text-danger"
+                      : "list-group-item"
+                  }
+                >
+                  {" "}
+                  {PetIcon} Pets allowed
+                </li>
               </ul>
             </div>
             <div className="w-100 me-5">
@@ -107,7 +150,6 @@ function SpecificVenuePage() {
               Name={data.owner.name}
               UserType={"Venue manager"}
               Email={data.owner.email}
-
             />
           </div>
         </section>
@@ -115,13 +157,13 @@ function SpecificVenuePage() {
           <h2 className="fw-bold text-center mb-2 text-center position-relative">
             Start booking today
           </h2>
-          <ReactCalender userStatus={false} venueData={data}/>
+          <ReactCalender userStatus={false} venueData={data} />
         </section>
       </main>
-    </> : <ErrorLoad />
-  }
-
-
+    </>
+  ) : (
+    <ErrorLoad />
+  );
+}
 
 export default SpecificVenuePage;
-

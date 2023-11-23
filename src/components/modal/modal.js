@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import { PrimaryButton } from "../buttons/button.styles";
 import Button from "react-bootstrap/Button";
+//import { ThemeMode } from "../../components/user-color-theme"
 
 export function ModalInfo(props) {
   const {
@@ -50,17 +51,21 @@ export function ModalInfo(props) {
   );
 
   const modalButton = userError
-    ? closeBtn : bookingSuccess && userSuccess
+    ? closeBtn
+    : bookingSuccess && userSuccess
     ? bookingBtns
     : userSuccess
     ? userBtn
     : registerSuccess
     ? userBtn
-   
     : "";
 
   return (
-    <Modal show={show} backdrop={bookingSuccess ? "true" : "static"} keyboard={false}>
+    <Modal
+      show={show}
+      backdrop={bookingSuccess ? "true" : "static"}
+      keyboard={false}
+    >
       <Modal.Header>
         <Modal.Title>{ModalTitle}</Modal.Title>
       </Modal.Header>

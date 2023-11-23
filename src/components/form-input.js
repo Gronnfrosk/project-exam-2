@@ -1,7 +1,7 @@
 import "./form-input.scss";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import { EditAvatar } from "./buttons/button.styles";
+//import { EditAvatar } from "./buttons/button.styles";
 
 export function InputBase(props) {
   const { placeholder, type, label, validation } = props;
@@ -61,20 +61,24 @@ export function InputForm(props) {
   );
 }
 
-export function InputEditAvatar() {
-  return (
-    <>
-      <InputGroup className="mt-1">
-        <Form.Control
-          type="text"
-          data-bs-theme="light"
-          aria-label="Recipient's username"
-          aria-describedby="basic-addon2"
-          className="rounded-start-pill border-0 shadow-none"
-          style={{ fontSize: "var(--textMedium_fontSize)" }}
-        />
-        <EditAvatar>{">"}</EditAvatar>
-      </InputGroup>
-    </>
-  );
-}
+//export function InputEditAvatar(props) {
+//  const register = props
+//
+//  return (
+//    <>
+//      <InputGroup className="mt-1">
+//        <Form.Control
+//          type="url"
+//          data-bs-theme="light"
+//          placeholder="http://www.example.com"
+//          aria-label="Recipient's username"
+//          aria-describedby="basic-addon2"
+//          className="rounded-start-pill border-0 shadow-none"
+//          style={{ fontSize: "var(--textMedium_fontSize)" }}
+//          validate={register}
+//        />
+//        <EditAvatar>{">"}</EditAvatar>
+//      </InputGroup>
+//    </>
+//  );
+//}

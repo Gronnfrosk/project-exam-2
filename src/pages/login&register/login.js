@@ -13,7 +13,7 @@ import viewLoginModal from "../../components/modal/login";
 export function LoginForm() {
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
-  const viewModal = viewLoginModal(formSuccess)
+  const viewModal = viewLoginModal(formSuccess);
 
   const {
     register,

@@ -1,4 +1,3 @@
-
 import { ModalInfo } from "./modal";
 
 export default function viewRegisterModal(formSuccess, change) {
