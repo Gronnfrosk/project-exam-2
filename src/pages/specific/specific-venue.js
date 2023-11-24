@@ -141,15 +141,16 @@ function SpecificVenuePage() {
             </div>
             <div className="w-100 me-5">
               General booking info: On this site you can book a venue a year
-              into the future. Also each day you book starts 12 PM and ends
-              after 24 hours
+              into the future. At this venue it is posssible to checkin after 13:00 and checkout must be before 11:00.
             </div>
           </div>
           <div className="venue-manager-profile">
             <AvatarImg
+              Avatar={data.owner.avatar}
               Name={data.owner.name}
               UserType={"Venue manager"}
               Email={data.owner.email}
+              specific={true}
             />
           </div>
         </section>

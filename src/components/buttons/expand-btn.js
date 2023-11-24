@@ -3,7 +3,6 @@ import { ButtonExpand } from "./expand-btn.styles";
 import { AvatarIcon, RightArrow } from "../../assets/icons/icons";
 
 export function ButtonExpandNavbar(props) {
-
   const {
     userStatus,
     name,
@@ -30,7 +29,7 @@ export function ButtonExpandNavbar(props) {
       ? "var( --secondary_color)"
       : userStatus === true
       ? "var(--third_color)"
-      : "var(--primary_color)"
+      : "var(--primary_color)";
   const colorBtnBtn = !arrow ? colorBtn : arrow;
   const colorBtnText = custom ? arrow : "";
   const blue = color === false ? blueBtn : "";
@@ -45,14 +44,16 @@ export function ButtonExpandNavbar(props) {
           borderColor: colorBtn,
           backgroundColor: blue,
         }}
-      >
-          {avatar ? <div><AvatarIcon /> 
-          <img
-            src= {avatar}
-            alt="Profile avatar"
-            onError={(event) => (event.target.style.display = "none")}
-          /></div> : <div><RightArrow /></div>}
-        
+      ><div>
+        {!avatar && !arrow? 
+            <AvatarIcon />
+         : avatar ? <img
+              src={avatar}
+              alt="Profile avatar"
+              onError={(event) => (event.target.style.display = "none")}
+            /> :
+            <RightArrow />
+        }</div>
       </span>
       <span className="button-text" style={{ color: colorBtnText }}>
         {name

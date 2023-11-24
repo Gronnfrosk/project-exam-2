@@ -17,7 +17,6 @@ export const AvatarDisplay = styled.div`
 
       & svg {
         font-size: 2.5rem;
-        color: var(--body_color);
       }
 
       & img {
@@ -34,11 +33,13 @@ export const AvatarDisplay = styled.div`
 `;
 
 export function AvatarImg(props) {
-  const { Name, UserType, Email, Avatar } = props;
+  const { Name, UserType, Email, Avatar, specific } = props;
   const colorProfile =
-    UserType === "Venue manager" ? "var(--third_color)" : "var(--body_color)";
+    specific === true ? "var(--third_color)" : "var(--body_color)";
   //console.log(UserType);
   //console.log(colorProfile);
+
+console.log(Avatar)
 
   return (
     <div className="profile text-center d-flex flex-column align-items-center">
@@ -58,15 +59,15 @@ export function AvatarImg(props) {
         <span
           className="circle"
           aria-hidden="true"
-          style={{ borderColor: colorProfile }}
+          style={{ borderColor: colorProfile, color: colorProfile }}
         >
           <div>
-            <AvatarIcon />
+            {!Avatar ? <AvatarIcon /> :
             <img
               src={Avatar}
               alt="Profile avatar"
-              onError={(event) => (event.target.style.display = "none")}
               style={{
+                display: "block",
                 width: "80px",
                 height: "auto",
                 aspectRatio: "1/1",
@@ -74,7 +75,8 @@ export function AvatarImg(props) {
                 borderRadius: "50px",
                 borderColor: colorProfile,
               }}
-            />
+              onError={console.log("error")}
+            />}
           </div>
         </span>
       </AvatarDisplay>

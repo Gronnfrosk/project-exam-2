@@ -1,0 +1,56 @@
+main.list {
+  max-width: 1188px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  & section {
+    margin: 0;
+    width: 400px;
+
+    & .booking-title,
+    .venues-title {
+      background-color: var(--primary_color);
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border-right: 100px solid var(--body_backgroundColor);
+      font-weight: bold;
+
+      & div {
+        text-align: end;
+        font-size: 1.3rem;
+      }
+    }
+
+    & .container {
+      min-height: 600px;
+
+      & button {
+        border: none;
+        border-radius: 0;
+        border-bottom: 2px solid var(--body_color);
+      }
+
+      & .divider {
+        width: 350px;
+      }
+
+      & .collapse {
+        margin-top: 10px;
+        width: 350px;
+      }
+    }
+  }
+
+  & section.venues-list {
+    width: 1188px;
+  }
+}
+
+/*mobile styles*/
+@media only screen and (max-width: 700px) {
+}

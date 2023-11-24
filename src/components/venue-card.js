@@ -2,7 +2,7 @@ import "./venue-card.scss";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { VenueCardIcons } from "../assets/icons/icons";
-import { useTextLessener } from "../helpers/textSlice";
+import { useTextLessener } from "../helpers/formatting/textSlice";
 
 export default function VenueCard(props) {
   const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = VenueCardIcons();
@@ -20,15 +20,13 @@ export default function VenueCard(props) {
 
   const { wifi, parking, breakfast, pets } = meta;
 
-  //console.log(meta)
-
   return (
     <Link to={`/${id}`} className="text-decoration-none">
       <Card>
         <div className="part-1">
           <Card.Img
             variant="top"
-            src={media[0]}
+            src={media[0] ? media[0] : 'https://img.freepik.com/free-vector/flat-design-no-photo-sign_23-2149279003.jpg?size=626&ext=jpg&ga=GA1.1.933137767.1681841899&semt=ais'}
             className="img-fluid rounded-0"
             alt="A specific venue"
           />
@@ -37,9 +35,7 @@ export default function VenueCard(props) {
         <Card.Body>
           <div className="venue-description">
             <Card.Title>{useTextLessener(name, 50)}</Card.Title>
-            <Card.Text className="py-3 mb-0">
-              Country: {location.country}
-            </Card.Text>
+            <Card.Text className="h-50">Country: {location.country}</Card.Text>
             <div className="rating ms-2">
               Rating
               <div className="ms-2">{rating}</div>
