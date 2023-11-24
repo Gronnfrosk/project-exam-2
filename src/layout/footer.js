@@ -2,6 +2,7 @@ import { BrandLogo } from "../assets/brand/logo";
 import FooterSVG from "../assets/images/footer-image";
 import Contact from "../assets/brand/contacts";
 import { FooterIcons } from "../assets/icons/icons";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const { instaIcon, pinterestIcon, twitterIcon, facebookIcon } = FooterIcons();
@@ -19,7 +20,9 @@ function Footer() {
         <div className="py-4 mx-auto " style={{ maxWidth: "1320px" }}>
           <div className="d-flex flex-wrap justify-content-between gap-2 align-items-center">
             <div>
-              <BrandLogo />
+              <Link to="/" className="text-decoration-none">
+                <BrandLogo />
+              </Link>
               <div
                 style={{
                   maxWidth: "800px",

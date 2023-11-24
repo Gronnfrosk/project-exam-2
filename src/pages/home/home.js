@@ -10,6 +10,8 @@ import { InputIcons } from "../../assets/icons/icons";
 import { API_URL_VENUES } from "../../services/api/constants";
 import VenueCard from "../../components/venue-card";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const submitHandler = (event) => {
   event.preventDefault();
@@ -74,21 +76,21 @@ function MainPage() {
       </header>
       <main>
         <section>
+        
           <Form onSubmit={submitHandler} className="search">
-            <Form.Group
-              className="mb-3 w-100 d-flex"
-              controlId="exampleForm.ControlInput1"
-            >
-              <Form.Control
-                type={"text"}
-                placeholder={
-                  "Search here for specific venue or venues located in specific country..."
-                }
-                className="rounded-pill border-2 shadow-none border-black text-center"
-                onChange={(e) => setSearch(e.target.value.toLowerCase())}
-              />
-            </Form.Group>
-            <div className="search-icon">{SearchIcon}</div>
+            <InputGroup className="mb-3 mx-2">
+            <Form.Control
+              type={"text"}
+              placeholder="Search by venues or country..."
+              aria-label="Search by venues or country..."
+              aria-describedby="search-bar"
+              className="border shadow-none border-black "
+              onChange={(e) => setSearch(e.target.value.toLowerCase())}
+            />
+            <Button variant="dark" id="search-bar">
+            {SearchIcon}
+            </Button>
+          </InputGroup>
           </Form>
         </section>
         <div className="divider dropdown-toggle gap-2 ps-3">Recent</div>
@@ -112,3 +114,5 @@ function MainPage() {
 }
 
 export default MainPage;
+
+ //<div className="search-icon">{SearchIcon}</div>

@@ -17,7 +17,10 @@ import { Link } from "react-router-dom";
 import { NavbarIcon } from "../assets/icons/icons";
 import Navbar from "react-bootstrap/Navbar";
 import { BrandLogo } from "../assets/brand/logo";
-import { PrimaryButton, EditAvatarBtn} from "../components/buttons/button.styles";
+import {
+  PrimaryButton,
+  EditAvatarBtn,
+} from "../components/buttons/button.styles";
 import { AvatarImg } from "../components/profile-avatar";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
 import { load, remove } from "../utilities/save_load_remove_local_storage";
@@ -32,14 +35,14 @@ const divider = (
 export function SideMenu(props) {
   //const navigate = useNavigate();
   const change = props.change;
-  const { profile, profileSucsess} = props;
-  const avatar = profile.avatar
+  const { profile, profileSucsess } = props;
+  const avatar = profile.avatar;
   const [toggled, setToggled] = React.useState(false);
-  const [ userProfile, setUserProfile ] = useState(profileSucsess)
-  
+  const [userProfile, setUserProfile] = useState(profileSucsess);
+
   const { name, email, media, bookings, venueManager, _count } = profileSucsess;
-  const venues = _count.venues !== undefined ? _count.venues : 0
-  const booking = _count.bookings
+  const venues = _count.venues !== undefined ? _count.venues : 0;
+  const booking = _count.bookings;
   const [urlInput, setUrlInput] = useState("");
 
   const {
@@ -52,13 +55,13 @@ export function SideMenu(props) {
 
   function handleOnClick() {
     remove("profile", "token", "venueManager");
-    //navigate("/"); 
+    //navigate("/");
     change();
     setToggled(false);
   }
 
   async function onSubmit(data) {
-    setUrlInput("")
+    setUrlInput("");
 
     const promiseAwait = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -74,15 +77,15 @@ export function SideMenu(props) {
   const navbarProfileCustomer = [
     { name: "Upcoming", amount: "2" },
     { name: "Previous", amount: "8", dividerNav: divider },
-    { name: "Total", amount:  `${booking}` },
+    { name: "Total", amount: `${booking}` },
   ];
   const navbarManagerProfile = [
     {},
-    { name: "Total", amount:  `${venues}`, dividerNav: divider },
+    { name: "Total", amount: `${venues}`, dividerNav: divider },
     {},
   ];
   const navbarProfile =
-  venueManager === false ? navbarProfileCustomer : navbarManagerProfile;
+    venueManager === false ? navbarProfileCustomer : navbarManagerProfile;
 
   const navbarManager = [
     { name: "See your venues", icon: Total },
@@ -181,28 +184,28 @@ export function SideMenu(props) {
           <SubMenu icon={EditAvatar} label="Edit avatar" className="bg-dark">
             <MenuItem style={{ overflow: "hidden" }}>
               <Form onSubmit={handleSubmit(onSubmit)}>
-              <InputGroup className="mt-1">
-                <Form.Control
-                  value={urlInput}
-                  onInput={(e) => setUrlInput(e.target.value)}
-                  id="mainInput"
-                  type="text"
-                  title="Avatar"
-                  data-bs-theme="light"
-                  placeholder="http://www.example.com"
-                  aria-label="Recipient's username"
-                  aria-describedby="basic-addon2"
-                  className="rounded-start-pill border-0 shadow-none"
-                  style={{ fontSize: "var(--textSmall_fontSize)" }}
-                  {...register("Avatar")}
-                />
-              <EditAvatarBtn>{">"}</EditAvatarBtn>
-            </InputGroup>
-            </Form>
+                <InputGroup className="mt-1">
+                  <Form.Control
+                    value={urlInput}
+                    onInput={(e) => setUrlInput(e.target.value)}
+                    id="mainInput"
+                    type="text"
+                    title="Avatar"
+                    data-bs-theme="light"
+                    placeholder="http://www.example.com"
+                    aria-label="Recipient's username"
+                    aria-describedby="basic-addon2"
+                    className="rounded-start-pill border-0 shadow-none"
+                    style={{ fontSize: "var(--textSmall_fontSize)" }}
+                    {...register("Avatar")}
+                  />
+                  <EditAvatarBtn>{">"}</EditAvatarBtn>
+                </InputGroup>
+              </Form>
             </MenuItem>
-              <Form.Text className="text-white text-decoration-underline link-underline-danger text-center w-100 mt-3 position-absolute ">
-                {errors.Avatar?.message}
-              </Form.Text>
+            <Form.Text className="text-white text-decoration-underline link-underline-danger text-center w-100 mt-3 position-absolute ">
+              {errors.Avatar?.message}
+            </Form.Text>
           </SubMenu>
 
           <div className="menu-bottom position-absolute bottom-0 mb-4 w-100">

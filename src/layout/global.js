@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useLocation } from 'react-router-dom';
 import { CollapsibleNavbar } from "./navbar";
 import Footer from "./footer";
-import { load, remove } from "../utilities/save_load_remove_local_storage";
+import { load } from "../utilities/save_load_remove_local_storage";
 import {ProfileInfoApi} from "../services/api/profile";
   
 const param = "bookings"
@@ -16,18 +16,20 @@ export default function GlobalLayout() {
   const [profileSucsess, setprofileSuccess] = useState(profile)
   
 useEffect(() => {
-    if (location.pathname === "/login-register") {setLoginReg("d-none")} else {setLoginReg("")};
-    if (location.pathname !== "/login-register"){
+    if (location.pathname === "/login-register") {setLoginReg("d-none")} else {setLoginReg("");
       setUserStatus(load("venueManager"));
       setProfile(load("profile"));
       setToken(load("token"));
-    }
+  };
+    //if (location.pathname !== "/login-register"){
+    //  
+    //}
   }, [location]);
 
 function handleState(result) {
     if (result) return setProfile(result)
-    setUserStatus(load("venueManager"));
-    setProfile(load("profile"));
+    //setUserStatus(load("venueManager"));
+    //setProfile(load("profile"));
     setToken(load("token"));
   }
  
@@ -45,8 +47,14 @@ async function userInfo(profile) {
   useEffect(() => {
   if(!profileSucsess && profile.name) {
     console.log("Hello")
-    userInfo(profile)
+    //userInfo(profile)
+    setprofileSuccess(profile)
 }}, [profile]);
+
+useEffect(() => {
+  setProfile(load("profile"));
+  //setprofileSuccess(profile)
+}, []);
 
   return (
     <>
