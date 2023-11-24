@@ -3,15 +3,30 @@ import { load } from "../utilities/save_load_remove_local_storage";
 import { useLocation } from "react-router-dom";
 
 export const ThemeMode = () => {
-  const [userType, setUserType] = useState(load("venueManager"));
+  const [userType, setUserType] = useState("");
   const location = useLocation();
 
+  useEffect(() => {
+  setUserType(load("venueManager"));
+}, []);
+
+
+  useEffect(() => {
+    if (userType === true) {
+      return setManagerMode();
+    } else if (userType === false) {
+      return setCustomerMode();
+    } else {
+      return setNoneUserMode();
+    }
+  }, [userType]);
+  
   useEffect(() => {
     setUserType(load("venueManager"));
 
     if (userType === true) {
       return setManagerMode();
-    } else if ((selectedTheme === userType) === false) {
+    } else if (userType === false) {
       return setCustomerMode();
     } else {
       return setNoneUserMode();
@@ -20,15 +35,16 @@ export const ThemeMode = () => {
 
   useEffect(() => {
     setUserType(load("venueManager"));
-
     if (userType === true) {
       return setManagerMode();
-    } else if ((selectedTheme === userType) === false) {
+    } else if (userType === false) {
       return setCustomerMode();
     } else {
       return setNoneUserMode();
     }
-  }, [userType]);
+  }, []);
+
+  console.log(userType)
 
   const setNoneUserMode = () => {
     document.querySelector("body").setAttribute("data-theme", "noneUser");
@@ -42,5 +58,11 @@ export const ThemeMode = () => {
     document.querySelector("body").setAttribute("data-theme", "manager");
   };
 
-  const selectedTheme = localStorage.getItem("selectedTheme");
+  if (userType === true) {
+    return setManagerMode();
+  } else if (userType === false) {
+    return setCustomerMode();
+  } else {
+    return setNoneUserMode();
+  }
 };

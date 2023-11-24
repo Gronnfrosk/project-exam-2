@@ -136,7 +136,7 @@ console.log(profile)
       className="bg-body-tertiary"
     >
       <Container className={loginReg}>
-        {!profile === "" ? (
+        {profile ? (
           <SideMenu
             userStatus={userStatus}
             profile={profile}

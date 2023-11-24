@@ -1,5 +1,5 @@
 import "./home.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
 import useAllVenues from "../../services/api/venues";
@@ -13,14 +13,18 @@ import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 
-const submitHandler = (event) => {
-  event.preventDefault();
-};
+ const { SearchIcon } = InputIcons();
 
-function MainPage() {
-  const [data, isLoading, isError] = useAllVenues(API_URL_VENUES);
-  const { SearchIcon } = InputIcons();
+function MainPage() { 
   const [search, setSearch] = useState("");
+  const [count, setCounter] = useState(3);
+  const [url, setUrl] = useState(`${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`)
+  const [data, isLoading, isError] = useAllVenues(url)
+  
+  const increase = () => {
+    setCounter(count => count + 3);
+    setUrl(`${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`)
+  };
 
   let filterName = data.filter((venue) => {
     return search.toLowerCase() === ""
@@ -35,6 +39,10 @@ function MainPage() {
   });
   let filteredArray = [...filterName, ...filterCountry];
   let mergedArr = [...new Set(filteredArray)];
+
+  console.log(url)
+  console.log(count)
+
 
   return (
     <>
@@ -76,8 +84,7 @@ function MainPage() {
       </header>
       <main>
         <section>
-        
-          <Form onSubmit={submitHandler} className="search">
+          <Form onSubmit={(event) => event.preventDefault()} className="search">
             <InputGroup className="mb-3 mx-2">
             <Form.Control
               type={"text"}
@@ -87,7 +94,7 @@ function MainPage() {
               className="border shadow-none border-black "
               onChange={(e) => setSearch(e.target.value.toLowerCase())}
             />
-            <Button variant="dark" id="search-bar">
+            <Button variant="dark" id="search-bar" onClick={(event) => event.preventDefault()}>
             {SearchIcon}
             </Button>
           </InputGroup>
@@ -106,7 +113,7 @@ function MainPage() {
           )}
         </section>
         <section className="d-flex my-5 justify-content-center">
-          <PrimaryButton> More </PrimaryButton>
+          <PrimaryButton onClick={increase}> More </PrimaryButton>
         </section>
       </main>
     </>

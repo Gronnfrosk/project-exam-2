@@ -41,8 +41,8 @@ export function SideMenu(props) {
   const [userProfile, setUserProfile] = useState(profileSucsess);
 
   const { name, email, media, bookings, venueManager, _count } = profileSucsess;
-  const venues = _count.venues !== undefined ? _count.venues : 0;
-  const booking = _count.bookings;
+  //const venues = _count.venues !== undefined ? _count.venues : 0;
+  //const booking = _count.bookings;
   const [urlInput, setUrlInput] = useState("");
 
   const {
@@ -77,11 +77,11 @@ export function SideMenu(props) {
   const navbarProfileCustomer = [
     { name: "Upcoming", amount: "2" },
     { name: "Previous", amount: "8", dividerNav: divider },
-    { name: "Total", amount: `${booking}` },
+    //{ name: "Total", amount: `${booking}` },
   ];
   const navbarManagerProfile = [
     {},
-    { name: "Total", amount: `${venues}`, dividerNav: divider },
+    //{ name: "Total", amount: `${venues}`, dividerNav: divider },
     {},
   ];
   const navbarProfile =
