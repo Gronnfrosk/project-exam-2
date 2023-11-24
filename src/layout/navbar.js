@@ -122,8 +122,10 @@ function ProfileInfoNav(props) {
 }
 
 export function CollapsibleNavbar(props) {
-  const { userStatus, profile, loginReg, profileSucsess} = props;
+  const { userStatus, profile, loginReg, profileSucsess } = props;
   const change = props.change;
+
+console.log(profile)
 
   return (
     <Navbar
@@ -153,7 +155,11 @@ export function CollapsibleNavbar(props) {
           <Nav>
             <div className="ms-3 w-100">
               {!profile === "" ? (
-                <ProfileInfoNav change={change} profileSucsess={profileSucsess} profile={profile}/>
+                <ProfileInfoNav
+                  change={change}
+                  profileSucsess={profileSucsess}
+                  profile={profile}
+                />
               ) : (
                 ""
               )}
