@@ -5,7 +5,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { schemaAvatar } from "../validations/schemas/editAvatar";
 import { yupResolver } from "@hookform/resolvers/yup";
-//import { useNavigate } from "react-router-dom";
 import {
   Sidebar,
   Menu,
@@ -23,112 +22,106 @@ import {
 } from "../components/buttons/button.styles";
 import { AvatarImg } from "../components/profile-avatar";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
-import { load, remove } from "../utilities/save_load_remove_local_storage";
+
 import { EditAvatarApi } from "../services/api/profile";
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
   NavbarIcon();
-const divider = (
+
+  const divider = (
   <span className="d-flex text-white fs-2 align-items-center mt-3">|</span>
 );
 
 export function SideMenu(props) {
-  //const navigate = useNavigate();
-  const change = props.change;
-  const { profile, profileSucsess } = props;
-  const avatar = profile.avatar;
-  const [toggled, setToggled] = React.useState(false);
-  const [userProfile, setUserProfile] = useState(profileSucsess);
-
-  const { name, email, media, bookings, venueManager, _count } = profileSucsess;
-  //const venues = _count.venues !== undefined ? _count.venues : 0;
-  //const booking = _count.bookings;
+  const { profileSuccess, userStatus, profile, handleState } = props;
+ const [toggled, setToggled] = React.useState(false);
+  const [userProfile, setUserProfile] = useState();
   const [urlInput, setUrlInput] = useState("");
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schemaAvatar),
   });
 
-  function handleOnClick() {
-    remove("profile", "token", "venueManager");
-    //navigate("/");
-    change();
-    setToggled(false);
+  if(!profileSuccess || profileSuccess=== null) {
+  return <Link to="login-register">
+  <ButtonExpandNavbar
+    userButton={userStatus}
+    nav={"Login or register"}
+  />
+</Link>
+}
+  const { name, email, avatar, bookings, venueManager, _count } = profileSuccess || {};
+  const venues = _count ? _count.venues : 0;
+
+async function onSubmit(data) {
+  setUrlInput("");
+
+  try {
+    const result = await EditAvatarApi(name, data);
+    if (result) {
+      handleState(result);
+    } else {
+      console.log("EditAvatarApi returned undefined or null");
+    }
+  } catch (error) {
+    console.error("Error fetching profile avatar:", error);
   }
+}
 
-  async function onSubmit(data) {
-    setUrlInput("");
+const navbarProfileCustomer = [
+  { name: "Upcoming", amount: "2" },
+  { name: "Previous", amount: "8", dividerNav: divider },
+  { name: "Total", amount: `${bookings}` },
+];
+const navbarManagerProfile = [
+  {},
+  { name: "Total", amount: `${venues}`, dividerNav: divider },
+  {},
+];
+const navbarProfile =
+  venueManager === false ? navbarProfileCustomer : navbarManagerProfile;
 
-    const promiseAwait = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(EditAvatarApi(name, data));
-      }, 500);
-    });
+const navbarManager = [
+  { name: "See your venues", icon: Total },
+  { name: "Create venue", icon: CreateIcon },
+];
+const navbarCustomer = [
+  { name: "Upcoming booking", icon: UpcomingIcon },
+  { name: "Previous bookings", icon: PreviousIcon },
+  { name: "All bookings", icon: Total },
+];
+const navbarLink = venueManager === false ? navbarCustomer : navbarManager;
 
-    const result = await promiseAwait;
-    change(result);
-    setUserProfile(result);
-  }
+const navLinkUserType = navbarProfile.map((navLink, index) => {
+  const { name, amount, dividerNav } = navLink;
 
-  const navbarProfileCustomer = [
-    { name: "Upcoming", amount: "2" },
-    { name: "Previous", amount: "8", dividerNav: divider },
-    //{ name: "Total", amount: `${booking}` },
-  ];
-  const navbarManagerProfile = [
-    {},
-    //{ name: "Total", amount: `${venues}`, dividerNav: divider },
-    {},
-  ];
-  const navbarProfile =
-    venueManager === false ? navbarProfileCustomer : navbarManagerProfile;
-
-  const navbarManager = [
-    { name: "See your venues", icon: Total },
-    { name: "Create venue", icon: CreateIcon },
-  ];
-  const navbarCustomer = [
-    { name: "Upcoming booking", icon: UpcomingIcon },
-    { name: "Previous bookings", icon: PreviousIcon },
-    { name: "All bookings", icon: Total },
-  ];
-  const navbarLink = venueManager === false ? navbarCustomer : navbarManager;
-
-  const navLinkUserType = navbarProfile.map((navLink, index) => {
-    const { name, amount, dividerNav } = navLink;
-
-    return (
-      <div className="d-flex" key={"sideNav" + index}>
-        {dividerNav}
-        <div className="d-flex flex-row justify-content-around mt-3">
-          <div className="inventory-items text-center">
-            <div> {!amount ? "" : amount}</div> {!name ? "" : name}
-          </div>
+  return (
+    <div className="d-flex" key={"sideNav" + index}>
+      {dividerNav}
+      <div className="d-flex flex-row justify-content-around mt-3">
+        <div className="inventory-items text-center">
+          <div> {!amount ? "" : amount}</div> {!name ? "" : name}
         </div>
-        {dividerNav}
       </div>
-    );
-  });
-
-  const navProfile = (
-    <div className="text-center mt-3">
-      {venueManager === false ? (
-        <div className="fs-4">Bookings </div>
-      ) : (
-        <div className="fs-4">Venues </div>
-      )}
-      <div className="d-flex flex-row justify-content-evenly">
-        {navLinkUserType}
-      </div>
+      {dividerNav}
     </div>
   );
+});
 
-  const userLinks = navbarLink.map((navLink) => {
-    const { name, icon } = navLink;
+const navProfile = (
+  <div className="text-center mt-3">
+    {venueManager === false ? (
+      <div className="fs-4">Bookings </div>
+    ) : (
+      <div className="fs-4">Venues </div>
+    )}
+    <div className="d-flex flex-row justify-content-evenly">
+      {navLinkUserType}
+    </div>
+  </div>
+);
+
+const userLinks = navbarLink.map((navLink) => {
+  const { name, icon } = navLink;
 
     return (
       <MenuItem
@@ -179,7 +172,7 @@ export function SideMenu(props) {
               ? userLinks
               : venueManager === true
               ? userLinks
-              : "Hello"}
+              : null}
           </div>
           <SubMenu icon={EditAvatar} label="Edit avatar" className="bg-dark">
             <MenuItem style={{ overflow: "hidden" }}>
@@ -217,7 +210,7 @@ export function SideMenu(props) {
             <PrimaryButton
               display={"block"}
               className="m-auto"
-              onClick={handleOnClick}
+              onClick={() => handleState(null, true)}
             >
               Log out
             </PrimaryButton>

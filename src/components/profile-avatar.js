@@ -36,10 +36,6 @@ export function AvatarImg(props) {
   const { Name, UserType, Email, Avatar, specific } = props;
   const colorProfile =
     specific === true ? "var(--third_color)" : "var(--body_color)";
-  //console.log(UserType);
-  //console.log(colorProfile);
-
-console.log(Avatar)
 
   return (
     <div className="profile text-center d-flex flex-column align-items-center">
@@ -75,7 +71,6 @@ console.log(Avatar)
                 borderRadius: "50px",
                 borderColor: colorProfile,
               }}
-              onError={console.log("error")}
             />}
           </div>
         </span>

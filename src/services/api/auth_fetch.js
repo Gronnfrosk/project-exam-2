@@ -1,13 +1,13 @@
 import { load } from "../../utilities/save_load_remove_local_storage";
 
-const token = load("token");
-
 /**
  * This function contains the header for HTTP request methods.
  * @param {string} token This is the localStorage key with access token value.
  */
 export function headers() {
-  return {
+const token = load("token");
+
+return {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };

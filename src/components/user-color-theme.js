@@ -3,48 +3,21 @@ import { load } from "../utilities/save_load_remove_local_storage";
 import { useLocation } from "react-router-dom";
 
 export const ThemeMode = () => {
-  const [userType, setUserType] = useState("");
+  const [userType, setUserType] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
-  setUserType(load("venueManager"));
-}, []);
+    const loadedUserType = load("venueManager");
+    setUserType(loadedUserType);
 
-
-  useEffect(() => {
-    if (userType === true) {
-      return setManagerMode();
-    } else if (userType === false) {
-      return setCustomerMode();
+    if (loadedUserType === true) {
+      setManagerMode();
+    } else if (loadedUserType === false) {
+      setCustomerMode();
     } else {
-      return setNoneUserMode();
-    }
-  }, [userType]);
-  
-  useEffect(() => {
-    setUserType(load("venueManager"));
-
-    if (userType === true) {
-      return setManagerMode();
-    } else if (userType === false) {
-      return setCustomerMode();
-    } else {
-      return setNoneUserMode();
+      setNoneUserMode();
     }
   }, [location]);
-
-  useEffect(() => {
-    setUserType(load("venueManager"));
-    if (userType === true) {
-      return setManagerMode();
-    } else if (userType === false) {
-      return setCustomerMode();
-    } else {
-      return setNoneUserMode();
-    }
-  }, []);
-
-  console.log(userType)
 
   const setNoneUserMode = () => {
     document.querySelector("body").setAttribute("data-theme", "noneUser");
@@ -58,11 +31,8 @@ export const ThemeMode = () => {
     document.querySelector("body").setAttribute("data-theme", "manager");
   };
 
-  if (userType === true) {
-    return setManagerMode();
-  } else if (userType === false) {
-    return setCustomerMode();
-  } else {
-    return setNoneUserMode();
-  }
+  // Logging for debugging purpose
+  console.log(userType);
+
+  return null; // Since this is a utility component, it doesn't render anything.
 };
