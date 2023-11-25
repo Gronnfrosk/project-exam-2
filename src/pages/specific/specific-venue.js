@@ -1,5 +1,5 @@
 import "./specific-venue.scss";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { API_URL_VENUES } from "../../services/api/constants";
 import useAllVenues from "../../services/api/venues";
@@ -14,24 +14,32 @@ import {
   DeleteVenueBtn,
 } from "../../components/buttons/button.styles";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-//import getBookedDates from "../../helpers/get-dates"
+import getBookedDates from "../../helpers/formatting/get-dates"
 
 function SpecificVenuePage() {
   const params = useParams();
   const url = `${API_URL_VENUES}/${params.id}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
-  const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = VenueCardIcons();
-  const { EditIcon, DeleteIcon } = SpecificIcons();
-  const description = "Info about the venue - " + data.name;
-  //const bookedDates = getBookedDates(data.bookings)
 
-  //console.log(bookedDates)
+  // Memoize icons to avoid recalculation on each render
+  const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = useMemo(() => VenueCardIcons(), []);
+  const { EditIcon, DeleteIcon } = useMemo(() => SpecificIcons(), []);
 
-  return isLoading ? (
-    <SpinnerLoad />
-  ) : isError ? (
-    <ErrorLoad />
-  ) : data.name ? (
+  const description = useMemo(() => `Info about the venue - ${data?.name}`, [data]);
+
+  useEffect(() => {
+    
+  }, [data]);
+
+  if (isLoading) {
+    return <SpinnerLoad />;
+  }
+
+  if (isError || !data?.name) {
+    return <ErrorLoad />;
+  }
+  
+  return data.name ? (
     <>
       <Helmet>
         <title>Venue - {data.name}</title>

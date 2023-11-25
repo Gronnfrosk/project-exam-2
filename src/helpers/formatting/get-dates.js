@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import useState from "react";
 
 export default function GetBookedDates(booking) {
   const [startDate, setStartDate] = useState("");
