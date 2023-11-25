@@ -44,7 +44,7 @@ export function InputForm(props) {
       >
         {nameTitle}
       </Form.Label>
-      <Form.Control
+      {type !=="switch" ? < Form.Control 
         id={title}
         placeholder={placeholder}
         aria-label="Recipient's username"
@@ -56,7 +56,18 @@ export function InputForm(props) {
         min={min}
         value={value}
         {...validate(title)}
-      />
+      /> : <Form.Check id={title}
+      placeholder={placeholder}
+      aria-label="Recipient's username"
+      aria-describedby="basic-addon1"
+      className="rounded-end-pill bg-dark shadow-sm "
+      type={type}
+      autoComplete={autocomplete}
+      onChange={onChange}
+      min={min}
+      value={value}
+      {...validate(title)}
+    />}
     </InputGroup>
   );
 }
