@@ -44,16 +44,20 @@ export function ButtonExpandNavbar(props) {
           borderColor: colorBtn,
           backgroundColor: blue,
         }}
-      ><div>
-        {!avatar && !arrow? 
+      >
+        <div>
+          {!avatar && !arrow ? (
             <AvatarIcon />
-         : avatar ? <img
+          ) : avatar ? (
+            <img
               src={avatar}
               alt="Profile avatar"
               onError={(event) => (event.target.style.display = "none")}
-            /> :
+            />
+          ) : (
             <RightArrow />
-        }</div>
+          )}
+        </div>
       </span>
       <span className="button-text" style={{ color: colorBtnText }}>
         {name

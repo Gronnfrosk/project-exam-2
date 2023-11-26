@@ -47,7 +47,6 @@ export default function CreateVenue() {
   //  setModal(viewModal);
   //}, [formSuccess]);
 
-
   return (
     <>
       <Helmet>
@@ -55,46 +54,46 @@ export default function CreateVenue() {
         <meta name="description" content="Create a venue" />
       </Helmet>
       <main>
-      <div className="divider gap-2 ps-3 my-4"></div>
+        <div className="divider gap-2 ps-3 my-4"></div>
 
         <Form onSubmit={handleSubmit(onSubmit)} className="flex-column">
-        <div className="mx-2 mt-3">
-          {createInputs.map((inputContent) => {
-            const { title, placeholder, type, autocomplete } = inputContent;
-            const validating =
-              title === "Name"
-                ? errors.Name?.message
-                : title === "Email"
-                ? errors.Email?.message
-                : title === "Password"
-                ? errors.Password?.message
-                : title === "Confirm"
-                ? errors.Confirm?.message
-                : title === "Avatar"
-                ? errors.Avatar?.message
-                : "";
-            return (
-              <Form.Group key={title}>
-                <InputForm
-                  title={title}
-                  placeholder={placeholder}
-                  type={type}
-                  autocomplete={autocomplete}
-                  validate={register}
-                  onChange={
-                    title === "Confirm"
-                      ? (e) => setConfirmPass(e.target.value)
-                      : ""
-                  }
-                />
-                <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
-                  {validating}
-                </Form.Text>
-              </Form.Group>
-            );
-          })}
-        </div>
-        <div className="mt-4">
+          <div className="mx-2 mt-3">
+            {createInputs.map((inputContent) => {
+              const { title, placeholder, type, autocomplete } = inputContent;
+              const validating =
+                title === "Name"
+                  ? errors.Name?.message
+                  : title === "Email"
+                  ? errors.Email?.message
+                  : title === "Password"
+                  ? errors.Password?.message
+                  : title === "Confirm"
+                  ? errors.Confirm?.message
+                  : title === "Avatar"
+                  ? errors.Avatar?.message
+                  : "";
+              return (
+                <Form.Group key={title}>
+                  <InputForm
+                    title={title}
+                    placeholder={placeholder}
+                    type={type}
+                    autocomplete={autocomplete}
+                    validate={register}
+                    onChange={
+                      title === "Confirm"
+                        ? (e) => setConfirmPass(e.target.value)
+                        : ""
+                    }
+                  />
+                  <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
+                    {validating}
+                  </Form.Text>
+                </Form.Group>
+              );
+            })}
+          </div>
+          <div className="mt-4">
             <ButtonExpandNavbar
               custom={"Create new venue"}
               color={false}
@@ -102,8 +101,8 @@ export default function CreateVenue() {
               type={"submit"}
               onClick={() => setUserType(false)}
             />
-        </div>
-      </Form>
+          </div>
+        </Form>
       </main>
     </>
   );

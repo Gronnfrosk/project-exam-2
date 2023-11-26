@@ -22,10 +22,16 @@ function SpecificVenuePage() {
   const [data, isLoading, isError] = useAllVenues(url);
 
   // Memoize icons to avoid recalculation on each render
-  const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = useMemo(() => VenueCardIcons(), []);
+  const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = useMemo(
+    () => VenueCardIcons(),
+    [],
+  );
   const { EditIcon, DeleteIcon } = useMemo(() => SpecificIcons(), []);
 
-  const description = useMemo(() => `Info about the venue - ${data?.name}`, [data]);
+  const description = useMemo(
+    () => `Info about the venue - ${data?.name}`,
+    [data],
+  );
 
   if (isLoading) {
     return <SpinnerLoad />;
@@ -34,7 +40,7 @@ function SpecificVenuePage() {
   if (isError || !data?.name) {
     return <ErrorLoad />;
   }
-  
+
   return data.name ? (
     <>
       <Helmet>
@@ -145,7 +151,8 @@ function SpecificVenuePage() {
             </div>
             <div className="w-100 me-5">
               General booking info: On this site you can book a venue a year
-              into the future. At this venue it is posssible to checkin after 13:00 and checkout must be before 11:00.
+              into the future. At this venue it is posssible to checkin after
+              13:00 and checkout must be before 11:00.
             </div>
           </div>
           <div className="venue-manager-profile">

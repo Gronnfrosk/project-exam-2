@@ -58,20 +58,23 @@ export function AvatarImg(props) {
           style={{ borderColor: colorProfile, color: colorProfile }}
         >
           <div>
-            {!Avatar ? <AvatarIcon /> :
-            <img
-              src={Avatar}
-              alt="Profile avatar"
-              style={{
-                display: "block",
-                width: "80px",
-                height: "auto",
-                aspectRatio: "1/1",
-                objectFit: "cover",
-                borderRadius: "50px",
-                borderColor: colorProfile,
-              }}
-            />}
+            {!Avatar ? (
+              <AvatarIcon />
+            ) : (
+              <img
+                src={Avatar}
+                alt="Profile avatar"
+                style={{
+                  display: "block",
+                  width: "80px",
+                  height: "auto",
+                  aspectRatio: "1/1",
+                  objectFit: "cover",
+                  borderRadius: "50px",
+                  borderColor: colorProfile,
+                }}
+              />
+            )}
           </div>
         </span>
       </AvatarDisplay>

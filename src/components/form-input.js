@@ -37,7 +37,7 @@ export function InputForm(props) {
   //const valllues = type==="date" ? (date) => date.toLocaleDateString('en-GB') : ""
   const nameTitle = name ? name : title;
 
-  console.log(max)
+  console.log(max);
 
   return (
     <InputGroup className="w-100">
@@ -47,29 +47,34 @@ export function InputForm(props) {
       >
         {nameTitle}
       </Form.Label>
-      {type !=="switch" ? < Form.Control 
-        id={title}
-        placeholder={placeholder}
-        aria-label="Recipient's username"
-        aria-describedby="basic-addon1"
-        className="rounded-end-pill shadow-sm"
-        type={type}
-        autoComplete={autocomplete}
-        onChange={onChange}
-        min={min}
-        value={value}
-        {...validate(title)}
-      /> : <Form.Check id={title}
-      placeholder={placeholder}
-      aria-label="Recipient's username"
-      aria-describedby="basic-addon1"
-      className="rounded-end-pill bg-dark shadow-sm "
-      type={type}
-      autoComplete={autocomplete}
-      onChange={onChange}
-      value={value}
-      {...validate(title)}
-    />}
+      {type !== "switch" ? (
+        <Form.Control
+          id={title}
+          placeholder={placeholder}
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon1"
+          className="rounded-end-pill shadow-sm"
+          type={type}
+          autoComplete={autocomplete}
+          onChange={onChange}
+          min={min}
+          value={value}
+          {...validate(title)}
+        />
+      ) : (
+        <Form.Check
+          id={title}
+          placeholder={placeholder}
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon1"
+          className="rounded-end-pill bg-dark shadow-sm "
+          type={type}
+          autoComplete={autocomplete}
+          onChange={onChange}
+          value={value}
+          {...validate(title)}
+        />
+      )}
     </InputGroup>
   );
 }

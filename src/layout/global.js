@@ -1,13 +1,12 @@
 import React from "react";
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 import { CollapsibleNavbar } from "./navbar";
 import Footer from "./footer";
 
 export default function GlobalLayout() {
-
   return (
     <>
-      <CollapsibleNavbar/>
+      <CollapsibleNavbar />
       <Outlet />
       <Footer />
     </>

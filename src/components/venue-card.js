@@ -26,7 +26,11 @@ export default function VenueCard(props) {
         <div className="part-1">
           <Card.Img
             variant="top"
-            src={media[0] ? media[0] : 'https://img.freepik.com/free-vector/flat-design-no-photo-sign_23-2149279003.jpg?size=626&ext=jpg&ga=GA1.1.933137767.1681841899&semt=ais'}
+            src={
+              media[0]
+                ? media[0]
+                : "https://img.freepik.com/free-vector/flat-design-no-photo-sign_23-2149279003.jpg?size=626&ext=jpg&ga=GA1.1.933137767.1681841899&semt=ais"
+            }
             className="img-fluid rounded-0"
             alt="A specific venue"
           />

@@ -3,15 +3,21 @@ import bookingSuccessSVG from "../../assets/images/bookingSuccess";
 import ListGroup from "react-bootstrap/ListGroup";
 
 export default function viewBookingModal(formSuccess) {
-   // Format the dates
-   if (!formSuccess || typeof formSuccess !== 'object') {
-    console.error('Invalid form success data provided to viewBookingModal');
+  // Format the dates
+  if (!formSuccess || typeof formSuccess !== "object") {
+    console.error("Invalid form success data provided to viewBookingModal");
     return null;
   }
 
-  const formattedCreatedDate = new Date(formSuccess.created).toLocaleString("en-GB");
-  const formattedCheckInDate = new Date(formSuccess.dateFrom).toLocaleDateString("en-GB");
-  const formattedCheckOutDate = new Date(formSuccess.dateTo).toLocaleDateString("en-GB");
+  const formattedCreatedDate = new Date(formSuccess.created).toLocaleString(
+    "en-GB",
+  );
+  const formattedCheckInDate = new Date(
+    formSuccess.dateFrom,
+  ).toLocaleDateString("en-GB");
+  const formattedCheckOutDate = new Date(formSuccess.dateTo).toLocaleDateString(
+    "en-GB",
+  );
 
   //const formatDate = (dateString) => {
   //  return new Date(dateString).toLocaleString("en-GB", {

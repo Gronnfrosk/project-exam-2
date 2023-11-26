@@ -1,6 +1,6 @@
 main.list {
   max-width: 1188px;
-  margin: 0 auto;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -37,6 +37,7 @@ main.list {
 
       & .divider {
         width: 350px;
+        font-size: var(--textSmall_fontSize)
       }
 
       & .collapse {
@@ -52,5 +53,4 @@ main.list {
 }
 
 /*mobile styles*/
-@media only screen and (max-width: 700px) {
-}
+@media only screen and (max-width: 700px) {}

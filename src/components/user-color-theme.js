@@ -32,7 +32,7 @@ export const ThemeMode = () => {
   };
 
   // Logging for debugging purpose
- // console.log(userType);
+  // console.log(userType);
 
   return null; // Since this is a utility component, it doesn't render anything.
 };

@@ -5,9 +5,9 @@ import { load } from "../../utilities/save_load_remove_local_storage";
  * @param {string} token This is the localStorage key with access token value.
  */
 export function headers() {
-const token = load("token");
+  const token = load("token");
 
-return {
+  return {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
   };

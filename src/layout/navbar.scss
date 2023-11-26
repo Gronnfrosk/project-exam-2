@@ -3,6 +3,11 @@
   color: white;
   font-size: var(--textMedium_fontSize);
   border-bottom: 2px solid var(--body_color);
+  //border-image: linear-gradient(to right,
+  //    #ed6c02 0%,
+  //    #ffed79 33%,
+  //    #2fd2f3 100%, );
+  //border-image-slice: 1;
 
   & .container .navbar-collapse {
     max-width: 1320px;

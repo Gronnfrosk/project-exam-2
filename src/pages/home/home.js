@@ -10,20 +10,22 @@ import { InputIcons } from "../../assets/icons/icons";
 import { API_URL_VENUES } from "../../services/api/constants";
 import VenueCard from "../../components/venue-card";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
+import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
 
 const { SearchIcon } = InputIcons();
 
-function MainPage() { 
+function MainPage() {
   const [search, setSearch] = useState("");
   const [count, setCounter] = useState(3);
-  const initialUrl = `${API_URL_VENUES}?limit=3&sort=created&sortOrder=desc`
-  const [url, setUrl] = useState(`${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`)
-  const [data, isLoading, isError] = useAllVenues( initialUrl)
-  
+  const initialUrl = `${API_URL_VENUES}?limit=3&sort=created&sortOrder=desc`;
+  const [url, setUrl] = useState(
+    `${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`,
+  );
+  const [data, isLoading, isError] = useAllVenues(initialUrl);
+
   const increase = () => {
-    setCounter(count => {
+    setCounter((count) => {
       const newCount = count + 3;
       setUrl(`${API_URL_VENUES}?limit=${newCount}&sort=created&sortOrder=desc`);
       return newCount;
@@ -44,7 +46,7 @@ function MainPage() {
   let filteredArray = [...filterName, ...filterCountry];
   let mergedArr = [...new Set(filteredArray)];
 
-  console.log(data)
+  console.log(data);
 
   return (
     <>
@@ -88,18 +90,22 @@ function MainPage() {
         <section>
           <Form onSubmit={(event) => event.preventDefault()} className="search">
             <InputGroup className="mb-3 mx-2">
-            <Form.Control
-              type={"text"}
-              placeholder="Search by venues or country..."
-              aria-label="Search by venues or country..."
-              aria-describedby="search-bar"
-              className="border shadow-none border-black "
-              onChange={(e) => setSearch(e.target.value.toLowerCase())}
-            />
-            <Button variant="dark" id="search-bar" onClick={(event) => event.preventDefault()}>
-            {SearchIcon}
-            </Button>
-          </InputGroup>
+              <Form.Control
+                type={"text"}
+                placeholder="Search by venues or country..."
+                aria-label="Search by venues or country..."
+                aria-describedby="search-bar"
+                className="border shadow-none border-black "
+                onChange={(e) => setSearch(e.target.value.toLowerCase())}
+              />
+              <Button
+                variant="dark"
+                id="search-bar"
+                onClick={(event) => event.preventDefault()}
+              >
+                {SearchIcon}
+              </Button>
+            </InputGroup>
           </Form>
         </section>
         <div className="divider dropdown-toggle gap-2 ps-3">Recent</div>
@@ -124,4 +130,4 @@ function MainPage() {
 
 export default MainPage;
 
- //<div className="search-icon">{SearchIcon}</div>
+//<div className="search-icon">{SearchIcon}</div>
