@@ -1,22 +1,25 @@
 import { API_URL_BOOKINGS } from "./constants.js";
 import { authFetch } from "./auth_fetch.js";
 
-const method = "post";
+export async function createBooking(data) {
+  const method = "post";
 
-export async function useCreateBid(id, newBooking) {
-  if (!id) {
-    throw new Error("Get requires an ID!");
-  }
-  const bidUrl = API_URL_BOOKINGS + id;
+  if (!data) {
+  throw new Error("Get requires a booking data!");
+}
 
-  const response = await authFetch(bidUrl, {
-    method,
-    body: JSON.stringify({ amount: newBooking }),
-  });
 
-  if (response.ok) {
-    window.location.reload();
-  } else {
-    alert(`Error! Booking was not placed.`);
-  }
+
+const response = await authFetch(API_URL_BOOKINGS, {
+      method,
+      body: JSON.stringify({ dateFrom: data.checkIn,
+      dateTo: data.checkOut, 
+      guests: data.guests,
+      venueId: data.venueId
+    })});
+
+console.log(data)
+console.log(response)
+
+return await response.json();
 }

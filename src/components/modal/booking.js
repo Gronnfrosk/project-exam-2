@@ -3,8 +3,26 @@ import bookingSuccessSVG from "../../assets/images/bookingSuccess";
 import ListGroup from "react-bootstrap/ListGroup";
 
 export default function viewBookingModal(formSuccess) {
-  const created = new Date().toLocaleString("en-GB");
-  //const string= JSON.stringify(formSuccess)
+   // Format the dates
+   if (!formSuccess || typeof formSuccess !== 'object') {
+    console.error('Invalid form success data provided to viewBookingModal');
+    return null;
+  }
+
+  const formattedCreatedDate = new Date(formSuccess.created).toLocaleString("en-GB");
+  const formattedCheckInDate = new Date(formSuccess.dateFrom).toLocaleDateString("en-GB");
+  const formattedCheckOutDate = new Date(formSuccess.dateTo).toLocaleDateString("en-GB");
+
+  //const formatDate = (dateString) => {
+  //  return new Date(dateString).toLocaleString("en-GB", {
+  //    day: "numeric",
+  //    month: "long",
+  //    year: "numeric",
+  //    hour: '2-digit',
+  //    minute: '2-digit'
+  //  });
+  //};
+
   const modalContent = (
     <ModalInfo
       userSuccess={"/"}
@@ -17,20 +35,20 @@ export default function viewBookingModal(formSuccess) {
               Booking details
             </ListGroup.Item>
             <ListGroup.Item as="li" className="d-flex justify-content-between">
-              Id: <div>{formSuccess.venueId}</div>
+              Id: <div>{formSuccess.id}</div>
             </ListGroup.Item>
             <ListGroup.Item as="li" className="d-flex justify-content-between">
-              Booking placed: <div>{created}</div>
+              Booking placed: <div>{formattedCreatedDate}</div>
             </ListGroup.Item>
             <ListGroup.Item as="li" className="d-flex justify-content-between">
               Guests: <div>{formSuccess.guests}</div>
             </ListGroup.Item>
             <ListGroup.Item as="li" className="d-flex justify-content-between">
-              Check-in: <div>{formSuccess.checkIn}</div>
+              Check-in: <div>{formattedCheckInDate}</div>
             </ListGroup.Item>
 
             <ListGroup.Item as="li" className="d-flex justify-content-between">
-              Check-out: <div>{formSuccess.checkOut}</div>
+              Check-out: <div>{formattedCheckOutDate}</div>
             </ListGroup.Item>
           </ListGroup>
           {bookingSuccessSVG}

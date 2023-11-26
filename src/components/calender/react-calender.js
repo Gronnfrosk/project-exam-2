@@ -6,11 +6,12 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { schemaBooking } from "../../validations/schemas/booking";
+import { createBookingSchema } from "../../validations/schemas/booking";
 import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
 import viewBookingModal from "../../components/modal/booking";
 import { InputForm } from "../../components/form-input";
 import ListGroup from "react-bootstrap/ListGroup";
+import { createBooking } from "../../services/api/create-booking";
 
 const error = (
   <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
@@ -25,13 +26,12 @@ function isSameDay(a, b) {
 export default function ReactCalender(props) {
   const UserStatus = props.userStatus;
   const bookings = props.venueData.bookings;
+  const maxGuests = props.venueData.maxGuests;
   const bookingID = props.venueData.id;
   const [date, setDate] = useState(new Date());
   const [dateError, setDateError] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
-
-console.log(bookings)
 
   const disabledDates = useMemo(() => {
     return bookings.map(booking => {
@@ -51,6 +51,10 @@ console.log(bookings)
     }
   }
 
+  const bookingValidationSchema = useMemo(() => createBookingSchema(maxGuests), [maxGuests]);
+  const minDate = useMemo(() => new Date(), []);
+  const maxDate = useMemo(() => new Date(new Date().setFullYear(new Date().getFullYear() + 1)), []);
+
   function dateCalc(dateFrom, dateEnd) {
     const dateDiffer = require("date-differ");
     const result = dateDiffer({
@@ -62,28 +66,33 @@ console.log(bookings)
     return result;
   }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schemaBooking),
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(bookingValidationSchema),
   });
 
-  function onSubmit(data) {
+  async function onSubmit(data) {
     setDateError("");
     setModal("");
-
+    
     if (!date[1]) {
       setDateError(error);
       return;
     }
 
-    data.checkIn = date[0].toLocaleDateString("en-GB");
-    data.checkOut = date[1].toLocaleDateString("en-GB");
+    data.checkIn = new Date(date[0]) 
+    data.checkOut = new Date(date[1]);
     data.venueId = bookingID;
 
-    setFormSuccess(data);
+    try {
+      const result = await createBooking(data);
+      if (result) {
+         setFormSuccess(result);
+      } else {
+        console.log("Booking returned undefined or null");
+      }
+    } catch (error) {
+      console.error("Error fetching booking post", error);
+    }
   }
 
   useEffect(() => {
@@ -92,7 +101,7 @@ console.log(bookings)
     }
   }, [formSuccess]);
 
-  return  (<div className="booking-form column-gap-5 mt-4">
+  return <div className="booking-form column-gap-5 mt-4">
   {UserStatus === null ? (
     <Link to="/login-register">
       <ButtonExpandNavbar
@@ -108,10 +117,8 @@ console.log(bookings)
           <Calendar
             className="costumer"
             view="month"
-            minDate={new Date()}
-            maxDate={
-              new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-            }
+            minDate={minDate}
+            maxDate={maxDate}
             onChange={setDate}
             selectRange={true}
             tileDisabled={tileDisabled}
@@ -161,7 +168,6 @@ console.log(bookings)
               title={"guests"}
               placeholder={"0"}
               type={"number"}
-              min={"0"}
               validate={register}
             />
             <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
@@ -182,5 +188,4 @@ console.log(bookings)
     </>
   )}
 </div>
-);
 }

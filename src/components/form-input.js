@@ -32,9 +32,12 @@ export function InputForm(props) {
     min,
     value,
     name,
+    max,
   } = props;
   //const valllues = type==="date" ? (date) => date.toLocaleDateString('en-GB') : ""
   const nameTitle = name ? name : title;
+
+  console.log(max)
 
   return (
     <InputGroup className="w-100">
@@ -64,7 +67,6 @@ export function InputForm(props) {
       type={type}
       autoComplete={autocomplete}
       onChange={onChange}
-      min={min}
       value={value}
       {...validate(title)}
     />}

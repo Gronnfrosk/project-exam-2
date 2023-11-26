@@ -14,7 +14,7 @@ import {
   DeleteVenueBtn,
 } from "../../components/buttons/button.styles";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-import getBookedDates from "../../helpers/formatting/get-dates"
+//import getBookedDates from "../../helpers/formatting/get-dates"
 
 function SpecificVenuePage() {
   const params = useParams();
@@ -26,10 +26,6 @@ function SpecificVenuePage() {
   const { EditIcon, DeleteIcon } = useMemo(() => SpecificIcons(), []);
 
   const description = useMemo(() => `Info about the venue - ${data?.name}`, [data]);
-
-  useEffect(() => {
-    
-  }, [data]);
 
   if (isLoading) {
     return <SpinnerLoad />;

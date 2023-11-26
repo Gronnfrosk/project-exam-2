@@ -18,14 +18,14 @@ const { SearchIcon } = InputIcons();
 function MainPage() { 
   const [search, setSearch] = useState("");
   const [count, setCounter] = useState(3);
-  const initialUrl = `${API_URL_VENUES}?limit=3&sort=created&sortOrder=asc`
+  const initialUrl = `${API_URL_VENUES}?limit=3&sort=created&sortOrder=desc`
   const [url, setUrl] = useState(`${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`)
   const [data, isLoading, isError] = useAllVenues( initialUrl)
   
   const increase = () => {
     setCounter(count => {
       const newCount = count + 3;
-      setUrl(`${API_URL_VENUES}?limit=${newCount}&sort=created&sortOrder=asc`);
+      setUrl(`${API_URL_VENUES}?limit=${newCount}&sort=created&sortOrder=desc`);
       return newCount;
     });
   };
@@ -44,9 +44,7 @@ function MainPage() {
   let filteredArray = [...filterName, ...filterCountry];
   let mergedArr = [...new Set(filteredArray)];
 
-  console.log(url)
-  console.log(count)
-
+  console.log(data)
 
   return (
     <>
