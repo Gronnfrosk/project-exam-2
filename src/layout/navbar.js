@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon } = NavbarIcon();
 const divider = <span style={{ fontSize: "2rem" }}>|</span>;
 
-
 export function CollapsibleNavbar() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,7 +25,7 @@ export function CollapsibleNavbar() {
   const [profile, setProfile] = useState(load("profile"));
   const [profileSuccess, setProfileSuccess] = useState(null);
   const [displayBtn, setdisplayBtn] = useState("");
-  let params;  
+  const params = "?_bookings=true"
   
   useEffect(() => {
     const loadedProfile = load("profile");
@@ -46,18 +45,33 @@ export function CollapsibleNavbar() {
   }, [location, profile]);
 
   async function fetchProfileInfo(profile) {
-    params = userStatus === false ? "?_bookings=true" : ""
+   
     
     try {
       const result = await ProfileInfoApi(profile.name, params);
       if (result) {
-        setProfileSuccess(result);
+        const sortedBookings = sortBookings(result.bookings);
+      setProfileSuccess({
+        ...result,
+        bookings: sortedBookings
+      });
       } else {
         console.log("ProfileInfoApi returned undefined or null");
       }
     } catch (error) {
       console.error("Error fetching profile info:", error);
     }
+  }
+
+  function sortBookings(bookings) {
+    const today = new Date();
+    const upcomingBookings = bookings.filter(booking => new Date(booking.dateFrom) >= today);
+    const pastBookings = bookings.filter(booking => new Date(booking.dateFrom) < today);
+  
+    upcomingBookings.sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
+    pastBookings.sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
+  
+    return [...upcomingBookings, ...pastBookings];
   }
 
   function handleState(result, isLogout = false) {
@@ -79,6 +93,8 @@ export function CollapsibleNavbar() {
       })); 
     }
   }
+
+
 
   return (
     <Navbar
@@ -139,20 +155,28 @@ function ProfileInfoNav(props) {
     return null; 
   }
   
+  const today = new Date();
+  const upcomingBookings = profileSuccess.bookings.filter(
+    booking => new Date(booking.dateFrom) >= today
+  );
+  const previousBookings = profileSuccess.bookings.filter(
+    booking => new Date(booking.dateFrom) < today
+  );
+
   const venues = profileSuccess && profileSuccess._count ? profileSuccess._count.venues : 0;
   const bookings = profileSuccess ? profileSuccess.bookings : 0;
   
   const navbarContentCustomer = [
     {
       name: "Upcomming",
-      amount: "2",
+      amount: upcomingBookings.length > 0 ? upcomingBookings.length : "0",
       icon: UpcomingIcon,
       link: "/booking-list-upcoming",
       dividerNav: divider,
     },
     {
       name: "Previous",
-      amount: "8",
+      amount: previousBookings.length > 0 ? previousBookings.length : "0",
       icon: PreviousIcon,
       link: "/booking-list-previous",
       dividerNav: divider,

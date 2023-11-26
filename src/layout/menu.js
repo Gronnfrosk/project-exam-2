@@ -35,7 +35,6 @@ const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
 export function SideMenu(props) {
   const { profileSuccess, userStatus, profile, handleState } = props;
  const [toggled, setToggled] = React.useState(false);
-  const [userProfile, setUserProfile] = useState();
   const [urlInput, setUrlInput] = useState("");
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schemaAvatar),
@@ -67,11 +66,27 @@ async function onSubmit(data) {
   }
 }
 
+  const today = new Date();
+  const upcomingBookings = profileSuccess.bookings.filter(
+    booking => new Date(booking.dateFrom) >= today
+  );
+  const previousBookings = profileSuccess.bookings.filter(
+    booking => new Date(booking.dateFrom) < today
+  );
+
 const navbarProfileCustomer = [
-  { name: "Upcoming", amount: "2" },
-  { name: "Previous", amount: "8", dividerNav: divider },
-  { name: "Total", amount: `${bookings}` },
+  { name: "Upcoming", amount: upcomingBookings.length > 0 ? upcomingBookings.length : "0"},
+  { name: "Previous", amount: previousBookings.length > 0 ? previousBookings.length : "0", dividerNav: divider },
+  { name: "Total", amount: `${bookings.length}` },
 ];
+
+const navbarCustomer = [
+  { name: "Upcoming booking", icon: UpcomingIcon },
+  { name: "Previous bookings", icon: PreviousIcon },
+  { name: "All bookings", icon: Total },
+];
+
+
 const navbarManagerProfile = [
   {},
   { name: "Total", amount: `${venues}`, dividerNav: divider },
@@ -84,11 +99,7 @@ const navbarManager = [
   { name: "See your venues", icon: Total },
   { name: "Create venue", icon: CreateIcon },
 ];
-const navbarCustomer = [
-  { name: "Upcoming booking", icon: UpcomingIcon },
-  { name: "Previous bookings", icon: PreviousIcon },
-  { name: "All bookings", icon: Total },
-];
+
 const navbarLink = venueManager === false ? navbarCustomer : navbarManager;
 
 const navLinkUserType = navbarProfile.map((navLink, index) => {
@@ -145,6 +156,7 @@ const userLinks = navbarLink.map((navLink) => {
         breakPoint="all"
         backgroundColor="var(--body_backgroundColor)"
         width="300px"
+        style={{borderRight: "2px solid red"}}
       >
         <Menu
           rootStyles={{
@@ -153,6 +165,7 @@ const userLinks = navbarLink.map((navLink) => {
 
               "&:hover": {
                 backgroundColor: "var(--body_backgroundColor)",
+                borderLeft: "6px solid var(--body_color)"
               },
             },
           }}
