@@ -1,54 +1,48 @@
 import "./booking-venue-list.scss";
 import { Helmet } from "react-helmet-async";
-import React, { useState } from "react";
-import VenueCard from "../../components/venue-card";
-import ListGroup from "react-bootstrap/ListGroup";
-import Button from "react-bootstrap/Button";
-import Collapse from "react-bootstrap/Collapse";
-import { Link } from "react-router-dom";
-import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-import { API_URL_VENUES } from "../../services/api/constants";
-import { load } from "../../utilities/save_load_remove_local_storage";
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+//import VenueCard from "../../components/venue-card";
+//import ListGroup from "react-bootstrap/ListGroup";
+//import Button from "react-bootstrap/Button";
+//import Collapse from "react-bootstrap/Collapse";
+//import { Link } from "react-router-dom";
+//import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
 //import { ProfileInfoApi } from "../../services/api/profile";
-import useAllVenues from "../../services/api/venues";
-import { getBookingInfoApi } from "../../hooks/bookingData";
 //import { useProfileData } from "../hooks/useProfileData";
-//import { useProfileData } from "../hooks/useProfileData";
-import { sortBookings } from "../../utilities/sort-bookings";
+//import { useBookingVenueData } from "../../hooks/bookingData";
+import ListGroup from "react-bootstrap/ListGroup";
+import { load } from "../../utilities/save_load_remove_local_storage";
+import { API_URL_VENUES } from "../../services/api/constants";
+import { useProfileData } from "../../hooks/useProfileData";
+import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
+import VenueCard from "../../components/venue-card";
+import { useBookingFilter } from "../../hooks/useBookingFilter";
+import BookingItem from "./bookingVenue";
 
-const params = "venues";
+const userType = false;
+//const params = "venues";
 
 export default function BookingList() {
-  const userType = load("venueManager");
-  //const [profile, setProfile] = useState(load("profile"));
-  //console.log(userType);
-  //const name = profile.name;
-  //const [data, isLoading, isError] = ProfileInfoApi(name, params);
-  const [data, isLoading, isError] = useAllVenues(API_URL_VENUES);
+  const [openItemId, setOpenItemId] = useState(null);
+  const venuesUrl = `${API_URL_VENUES}?__venue=true&sort=created&sortOrder=desc`;
+  const [profile, setProfile] = useState(load("profile"));
+  const [profileSuccess, setProfileSuccess] = useState(null);
+  useProfileData(profile, setProfileSuccess);
+  const { upcomingBookings, previousBookings } = useBookingFilter(
+    profileSuccess ? profileSuccess.bookings : [],
+  );
 
-  //const [show1, setShow1] = useState(false);
-  //const [show2, setShow2] = useState(false);
-//
-  //const bookings = useProfileData(profile)
-
-  async function fetchProfileInfo() {
-    const params = userType === false ? "?_customer=true" : "?_venue=true"
-    try {
-      const result = await getBookingInfoApi(params);
-      if (result) {
-        return({
-          ...result,
-          bookings: sortBookings(result.bookings),
-        });
-      }
-    } catch (error) {
-      console.error("Error fetching profile info:", error);
-    }
+  if (!profileSuccess) {
+    return <SpinnerLoad />;
   }
 
-const bookingVenueData = fetchProfileInfo()
-
-console.log(bookingVenueData)
+  const toggleCollapse = (id) => {
+    setOpenItemId(openItemId === id ? null : id);
+  };
+  // For debugging
+  //console.log(profileSuccess);
+  //console.log(profileSuccess.bookings);
 
   return (
     <>
@@ -57,8 +51,7 @@ console.log(bookingVenueData)
         <meta name="description" content="Booking list" />
       </Helmet>
       <main className="list">
-        {" "}
-        {userType === false ? (
+        {profileSuccess && userType === false ? (
           <>
             <section>
               <div className="booking-title fs-1 ps-4">
@@ -67,59 +60,120 @@ console.log(bookingVenueData)
               <div className="container">
                 <div className="divider dropdown-toggle gap-2 px-1 mt-3 mb-2 d-flex w-100 flex-row-reverse">
                   <div className="w-100 text-end">
-                    Total <b>10</b>
+                    Total{" "}
+                    <b>
+                      {" "}
+                      {upcomingBookings.length > 0
+                        ? upcomingBookings.length
+                        : "0"}
+                    </b>
                   </div>
                   Recent{" "}
                 </div>
               </div>
+              <div className="upcoming-bookings">
+                {upcomingBookings.map((booking) => (
+                  <div key={booking.id}>
+                    <BookingItem
+                      booking={booking}
+                      isOpen={openItemId === booking.id}
+                      toggle={() => toggleCollapse(booking.id)}
+                    />
+                  </div>
+                ))}
+              </div>
             </section>
-            <section>
+            <section id="total-bookings">
               <div className="booking-title fs-1 px-5">
                 Total <div>Bookings</div>
               </div>
               <div className="container">
-                <div className="divider dropdown-toggle gap-2 ps-3 mt-3 mb-2">
-                  Recent
+                <div className="divider dropdown-toggle gap-2 px-1 mt-3 mb-2 d-flex w-100 flex-row-reverse">
+                  <div className="w-100 text-end">
+                    Total{" "}
+                    <b>
+                      {" "}
+                      {profileSuccess.bookings.length > 0
+                        ? profileSuccess.bookings.length
+                        : "0"}
+                    </b>
+                  </div>
+                  Recent{" "}
                 </div>
               </div>
+              <div className="previous-bookings">
+                {profileSuccess.bookings.map((booking) => (
+                  <div key={booking.id}>
+                    <BookingItem
+                      booking={booking}
+                      isOpen={openItemId === booking.id}
+                      toggle={() => toggleCollapse(booking.id)}
+                    />
+                  </div>
+                ))}
+              </div>
             </section>
-            <section>
+            <section id="previous-bookings">
               <div className="booking-title fs-1 px-5">
                 Previous <div>Bookings</div>
               </div>
               <div className="container">
-                <div className="divider dropdown-toggle gap-2 ps-3 mt-3 mb-2">
-                  Recent
+                <div className="divider dropdown-toggle gap-2 px-1 mt-3 mb-2 d-flex w-100 flex-row-reverse">
+                  <div className="w-100 text-end">
+                    Total{" "}
+                    <b>
+                      {" "}
+                      {previousBookings.length > 0
+                        ? previousBookings.length
+                        : "0"}
+                    </b>
+                  </div>
+                  Recent{" "}
                 </div>
+              </div>
+              <div className="all-bookings">
+                {previousBookings.map((booking) => (
+                  <div key={booking.id}>
+                    <BookingItem
+                      booking={booking}
+                      isOpen={openItemId === booking.id}
+                      toggle={() => toggleCollapse(booking.id)}
+                    />
+                  </div>
+                ))}
               </div>
             </section>
           </>
         ) : (
           <>
-            <section className="venues-list ">
-              <div className="venues-title fs-1 ps-4 text-center border border-0">
-                Venues <div className="text-center ps-5 ms-5">managed</div>
-              </div>
-              <div className="container">
-                <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2">
-                  Recent
-                </div>
-                <div className="d-flex flex-row flex-wrap align-items-end justify-content-center">
-                  {isLoading ? (
-                    <SpinnerLoad />
-                  ) : isError ? (
-                    <ErrorLoad />
-                  ) : (
-                    data.map((venue, index) => (
-                      <VenueCard key={index} data={venue} />
-                    ))
-                  )}
-                </div>
-              </div>
-            </section>
+            <section className="venues-list "></section>
           </>
         )}
       </main>
     </>
   );
 }
+
+//<>
+//<section className="venues-list ">
+//  <div className="venues-title fs-1 ps-4 text-center border border-0">
+//    Venues <div className="text-center ps-5 ms-5">managed</div>
+//  </div>
+//  <div className="container">
+//    <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2">
+//      Recent
+//    </div>
+//    <div className="d-flex flex-row flex-wrap align-items-end justify-content-center">
+//      {isLoading ? (
+//        <SpinnerLoad />
+//      ) : isError ? (
+//        <ErrorLoad />
+//      ) : (
+//        data.map((venue, index) => (
+//          <VenueCard key={index} data={venue} />
+//        ))
+//      )}
+//    </div>
+//  </div>
+//</section>
+//</>

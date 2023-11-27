@@ -18,7 +18,7 @@ const { SearchIcon } = InputIcons();
 function MainPage() {
   const [search, setSearch] = useState("");
   const [count, setCounter] = useState(3);
-  const initialUrl = `${API_URL_VENUES}?limit=3&sort=created&sortOrder=desc`;
+  const initialUrl = `${API_URL_VENUES}?limit=15&sort=created&sortOrder=desc`;
   const [url, setUrl] = useState(
     `${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`,
   );
@@ -45,8 +45,6 @@ function MainPage() {
   });
   let filteredArray = [...filterName, ...filterCountry];
   let mergedArr = [...new Set(filteredArray)];
-
-  console.log(data);
 
   return (
     <>

@@ -2,15 +2,10 @@
   height: 70px;
   color: white;
   font-size: var(--textMedium_fontSize);
-  border-bottom: 2px solid var(--body_color);
-  //border-image: linear-gradient(to right,
-  //    #ed6c02 0%,
-  //    #ffed79 33%,
-  //    #2fd2f3 100%, );
-  //border-image-slice: 1;
+  //border-bottom: 7px solid var(--body_color);
 
   & .container .navbar-collapse {
-    max-width: 1320px;
+    max-width: 1150px;
 
     & .navbar-nav {
       width: 100%;
@@ -29,10 +24,6 @@
 
         & a div {
           font-size: var(--textSmall_fontSize);
-        }
-
-        & a.active div {
-          border-bottom: 1px solid var(--primary_color);
         }
 
         & .title {

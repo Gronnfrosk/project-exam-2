@@ -1,27 +1,37 @@
-import { ProfileInfoApi } from "../services/api/profile";
 import { sortBookings } from "../utilities/sort-bookings";
+import React, { useEffect, useState } from "react";
+import { getBookingInfoApi } from "../services/api/booking";
+import { load } from "../utilities/save_load_remove_local_storage";
 
-export const useProfileData = (profile, setProfileSuccess) => {
-    useEffect(() => {
-      //const loadedProfile = load("profile");
-      async function fetchProfileInfo() {
-        try {
-          const result = await ProfileInfoApi(profile.name, "?_bookings=true");
-          if (result) {
-            setProfileSuccess({
-              ...result,
-              bookings: sortBookings(result.bookings),
-            });
-          }
-        } catch (error) {
-          console.error("Error fetching profile info:", error);
+export const useBookingVenueData = () => {
+  const [bookingData, setBookingData] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    async function fetchBookingData() {
+      setIsLoading(true);
+      const userType = load("venueManager");
+      const params = userType === "false" ? "?_customer=true" : "?_venue=true";
+      try {
+        const result = await getBookingInfoApi(params);
+        if (result) {
+          console.log(result);
+          setBookingData({
+            ...result,
+            bookings: sortBookings(result.bookings),
+          });
         }
+      } catch (error) {
+        console.error("Error fetching booking data:", error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
       }
-  
-      if (profile && profile.name) {
-        fetchProfileInfo(profile);
-      }
-  
-      //console.log()
-    }, [profile, setProfileSuccess]);
-  };
+    }
+
+    fetchBookingData();
+  }, []); // Dependency array is empty, so it runs only on mount
+
+  return { bookingData, isLoading, isError };
+};

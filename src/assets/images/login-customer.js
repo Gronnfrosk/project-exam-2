@@ -1,9 +1,10 @@
-const bookingSuccessSVG = (
+const loginSuccessSVG = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="240.132"
     height="156.067"
     viewBox="0 0 240.132 156.067"
+    className="mx-auto my-4"
   >
     <g id="Group_285" data-name="Group 285" transform="translate(0 0)">
       <path
@@ -486,4 +487,4 @@ const bookingSuccessSVG = (
   </svg>
 );
 
-export default bookingSuccessSVG;
+export default loginSuccessSVG;

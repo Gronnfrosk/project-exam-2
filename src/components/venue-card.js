@@ -16,9 +16,36 @@ export default function VenueCard(props) {
     rating,
     meta,
     location,
+    dateFrom,
+    dateTo,
+    guests,
   } = props.data;
-
   const { wifi, parking, breakfast, pets } = meta;
+
+  //console.log(props)
+  const priceOrDate = dateTo
+    ? `From: ${dateFrom} To: ${dateTo}`
+    : `${price} kr/d`;
+  const maxGuestsOrGuests = !guests ? (
+    <>
+      <small>Guests max. </small>
+      <Card.Text className="count">{maxGuests}</Card.Text>
+    </>
+  ) : (
+    <>
+      <small>Guests</small>
+      <Card.Text className="count">{guests}</Card.Text>
+    </>
+  );
+  const ratingOrSeeVenue = dateTo ? (
+    `See more`
+  ) : (
+    <>
+      Rating
+      <div className="ms-2">${rating}</div>
+      <div>/5</div>
+    </>
+  );
 
   return (
     <Link to={`/${id}`} className="text-decoration-none">
@@ -34,21 +61,16 @@ export default function VenueCard(props) {
             className="img-fluid rounded-0"
             alt="A specific venue"
           />
-          <div className="price">{price} kr/d</div>
+          <div className="price ">{priceOrDate}</div>
         </div>
         <Card.Body>
           <div className="venue-description">
             <Card.Title>{useTextLessener(name, 50)}</Card.Title>
             <Card.Text className="h-50">Country: {location.country}</Card.Text>
-            <div className="rating ms-2">
-              Rating
-              <div className="ms-2">{rating}</div>
-              <div>/5</div>
-            </div>
+            <div className="rating ms-2">{ratingOrSeeVenue}</div>
           </div>
           <div className="amenities">
-            <small>Guests max. </small>
-            <Card.Text className="count">{maxGuests}</Card.Text>
+            {maxGuestsOrGuests}
             <div className="amenity-list card-text">
               <div className={wifi === false ? "opacity-25" : ""}>
                 {WifiIcon}

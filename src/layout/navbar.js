@@ -11,8 +11,8 @@ import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
 import { PrimaryButton } from "../components/buttons/button.styles";
 import { SideMenu } from "./menu";
 import { remove, load } from "../utilities/save_load_remove_local_storage";
-import { ProfileInfoApi } from "../services/api/profile";
 import { useNavigate } from "react-router-dom";
+import { useBookingFilter } from "../hooks/useBookingFilter";
 import { useProfileData } from "../hooks/useProfileData";
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon } = NavbarIcon();
@@ -88,16 +88,7 @@ export function CollapsibleNavbar() {
           </Link>
         )}
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
-            <div className="ms-3 w-100">
-              {profileSuccess ? (
-                <ProfileInfoNav
-                  handleState={handleState}
-                  profileSuccess={profileSuccess}
-                />
-              ) : null}
-            </div>
-          </Nav>
+          <Nav></Nav>
         </Navbar.Collapse>
         <NavLink
           to="/"
@@ -107,127 +98,5 @@ export function CollapsibleNavbar() {
         </NavLink>
       </Container>
     </Navbar>
-  );
-}
-
-function ProfileInfoNav(props) {
-  const { profileSuccess, userStatus, profile, handleState } = props;
-
-  if (!profileSuccess) {
-    return null;
-  }
-
-  const today = new Date();
-  const upcomingBookings = profileSuccess.bookings.filter(
-    (booking) => new Date(booking.dateFrom) >= today,
-  );
-  const previousBookings = profileSuccess.bookings.filter(
-    (booking) => new Date(booking.dateFrom) < today,
-  );
-
-  const venues =
-    profileSuccess && profileSuccess._count ? profileSuccess._count.venues : 0;
-  const bookings = profileSuccess ? profileSuccess.bookings : 0;
-
-  const navbarContentCustomer = [
-    {
-      name: "Upcomming",
-      amount: upcomingBookings.length > 0 ? upcomingBookings.length : "0",
-      icon: UpcomingIcon,
-      link: "/booking-list-upcoming",
-      dividerNav: divider,
-    },
-    {
-      name: "Previous",
-      amount: previousBookings.length > 0 ? previousBookings.length : "0",
-      icon: PreviousIcon,
-      link: "/booking-list-previous",
-      dividerNav: divider,
-    },
-    {
-      name: "Total",
-      amount: bookings ? `${bookings.length}` : "0",
-      icon: Total,
-      link: "/booking-list-total",
-      dividerNav: "",
-    },
-  ];
-  const navbarContentManager = [
-    {
-      name: "Total",
-      amount: `${venues}`,
-      icon: Total,
-      link: "/venue-list",
-      dividerNav: divider,
-    },
-    { name: "Create", icon: CreateIcon, link: "/create-venue", dividerNav: "" },
-  ];
-
-  let navbarLink = [];
-
-  if (profileSuccess.venueManager === false) {
-    navbarLink = navbarContentCustomer;
-  } else if (profileSuccess.venueManager === true) {
-    navbarLink = navbarContentManager;
-  }
-
-  const navLinkUserType = navbarLink.map((navLink) => {
-    const { name, amount, icon, link, dividerNav } = navLink;
-
-    return (
-      <div key={name} className="userInfo link">
-        <NavLink
-          key={name}
-          to={link}
-          style={({ isPending, isTransitioning }) => {
-            return {
-              display: "flex",
-              gap: "0.5rem",
-              fontSize: "0.9rem",
-              color: isPending ? "red" : "white",
-              viewTransitionName: isTransitioning ? "slide" : "",
-              color: "white",
-              textDecoration: "none",
-              margin: "0 15px",
-              alignItems: "center",
-              lineHeight: "normal",
-
-              "&:hover": {
-                cursor: "pointer",
-              },
-            };
-          }}
-        >
-          {icon}
-          <div className="d-flex flex-wrap-reverse justify-content-center">
-            {!amount ? "" : <span className="me-2">{amount}</span>}
-            {name}
-          </div>
-        </NavLink>
-        {dividerNav}
-      </div>
-    );
-  });
-
-  return (
-    <div className="userInfo">
-      <div className="userInfo">
-        {profileSuccess.venueManager === false ? (
-          <div className="title me-3">Bookings: </div>
-        ) : (
-          <div className="title me-2">Venues: </div>
-        )}
-        {navLinkUserType}
-      </div>
-      <div className="logout-btn d-flex justify-content-end">
-        <PrimaryButton
-          display={"block"}
-          className="me-3"
-          onClick={() => handleState(null, true)}
-        >
-          Log out
-        </PrimaryButton>
-      </div>
-    </div>
   );
 }

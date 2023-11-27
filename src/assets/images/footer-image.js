@@ -5,7 +5,7 @@ const FooterSVG = (
     height="127.401"
     viewBox="0 0 191.131 127.401"
     text-align="center"
-    className="footer-travel"
+    className="footer-travel mt-4"
   >
     <g id="Group_269" data-name="Group 269" transform="translate(0 0)">
       <path

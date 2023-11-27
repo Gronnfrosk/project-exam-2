@@ -2,14 +2,12 @@ import { API_URL_BOOKINGS } from "./constants.js";
 import { authFetch } from "./auth_fetch.js";
 
 export async function getBookingInfoApi(params) {
-  
   const bookingUrl = API_URL_BOOKINGS + params;
 
   const response = await authFetch(bookingUrl);
 
   return await response.json();
 }
-
 
 export async function createBooking(data) {
   const method = "post";
@@ -27,9 +25,6 @@ export async function createBooking(data) {
       venueId: data.venueId,
     }),
   });
-
-  //console.log(data)
-  //console.log(response)
 
   return await response.json();
 }

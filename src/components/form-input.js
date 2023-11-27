@@ -37,8 +37,6 @@ export function InputForm(props) {
   //const valllues = type==="date" ? (date) => date.toLocaleDateString('en-GB') : ""
   const nameTitle = name ? name : title;
 
-  console.log(max);
-
   return (
     <InputGroup className="w-100">
       <Form.Label

@@ -1,14 +1,30 @@
 main.list {
   max-width: 1188px;
-  margin: 20px auto;
+  margin: 10px auto;
   display: flex;
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
+  row-gap: 50px;
+  column-gap: 10px;
 
   & section {
     margin: 0;
-    width: 400px;
+    //width: 350px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.418);
+
+    & .card {
+      margin-top: 30px;
+      margin-bottom: 25px;
+
+      & .price {
+        width: min-content;
+        border: 5px solid var(--primary_color);
+        bottom: 53px;
+        border-radius: 100px;
+        font-weight: bold;
+      }
+    }
 
     & .booking-title,
     .venues-title {
@@ -26,9 +42,13 @@ main.list {
       }
     }
 
-    & .container {
-      min-height: 600px;
+    & .list-group button {
+      color: black;
+      background-color: var(--body_color);
+      border: none;
+    }
 
+    & .container {
       & button {
         border: none;
         border-radius: 0;
@@ -37,7 +57,7 @@ main.list {
 
       & .divider {
         width: 350px;
-        font-size: var(--textSmall_fontSize)
+        font-size: var(--textSmall_fontSize);
       }
 
       & .collapse {
@@ -53,4 +73,7 @@ main.list {
 }
 
 /*mobile styles*/
-@media only screen and (max-width: 700px) {}
+@media only screen and (max-width: 700px) {
+  main.list {
+  }
+}

@@ -10,7 +10,7 @@ import VenueList from "./pages/booking-venue-list/venue-list";
 import BookingList from "./pages/booking-venue-list/booking-list";
 import CreateVenue from "./pages/create-venue/create-venue";
 import { Helmet, HelmetProvider } from "react-helmet-async";
-import ScrollToTop from "./helpers/scroll-top";
+import ScrollPage from "./helpers/scroll-page";
 
 function App() {
   return (
@@ -27,7 +27,7 @@ function App() {
           </Helmet>
           <ThemeMode />
           <Theme>
-            <ScrollToTop />
+            <ScrollPage />
             <Routes>
               <Route path="/" element={<GlobalLayout />}>
                 <Route index element={<Home />} />
@@ -41,7 +41,7 @@ function App() {
                   path="/booking-list-previous"
                   element={<BookingList />}
                 />
-                <Route path="/booking-list-total" element={<BookingList />} />
+                <Route path="/booking-list" element={<BookingList />} />
                 <Route path="/create-venue" element={<CreateVenue />} />
                 <Route path="/login-register" element={<LoginRegisterPage />} />
                 <Route path="/:id" element={<SpecificVenuePage />} />

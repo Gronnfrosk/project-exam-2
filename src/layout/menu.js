@@ -22,7 +22,7 @@ import {
 } from "../components/buttons/button.styles";
 import { AvatarImg } from "../components/profile-avatar";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
-
+import { useBookingFilter } from "../hooks/useBookingFilter";
 import { EditAvatarApi } from "../services/api/profile";
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
@@ -43,6 +43,9 @@ export function SideMenu(props) {
   } = useForm({
     resolver: yupResolver(schemaAvatar),
   });
+  const { upcomingBookings, previousBookings } = useBookingFilter(
+    profileSuccess ? profileSuccess.bookings : [],
+  );
 
   if (!profileSuccess || profileSuccess === null) {
     return (
@@ -70,31 +73,36 @@ export function SideMenu(props) {
     }
   }
 
-  const today = new Date();
-  const upcomingBookings = profileSuccess.bookings.filter(
-    (booking) => new Date(booking.dateFrom) >= today,
-  );
-  const previousBookings = profileSuccess.bookings.filter(
-    (booking) => new Date(booking.dateFrom) < today,
-  );
-
   const navbarProfileCustomer = [
     {
       name: "Upcoming",
       amount: upcomingBookings.length > 0 ? upcomingBookings.length : "0",
     },
     {
-      name: "Previous",
-      amount: previousBookings.length > 0 ? previousBookings.length : "0",
+      name: "Total",
+      amount: `${bookings.length}`,
+
       dividerNav: divider,
     },
-    { name: "Total", amount: `${bookings.length}` },
+
+    {
+      name: "Previous",
+      amount: previousBookings.length > 0 ? previousBookings.length : "0",
+    },
   ];
 
   const navbarCustomer = [
-    { name: "Upcoming booking", icon: UpcomingIcon },
-    { name: "Previous bookings", icon: PreviousIcon },
-    { name: "All bookings", icon: Total },
+    { name: "Upcoming booking", icon: UpcomingIcon, link: "booking-list" },
+    {
+      name: "Previous bookings",
+      icon: PreviousIcon,
+      link: "booking-list#total-bookings",
+    },
+    {
+      name: "All bookings",
+      icon: Total,
+      link: "booking-list#previous-bookings",
+    },
   ];
 
   const navbarManagerProfile = [
@@ -142,15 +150,13 @@ export function SideMenu(props) {
   );
 
   const userLinks = navbarLink.map((navLink) => {
-    const { name, icon } = navLink;
-
+    const { name, icon, link } = navLink;
+    console.log(link);
     return (
       <MenuItem
         key={name}
         icon={icon}
-        component={
-          <Link to="/venue-list" onClick={() => setToggled(!toggled)} />
-        }
+        component={<Link to={link} onClick={() => setToggled(!toggled)} />}
       >
         {name}
       </MenuItem>

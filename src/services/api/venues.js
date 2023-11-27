@@ -32,5 +32,9 @@ export default function useAllVenues(url) {
     getData();
   }, []);
 
+  console.log(data);
+  console.log(isLoading);
+  console.log(isError);
+
   return [data, isLoading, isError];
 }
