@@ -1,42 +1,37 @@
 import * as yup from "yup";
 
-export const schemaRegister = yup
-  .object({
-    Name: yup
-      .string()
-      .min(3, "Your name should be at least 3 characters.")
-      .max(30, "Your name cannot be longer than 30 characters.")
-      .matches(
-        /^[\w]+$/,
-        "Please enter username. It must not contain punctuation symbols apart from underscore (_)",
-      )
-      .required("Please enter your name."),
-    Email: yup
-      .string()
-      .email("Please enter valid email")
-      .matches(
-        /^[\w\-.]+@stud\.noroff\.no$/,
-        "Only @stud.noroff.no email are allowed to register.",
-      )
-      .required("Please enter your email."),
-    Password: yup
-      .string()
-      .min(8, "Your password should be at least 8 characters.")
-      .max(30, "Your password cannot be longer than 30 characters.")
-      .required("Please enter password."),
-    Confirm: yup
-      .string()
-      .test("passwords-match", "Passwords must match", function (value) {
-        return this.parent.Password === value;
-      })
-      .required("Please confirm password."),
-    Avatar: yup
-      .string()
-      .url("Please enter a valid url")
-      .matches(
-        /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g,
-        "Please enter a valid url!",
-      )
-      .required("Please enter an url for your avatar."),
-  })
-  .required();
+const createVenueSchema = yup.object({
+  name: yup
+    .string()
+    .min(10, "Your name should be at least 15 characters.")
+    .max(50, "Your name cannot be longer than 50 characters.")
+    .required("Name is required"),
+  description: yup
+    .string()
+    .min(20, "Your description should be at least 20 characters.")
+    .max(500, "Your description cannot be longer than 500 characters.")
+    .required("Description is required"),
+  price: yup
+    .number()
+    .typeError("Price must be a number")
+    .positive("Price must be positive")
+    .required("Price is required"),
+  maxGuests: yup
+    .number()
+    .typeError("Max guests must be a number")
+    .moreThan(0, "Number of guests must be more than 0")
+    .integer("Number of guests must be an integer")
+    .required("Max guests is required"),
+  country: yup.string().required("Country is required"),
+  address: yup.string().required("Address is required"),
+  city: yup
+    .string()
+    .required("City is required"),
+  zip: yup
+    .string()
+    .min(4)
+    .max(4)
+    .typeError("Zip must be 4 a number")
+    .required("Zip must be 4 numbers"),
+});
+export default createVenueSchema;

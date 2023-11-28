@@ -151,7 +151,7 @@ export function SideMenu(props) {
 
   const userLinks = navbarLink.map((navLink) => {
     const { name, icon, link } = navLink;
-    console.log(link);
+
     return (
       <MenuItem
         key={name}

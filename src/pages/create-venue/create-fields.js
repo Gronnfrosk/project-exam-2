@@ -6,8 +6,8 @@ const name = {
 
 const description = {
   title: "Description",
-  placeholder: "Example@stud.noroff.no",
   type: "textarea",
+  size: "4",
 };
 
 const price = {
@@ -28,32 +28,30 @@ const rating = {
   type: "number",
 };
 
-const image = {
-  title: "Image",
-  placeholder: "http://www.example.com",
-  type: "url",
-};
-
 const wifi = {
-  title: "Wifi",
+  name: "Free WiFI",
+  title: "wifi",
   type: "switch",
   label: "Free WiFI",
 };
 
 const parking = {
-  title: "Parking",
+  name: "Parking available",
+  title: "parking",
   type: "switch",
   label: "Parking available",
 };
 
 const breakfast = {
-  title: "Breakfast",
+  name: "Breakfast included",
+  title: "breakfast",
   type: "switch",
   label: "Breakfast included",
 };
 
 const pets = {
-  title: "Pets",
+  name: "Pets allowed",
+  title: "pets",
   type: "switch",
   label: "Pets allowed",
 };
@@ -74,24 +72,13 @@ const city = {
 };
 
 const zip = {
-  title: "Max guests",
+  title: "Zip",
   placeholder: "",
   type: "number",
 };
 
-export const createInputs = [
-  name,
-  description,
-  price,
-  guests,
-  rating,
-  image,
-  wifi,
-  parking,
-  breakfast,
-  pets,
-  country,
-  address,
-  city,
-  zip,
-];
+export const createInputs = [name, description, price, guests, rating];
+
+export const amenitiesInputs = [wifi, parking, breakfast, pets];
+
+export const locationInputs = [country, address, city, zip];

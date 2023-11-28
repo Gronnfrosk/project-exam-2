@@ -7,7 +7,7 @@ import { schemaRegister } from "../../validations/schemas/login-regstration";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerInputs } from "./input-fields";
 import { RegisterProfile } from "../../services/auth/register";
-import { lowerize } from "../../helpers/lowercase";
+import { lowerize } from "../../helpers/formatting/lowercase";
 import viewRegisterModal from "../../components/modal/Register";
 
 export function RegisterForm({ change }) {

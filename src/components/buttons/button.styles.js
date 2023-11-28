@@ -10,10 +10,36 @@ export const PrimaryButton = styled.button`
   padding: 5px 20px;
   width: 179px;
   cursor: pointer;
-  transition: opacity linear 200ms;
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: 0.6s;
+  transition-timing-function: ease;
+  //transition: opacity linear 200ms;
 
-  :hover {
-    opacity: 0.9;
+  &:hover {
+    background-color: var(--primary_color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .btn-animated {
+    animation: moveInBottom 5s ease-out;
+    animation-fill-mode: backwards;
+  }
+
+  @keyframes moveInBottom {
+    0% {
+      transform: translateY(30px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
   }
 `;
 

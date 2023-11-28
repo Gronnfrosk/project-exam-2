@@ -1,17 +1,6 @@
 import "./booking-venue-list.scss";
 import { Helmet } from "react-helmet-async";
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-//import VenueCard from "../../components/venue-card";
-//import ListGroup from "react-bootstrap/ListGroup";
-//import Button from "react-bootstrap/Button";
-//import Collapse from "react-bootstrap/Collapse";
-//import { Link } from "react-router-dom";
-//import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-//import { ProfileInfoApi } from "../../services/api/profile";
-//import { useProfileData } from "../hooks/useProfileData";
-//import { useBookingVenueData } from "../../hooks/bookingData";
-import ListGroup from "react-bootstrap/ListGroup";
 import { load } from "../../utilities/save_load_remove_local_storage";
 import { API_URL_VENUES } from "../../services/api/constants";
 import { useProfileData } from "../../hooks/useProfileData";

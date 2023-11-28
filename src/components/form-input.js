@@ -32,24 +32,40 @@ export function InputForm(props) {
     min,
     value,
     name,
-    max,
+    size,
   } = props;
-  //const valllues = type==="date" ? (date) => date.toLocaleDateString('en-GB') : ""
   const nameTitle = name ? name : title;
 
   return (
-    <InputGroup className="w-100">
+    <InputGroup className="input-field w-100">
       <Form.Label
         htmlFor={title}
         className="rounded-start-pill shadow-sm text-white"
       >
         {nameTitle}
       </Form.Label>
-      {type !== "switch" ? (
+
+      {type === "textarea" ? (
+        <Form.Control
+          id={title}
+          as={type}
+          placeholder={placeholder}
+          aria-label={title}
+          aria-describedby="basic-addon1"
+          className="rounded-end-pill shadow-sm"
+          type={type}
+          autoComplete={autocomplete}
+          onChange={onChange}
+          min={min}
+          rows={size ? "4" : "1"}
+          value={value}
+          {...validate(title)}
+        />
+      ) : type !== "switch" ? (
         <Form.Control
           id={title}
           placeholder={placeholder}
-          aria-label="Recipient's username"
+          aria-label={title}
           aria-describedby="basic-addon1"
           className="rounded-end-pill shadow-sm"
           type={type}
@@ -63,7 +79,7 @@ export function InputForm(props) {
         <Form.Check
           id={title}
           placeholder={placeholder}
-          aria-label="Recipient's username"
+          aria-label={title}
           aria-describedby="basic-addon1"
           className="rounded-end-pill bg-dark shadow-sm "
           type={type}

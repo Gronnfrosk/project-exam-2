@@ -15,8 +15,6 @@ export async function ProfileInfoApi(name, params) {
 
   const response = await authFetch(profileUrl);
 
-  console.log(response);
-
   return await response.json();
 }
 

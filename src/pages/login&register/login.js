@@ -6,7 +6,7 @@ import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
 import { schemaLogin } from "../../validations/schemas/login-regstration";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginInputs } from "./input-fields";
-import { lowerize } from "../../helpers/lowercase";
+import { lowerize } from "../../helpers/formatting/lowercase";
 import { LoginUser } from "../../services/auth/login";
 import viewLoginModal from "../../components/modal/login";
 
