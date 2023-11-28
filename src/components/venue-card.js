@@ -42,7 +42,7 @@ export default function VenueCard(props) {
   ) : (
     <>
       Rating
-      <div className="ms-2">${rating}</div>
+      <div className="ms-2">{rating}</div>
       <div>/5</div>
     </>
   );

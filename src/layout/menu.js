@@ -92,16 +92,16 @@ export function SideMenu(props) {
   ];
 
   const navbarCustomer = [
-    { name: "Upcoming booking", icon: UpcomingIcon, link: "booking-list" },
+    { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" },
     {
       name: "Previous bookings",
       icon: PreviousIcon,
-      link: "booking-list#total-bookings",
+      link: "/my-list#total-bookings",
     },
     {
       name: "All bookings",
       icon: Total,
-      link: "booking-list#previous-bookings",
+      link: "/my-list#previous-bookings",
     },
   ];
 
@@ -114,8 +114,8 @@ export function SideMenu(props) {
     venueManager === false ? navbarProfileCustomer : navbarManagerProfile;
 
   const navbarManager = [
-    { name: "See your venues", icon: Total },
-    { name: "Create venue", icon: CreateIcon },
+    { name: "See your venues", icon: Total, link: "/my-list" },
+    { name: "Create venue", icon: CreateIcon, link: "/create-venue" },
   ];
 
   const navbarLink = venueManager === false ? navbarCustomer : navbarManager;

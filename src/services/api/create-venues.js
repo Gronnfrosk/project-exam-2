@@ -38,26 +38,6 @@ const rating = data.rating ? parseFloat(data.rating) : 0;
 
   });
 
-  if (!response.ok) {
-    const errorBody = await response.json();
-    console.error("API error:", errorBody);
-  
-    // Log the specific errors
-    if (errorBody.errors && errorBody.errors.length > 0) {
-      console.error("Detailed errors:", errorBody.errors);
-    }
-  
-    alert("Error! Venue was not created. Check console for details.");
-    return false;
-  }
-
-  if (!response.ok) {
-    const errorBody = await response.json();
-    console.error("API error:", errorBody);
-    alert("Error! Venue was not created. Check console for details.");
-    return false;
-  }
-
   if (response.ok) {
     alert("You have created a new venue. You can see your venues in the venue list");
     return true;

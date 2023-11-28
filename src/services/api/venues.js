@@ -30,11 +30,7 @@ export default function useAllVenues(url) {
     }
 
     getData();
-  }, []);
-
-  console.log(data);
-  console.log(isLoading);
-  console.log(isError);
+  }, [url]);
 
   return [data, isLoading, isError];
 }

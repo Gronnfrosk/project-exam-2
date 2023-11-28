@@ -1,5 +1,6 @@
 import { ModalInfo } from "./modal";
 import loginSuccessSVG from "../../assets/images/login-customer";
+import loginManagerSuccessSVG from "../../assets/images/login-manager";
 
 export default function viewLoginModal(formSuccess) {
   const modalContent =
@@ -20,7 +21,12 @@ export default function viewLoginModal(formSuccess) {
       <ModalInfo
         userSuccess={"/"}
         showModalText={
-          "Welcome! As a venue manager you can now start renting out venues."
+          <div className="d-flex flex-column text-center">
+          {" "}
+          Welcome!
+          {loginManagerSuccessSVG}
+          As a venue manager you can now start renting out venues.
+        </div>
         }
         ModalTitle={"You have successfuly logged in"}
       />

@@ -1,10 +1,10 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
-import VenueCard from "../../components/venue-card";
+import VenueCard from "./venue-card";
 import {
   useFormattedDateTime,
   useFormattedDate,
-} from "../../helpers/formatting/useFormatDates"; // Import hooks correctly
+} from "../helpers/formatting/useFormatDates"; // Import hooks correctly
 import Collapse from "react-bootstrap/Collapse";
 import Button from "react-bootstrap/Button";
 

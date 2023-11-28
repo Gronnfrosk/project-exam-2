@@ -6,8 +6,7 @@ import Home from "./pages/home/home";
 import SpecificVenuePage from "./pages/specific/specific-venue";
 import { ThemeMode } from "./components/user-color-theme";
 import LoginRegisterPage from "./pages/login&register/login-register";
-import VenueList from "./pages/booking-venue-list/venue-list";
-import BookingList from "./pages/booking-venue-list/booking-list";
+import MyList from "./pages/booking-venue-list/my-list";
 import CreateVenue from "./pages/create-venue/create-venue";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import ScrollPage from "./helpers/scroll-page";
@@ -32,16 +31,7 @@ function App() {
               <Route path="/" element={<GlobalLayout />}>
                 <Route index element={<Home />} />
                 <Route path="/" element={<Home />} />
-                <Route path="/venue-list" element={<VenueList />} />
-                <Route
-                  path="/booking-list-upcoming"
-                  element={<BookingList />}
-                />
-                <Route
-                  path="/booking-list-previous"
-                  element={<BookingList />}
-                />
-                <Route path="/booking-list" element={<BookingList />} />
+                <Route path="/my-list" element={<MyList />} />
                 <Route path="/create-venue" element={<CreateVenue />} />
                 <Route path="/login-register" element={<LoginRegisterPage />} />
                 <Route path="/:id" element={<SpecificVenuePage />} />

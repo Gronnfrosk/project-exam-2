@@ -8,14 +8,20 @@ main.list {
   row-gap: 50px;
   column-gap: 10px;
 
-  & section {
-    margin: 0;
-    //width: 350px;
-    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.418);
+  & .booking-list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 10px;
+
 
     & .card {
       margin-top: 30px;
       margin-bottom: 25px;
+
 
       & .price {
         width: min-content;
@@ -23,24 +29,24 @@ main.list {
         bottom: 53px;
         border-radius: 100px;
         font-weight: bold;
+        right: -10px;
+        padding: 8px 20px;
       }
     }
 
-    & .booking-title,
-    .venues-title {
-      background-color: var(--primary_color);
-      width: 100%;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      border-right: 100px solid var(--body_backgroundColor);
-      font-weight: bold;
-
-      & div {
-        text-align: end;
-        font-size: 1.3rem;
-      }
+    & .container {
+      min-height: 300px;
+      margin-bottom: 50px;
     }
+
+    & section {
+      margin: 0;
+      //width: 350px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.418);
+    }
+
+
+
 
     & .list-group button {
       color: black;
@@ -67,13 +73,23 @@ main.list {
     }
   }
 
+  & .booking-title,
+  .venues-title {
+    background-color: var(--primary_color);
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 100px solid var(--body_backgroundColor);
+    font-weight: bold;
+
+    & div {
+      text-align: end;
+      font-size: 1.3rem;
+    }
+  }
+
   & section.venues-list {
     width: 1188px;
-  }
-}
-
-/*mobile styles*/
-@media only screen and (max-width: 700px) {
-  main.list {
   }
 }

@@ -61,7 +61,7 @@ export default function CreateVenue() {
     console.log(data)
     
     const result = await createVenue(data, imageUrls);
-    if (result === true ) { navigate('venue-list')};
+    if (result === true ) { navigate('/my-list')};
   
 }
 

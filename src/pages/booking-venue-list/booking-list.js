@@ -1,47 +1,21 @@
-import "./booking-venue-list.scss";
-import { Helmet } from "react-helmet-async";
-import React, { useEffect, useState } from "react";
-import { load } from "../../utilities/save_load_remove_local_storage";
-import { API_URL_VENUES } from "../../services/api/constants";
-import { useProfileData } from "../../hooks/useProfileData";
-import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-import VenueCard from "../../components/venue-card";
-import { useBookingFilter } from "../../hooks/useBookingFilter";
-import BookingItem from "./bookingVenue";
+import React, { useState } from "react";
+import { ErrorLoad } from "../../components/error-load";
+import BookingItem from "../../components/booking-list-card";
 
-const userType = false;
-//const params = "venues";
-
-export default function BookingList() {
+export default function BookingList(props) {
+  const { upcomingBookings, previousBookings, profileResult } = props
   const [openItemId, setOpenItemId] = useState(null);
-  const venuesUrl = `${API_URL_VENUES}?__venue=true&sort=created&sortOrder=desc`;
-  const [profile, setProfile] = useState(load("profile"));
-  const [profileSuccess, setProfileSuccess] = useState(null);
-  useProfileData(profile, setProfileSuccess);
-  const { upcomingBookings, previousBookings } = useBookingFilter(
-    profileSuccess ? profileSuccess.bookings : [],
-  );
 
-  if (!profileSuccess) {
-    return <SpinnerLoad />;
+  if (!profileResult) {
+    return < ErrorLoad />;
   }
 
   const toggleCollapse = (id) => {
     setOpenItemId(openItemId === id ? null : id);
   };
-  // For debugging
-  //console.log(profileSuccess);
-  //console.log(profileSuccess.bookings);
 
-  return (
-    <>
-      <Helmet>
-        <title>Your Bookings - Holidaze</title>
-        <meta name="description" content="Booking list" />
-      </Helmet>
-      <main className="list">
-        {profileSuccess && userType === false ? (
-          <>
+  return <> {upcomingBookings !== undefined?
+    <div className="booking-list">
             <section>
               <div className="booking-title fs-1 ps-4">
                 Upcoming <div>Bookings</div>
@@ -59,7 +33,7 @@ export default function BookingList() {
                   </div>
                   Recent{" "}
                 </div>
-              </div>
+              
               <div className="upcoming-bookings">
                 {upcomingBookings.map((booking) => (
                   <div key={booking.id}>
@@ -70,9 +44,9 @@ export default function BookingList() {
                     />
                   </div>
                 ))}
-              </div>
+              </div></div>
             </section>
-            <section id="total-bookings">
+            <section id="previous-bookings">
               <div className="booking-title fs-1 px-5">
                 Total <div>Bookings</div>
               </div>
@@ -82,16 +56,16 @@ export default function BookingList() {
                     Total{" "}
                     <b>
                       {" "}
-                      {profileSuccess.bookings.length > 0
-                        ? profileSuccess.bookings.length
+                      {profileResult.length > 0
+                        ? profileResult.length
                         : "0"}
                     </b>
                   </div>
                   Recent{" "}
                 </div>
-              </div>
+             
               <div className="previous-bookings">
-                {profileSuccess.bookings.map((booking) => (
+                {profileResult.map((booking) => (
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
@@ -100,9 +74,9 @@ export default function BookingList() {
                     />
                   </div>
                 ))}
-              </div>
+              </div> </div>
             </section>
-            <section id="previous-bookings">
+            <section id="total-bookings">
               <div className="booking-title fs-1 px-5">
                 Previous <div>Bookings</div>
               </div>
@@ -119,7 +93,7 @@ export default function BookingList() {
                   </div>
                   Recent{" "}
                 </div>
-              </div>
+              
               <div className="all-bookings">
                 {previousBookings.map((booking) => (
                   <div key={booking.id}>
@@ -130,39 +104,10 @@ export default function BookingList() {
                     />
                   </div>
                 ))}
-              </div>
+              </div></div>
             </section>
-          </>
-        ) : (
-          <>
-            <section className="venues-list "></section>
-          </>
-        )}
-      </main>
-    </>
-  );
+            </div>
+            : < ErrorLoad />
+            }
+        </>
 }
-
-//<>
-//<section className="venues-list ">
-//  <div className="venues-title fs-1 ps-4 text-center border border-0">
-//    Venues <div className="text-center ps-5 ms-5">managed</div>
-//  </div>
-//  <div className="container">
-//    <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2">
-//      Recent
-//    </div>
-//    <div className="d-flex flex-row flex-wrap align-items-end justify-content-center">
-//      {isLoading ? (
-//        <SpinnerLoad />
-//      ) : isError ? (
-//        <ErrorLoad />
-//      ) : (
-//        data.map((venue, index) => (
-//          <VenueCard key={index} data={venue} />
-//        ))
-//      )}
-//    </div>
-//  </div>
-//</section>
-//</>
