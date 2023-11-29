@@ -7,7 +7,7 @@ import { VenueCardIcons, SpecificIcons } from "../../assets/icons/icons";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { AvatarImg } from "../../components/profile-avatar";
-import ReactCalender from "../../components/calender/react-calender";
+import ReactCalender from "../../components/calender/customer";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   EditVenueBtn,

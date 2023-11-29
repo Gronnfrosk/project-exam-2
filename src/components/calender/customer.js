@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createBookingSchema } from "../../validations/schemas/booking";
-import { ButtonExpandNavbar } from "../../components/buttons/expand-btn";
-import viewBookingModal from "../../components/modal/booking";
-import { InputForm } from "../../components/form-input";
+import { ButtonExpandNavbar } from "../buttons/expand-btn";
+import viewBookingModal from "../modal/booking";
+import { InputForm } from "../form-input";
 import ListGroup from "react-bootstrap/ListGroup";
 import { createBooking } from "../../services/api/booking";
 

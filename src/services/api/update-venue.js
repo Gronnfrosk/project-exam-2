@@ -33,7 +33,6 @@ export async function updateVenue(venueId, data, imageUrls) {
     });
 
     if (response.ok) {
-      alert("Venue has been updated successfully.");
       return true;
     } else {
       alert("Error! An error occurred while updating the venue.");
