@@ -30,7 +30,7 @@ export const createVenueSchema = yup.object({
   address: yup.string().required("Address is required"),
   city: yup.string().required("City is required"),
   zip: yup
-    .number()
+    .string()
     .min(4)
     .max(4)
     .typeError("Zip must be 4 a number")

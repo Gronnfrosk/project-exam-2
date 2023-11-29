@@ -6,7 +6,6 @@ import { InputForm } from "../../components/form-input";
 import { createVenueSchema } from "../../validations/schemas/create-venue";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createInputs, amenitiesInputs, locationInputs } from "./create-update-fields";
-//import viewRegisterModal from "../../components/modal/Register";
 import { PrimaryButton } from "../../components/buttons/button.styles";
 import {
   Container,
@@ -53,8 +52,6 @@ export default function CreateVenue() {
   };
 
   async function onSubmit(data) {
-    console.log(data);
-
     const result = await createVenue(data, imageUrls);
     if (result === true) {
       navigate("/my-list");

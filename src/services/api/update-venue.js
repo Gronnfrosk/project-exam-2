@@ -2,7 +2,9 @@ import { API_URL_VENUES } from "./constants.js";
 import { authFetch } from "./auth_fetch.js";
 
 export async function updateVenue(venueId, data, imageUrls) {
-  const method = "put";
+  const method = "PUT";  // HTTP methods are typically uppercase
+
+  console.log(venueId);
 
   if (!venueId) {
     throw new Error("Update venue requires a venueId!");
@@ -12,61 +14,30 @@ export async function updateVenue(venueId, data, imageUrls) {
     throw new Error("Update venue requires data!");
   }
 
-  //const rating = data.rating ? parseFloat(data.rating) : 0;
+  const payload = {
+    name: data.name,
+    description: data.description,
+    media: imageUrls,
+    price: Number(data.price),
+    maxGuests: Number(data.maxGuests),
+    rating: Number(data.rating),
+    meta: data.meta,
+    location: data.location,
+  };
 
-  console.log(
-    JSON.stringify({
-      name: data.name,
-      description: data.description,
-      media: imageUrls,
-      price: Number(data.price),
-      maxGuests: Number(data.maxGuests),
-      rating: Number(data.rating),
-      meta: {
-        wifi: data.wifi,
-        parking: data.parking,
-        breakfast: data.breakfast,
-        pets: data.pets,
-      },
-      location: {
-        address: data.address,
-        city: data.city,
-        zip: data.zip,
-        country: data.country,
-      },
-    }),
-  );
+  Object.keys(payload).forEach(key => payload[key] == null && delete payload[key]);
 
-  const response = await authFetch(`${API_URL_VENUES}/${venueId}`, {
-    method,
-    body: JSON.stringify({
-      name: data.name,
-      description: data.description,
-      media: imageUrls,
-      price: Number(data.price),
-      maxGuests: Number(data.maxGuests),
-      rating: Number(data.rating),
-      meta: {
-        wifi: data.wifi,
-        parking: data.parking,
-        breakfast: data.breakfast,
-        pets: data.pets,
-      },
-      location: {
-        address: data.address,
-        city: data.city,
-        zip: data.zip,
-        country: data.country,
-      },
-    }),
-  });
+    const response = await authFetch(`${API_URL_VENUES}/${venueId}`, {
+      method,
+      body: JSON.stringify(payload),
+    });
 
-  if (response.ok) {
-    alert("Venue has been updated successfully.");
-    return true;
-  } else {
-    alert("Error! Venue update failed.");
-    console.log(response);
-    return false;
-  }
+    if (response.ok) {
+      alert("Venue has been updated successfully.");
+      return true;
+    } else {
+      alert("Error! An error occurred while updating the venue.");
+      console.error("Response status:", response.status);
+      return false;
+    }
 }

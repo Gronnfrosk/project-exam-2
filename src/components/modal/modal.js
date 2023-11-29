@@ -12,9 +12,11 @@ export function ModalInfo(props) {
     userSuccess,
     registerSuccess,
     bookingSuccess,
+    onConfirmDelete,
+    closeModal
   } = props;
   const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false); closeModal()}
   let navigate = useNavigate();
   const routeChange = () => {
     navigate(userSuccess);
@@ -29,6 +31,21 @@ export function ModalInfo(props) {
   const navigateToList = () => {
     navigate("/my-list");
   };
+
+  const handleDelete = () => {
+    onConfirmDelete();
+  };
+
+  const deleteBtns = (
+    <div className="d-flex flex-row gap-3 w-100 justify-content-center">
+      <PrimaryButton onClick={handleClose}>
+        Cancel
+      </PrimaryButton>
+      <PrimaryButton display={"block"} onClick={handleDelete} style={{backgroundColor: "white", border: "2px solid var(--third_color)"}}>
+        Delete
+      </PrimaryButton>
+    </div>
+  );
 
   const bookingBtns = (
     <>
@@ -53,7 +70,8 @@ export function ModalInfo(props) {
     </Button>
   );
 
-  const modalButton = userError
+  const modalButton = deleteBtns ? deleteBtns
+    : userError
     ? closeBtn
     : bookingSuccess && userSuccess
     ? bookingBtns

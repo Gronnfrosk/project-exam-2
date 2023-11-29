@@ -8,20 +8,51 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { AvatarImg } from "../../components/profile-avatar";
 import ReactCalender from "../../components/calender/react-calender";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   EditVenueBtn,
   DeleteVenueBtn,
 } from "../../components/buttons/button.styles";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-//import getBookedDates from "../../helpers/formatting/get-dates"
+import deleteVenue from "../../services/api/delete-venue";
+import { load } from "../../utilities/save_load_remove_local_storage";
+import { ModalInfo } from "../../components/modal/modal";
+import loginManagerSuccessSVG from "../../assets/images/login-manager";
 
 function SpecificVenuePage() {
+  const profile = load("profile")
+  const navigate = useNavigate();
   const params = useParams();
-  const url = `${API_URL_VENUES}/${params.id}?_owner=true&_bookings=true`;
+  const urlBase = `${API_URL_VENUES}/${params.id}`;
+  const url = `${urlBase}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
+  const [modal, setModal] = useState(false);
 
-  // Memoize icons to avoid recalculation on each render
+  const handleEditClick = () => {
+    navigate(`/update-venue/${params.id}`); 
+  };
+
+  const handleDelete = () => {
+    setModal(!modal); 
+  };
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const handleDeleteVenue = async () => {
+    try {
+      await deleteVenue(params.id);
+      console.log('Venue deleted successfully');
+      navigate('/my-list');
+    } catch (error) {
+      // This block handles any errors that occur during deletion.
+      console.error('Error deleting venue:', error);
+      alert('Error deleting venue: ' + error.message);
+      setModal(false); 
+    }
+  };
+
   const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = useMemo(
     () => VenueCardIcons(),
     [],
@@ -81,10 +112,24 @@ function SpecificVenuePage() {
               <div className="this-rating ms-2">{data.rating}/</div>
               <div className="max-rating">5</div>
             </div>
+            {profile.name === data.owner.name ?
             <div className="user-feature">
-              <EditVenueBtn title="Edit venue">{EditIcon}</EditVenueBtn>
-              <DeleteVenueBtn title="Delete venue">{DeleteIcon}</DeleteVenueBtn>
-            </div>
+              <EditVenueBtn title="Edit venue" onClick={handleEditClick}>{EditIcon}</EditVenueBtn>
+              <DeleteVenueBtn title="Delete venue" onClick={handleDelete}>{DeleteIcon}</DeleteVenueBtn>
+            
+            {modal && <ModalInfo
+              userSuccess={"/"}
+              confirmDelete={true}
+              closeModal={closeModal}
+              onConfirmDelete={handleDeleteVenue}
+              showModalText={
+                <div className="d-flex flex-column text-center">
+                  {loginManagerSuccessSVG}
+                </div>
+              }
+              ModalTitle={"Are you sure you want to delete this venue?"}
+            />}
+            </div> : ""}
             <div className="rating">
               Max guests:{" "}
               <div className="fw-bold ms-2 me-3">{data.maxGuests}</div>

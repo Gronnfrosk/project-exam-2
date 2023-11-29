@@ -8,6 +8,12 @@ main.list {
   row-gap: 50px;
   column-gap: 10px;
 
+  & .empty-list {
+    height: 300px;
+    display: flex;
+    align-items: center;
+  }
+
   & .booking-list {
     width: 100%;
     display: flex;

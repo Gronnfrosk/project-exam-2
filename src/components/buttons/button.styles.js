@@ -48,6 +48,11 @@ export const EditAvatarBtn = styled(PrimaryButton)`
   border-radius: 50px;
   width: 45px !important;
   font-weight: bold;
+
+  &:hover {
+    transform: translateY(0px);
+    box-shadow: none;
+  }
 `;
 
 export const EditVenueBtn = styled.button`
