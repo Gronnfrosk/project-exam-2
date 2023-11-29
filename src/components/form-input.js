@@ -37,9 +37,9 @@ export function InputForm(props) {
   const nameTitle = name ? name : title;
 
   function capitalizeFirstLetter(string) {
-    if (!string) return string; // Check if the string is not empty or undefined
+    if (!string) return string;
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+}
 
   return (
     <InputGroup className="input-field w-100">
