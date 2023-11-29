@@ -1,5 +1,5 @@
 import "./specific-venue.scss";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { API_URL_VENUES } from "../../services/api/constants";
 import useAllVenues from "../../services/api/venues";
@@ -9,18 +9,14 @@ import Image from "react-bootstrap/Image";
 import { AvatarImg } from "../../components/profile-avatar";
 import ReactCalender from "../../components/calender/react-calender";
 import { useParams } from "react-router-dom";
-import { load } from "../../utilities/save_load_remove_local_storage";
 import {
   EditVenueBtn,
   DeleteVenueBtn,
 } from "../../components/buttons/button.styles";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
-import { useNavigate } from "react-router-dom";
 //import getBookedDates from "../../helpers/formatting/get-dates"
 
 function SpecificVenuePage() {
-  const navigate = useNavigate();
-  const profile = load("profile");
   const params = useParams();
   const url = `${API_URL_VENUES}/${params.id}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
@@ -31,10 +27,6 @@ function SpecificVenuePage() {
     [],
   );
   const { EditIcon, DeleteIcon } = useMemo(() => SpecificIcons(), []);
-
-  const handleEditClick = () => {
-    navigate(`/update-venue/${params.id}`); // Replace with your actual route
-  };
 
   const description = useMemo(
     () => `Info about the venue - ${data?.name}`,
@@ -89,18 +81,10 @@ function SpecificVenuePage() {
               <div className="this-rating ms-2">{data.rating}/</div>
               <div className="max-rating">5</div>
             </div>
-            {profile.name === data.owner.name ? (
-              <div className="user-feature">
-                <EditVenueBtn title="Edit venue" onClick={handleEditClick}>
-                  {EditIcon}
-                </EditVenueBtn>
-                <DeleteVenueBtn title="Delete venue">
-                  {DeleteIcon}
-                </DeleteVenueBtn>
-              </div>
-            ) : (
-              ""
-            )}
+            <div className="user-feature">
+              <EditVenueBtn title="Edit venue">{EditIcon}</EditVenueBtn>
+              <DeleteVenueBtn title="Delete venue">{DeleteIcon}</DeleteVenueBtn>
+            </div>
             <div className="rating">
               Max guests:{" "}
               <div className="fw-bold ms-2 me-3">{data.maxGuests}</div>

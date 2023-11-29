@@ -36,13 +36,18 @@ export function InputForm(props) {
   } = props;
   const nameTitle = name ? name : title;
 
+  function capitalizeFirstLetter(string) {
+    if (!string) return string; // Check if the string is not empty or undefined
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   return (
     <InputGroup className="input-field w-100">
       <Form.Label
         htmlFor={title}
         className="rounded-start-pill shadow-sm text-white"
       >
-        {nameTitle}
+        {capitalizeFirstLetter(nameTitle)}
       </Form.Label>
 
       {type === "textarea" ? (

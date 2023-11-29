@@ -15,13 +15,12 @@ import {
   createInputs,
   amenitiesInputs,
   locationInputs,
-} from "../create-venue/create-fields";
-import { updateVenueSchema } from "../../validations/schemas/create&update";
+} from "../create-venue/create-update-fields";
+import { updateVenueSchema } from "../../validations/schemas/update-venue";
 
 export default function UpdateVenue() {
   const navigate = useNavigate();
   const { venueId } = useParams();
-  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
   const url = `${API_URL_VENUES}/${venueId}?_owner=true&_bookings=true`;
 
   const [imageUrls, setImageUrls] = useState([]);
@@ -40,14 +39,29 @@ export default function UpdateVenue() {
   const [venueData, isLoading, isError] = useAllVenues(url);
 
   useEffect(() => {
-    if (venueData && venueData.length > 0) {
-      const data = venueData;
-      Object.keys(data).forEach((key) => {
-        if (data[key] !== null && data[key] !== undefined) {
-          setValue(key, data[key]);
-        }
-      });
-      setImageUrls(data.images || []);
+    if (venueData) {
+      setValue("name", venueData.name);
+      setValue("description", venueData.description);
+      setValue("maxGuests", venueData.maxGuests);
+      setValue("price", venueData.price);
+      setValue("rating", venueData.rating);
+
+      if (venueData.location) {
+        setValue("address", venueData.location.address);
+        setValue("city", venueData.location.city);
+        setValue("zip", venueData.location.zip);
+        setValue("country", venueData.location.country);
+      }
+
+      if (venueData.meta) {
+        setValue("breakfast", venueData.meta.breakfast);
+        setValue("parking", venueData.meta.parking);
+        setValue("pets", venueData.meta.pets);
+        setValue("wifi", venueData.meta.wifi);
+      }
+
+      // Set image URLs
+      setImageUrls(venueData.media || []);
     }
   }, [venueData, setValue]);
 

@@ -3,9 +3,13 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import "./create-edit-venue.scss";
 import { InputForm } from "../../components/form-input";
-import { createVenueSchema } from "../../validations/schemas/create&update";
+import { createVenueSchema } from "../../validations/schemas/create-venue";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createInputs, amenitiesInputs, locationInputs } from "./create-fields";
+import {
+  createInputs,
+  amenitiesInputs,
+  locationInputs,
+} from "./create-update-fields";
 //import viewRegisterModal from "../../components/modal/Register";
 import { PrimaryButton } from "../../components/buttons/button.styles";
 import {
