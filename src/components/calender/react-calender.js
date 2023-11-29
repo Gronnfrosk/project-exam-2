@@ -116,7 +116,7 @@ export default function ReactCalender(props) {
   }, [formSuccess]);
 
   return (
-    <div className="booking-form column-gap-5 mt-4">
+    <div className="booking-form column-gap-5 mt-4 mx-3">
       {UserStatus === null ? (
         <Link to="/login-register">
           <ButtonExpandNavbar
@@ -139,7 +139,7 @@ export default function ReactCalender(props) {
                 tileDisabled={tileDisabled}
               />
             </div>
-            <div className="form">
+            <div className="form ms-4">
               <ListGroup as="ul">
                 <ListGroup.Item as="li" className="list-top text-center">
                   Selected booking period
@@ -162,7 +162,7 @@ export default function ReactCalender(props) {
                   Check-out:{" "}
                   <div>
                     {date[1]
-                      ? date[1].toLocaleDateString("en-GB")
+                      ? date[1]
                       : " dd/mm/yyyy"}
                   </div>
                 </ListGroup.Item>

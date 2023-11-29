@@ -8,6 +8,7 @@ import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { AvatarImg } from "../../components/profile-avatar";
 import ReactCalender from "../../components/calender/react-calender";
+import CalenderManager from "../../components/calender/venue-manager";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   EditVenueBtn,
@@ -211,10 +212,14 @@ function SpecificVenuePage() {
           </div>
         </section>
         <section className="part-4 mt-5">
+          {profile.name !== data.owner.name ?
+          <>
           <h2 className="fw-bold text-center mb-2 text-center position-relative">
             Start booking today
           </h2>
-          <ReactCalender userStatus={false} venueData={data} />
+          <ReactCalender userStatus={false} venueData={data} /></> :
+          <CalenderManager venueData={data}/>
+          }
         </section>
       </main>
     </>

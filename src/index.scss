@@ -32,3 +32,31 @@ h1 {
 html {
   scroll-behavior: smooth;
 }
+
+/* Container of the scrollable content */
+.scrollable-container {
+  height: 500px;
+  overflow-y: auto;
+  scrollbar-width: thin; // For Firefox
+  scrollbar-color: #888 #f0f0f0; // For Firefox: thumb and track color
+
+  // For Webkit (Chrome, Edge, Safari)
+  &::-webkit-scrollbar {
+    width: 12px; // width of the entire scrollbar
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f0f0f0; // color of the tracking area
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888; // color of the scroll thumb
+    border-radius: 10px;
+    border: 3px solid #f0f0f0; // creates padding around scroll thumb
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; // color of the scroll thumb when hovering
+  }
+}

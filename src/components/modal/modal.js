@@ -70,7 +70,7 @@ export function ModalInfo(props) {
     </Button>
   );
 
-  const modalButton = deleteBtns ? deleteBtns
+  const modalButton = onConfirmDelete ? deleteBtns
     : userError
     ? closeBtn
     : bookingSuccess && userSuccess
