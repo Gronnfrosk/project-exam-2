@@ -1,39 +1,55 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import "./create-edit-venue.scss";
+import "../create-venue/create-edit-venue.scss";
 import { InputForm } from "../../components/form-input";
-import { createVenueSchema } from "../../validations/schemas/create&update";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createInputs, amenitiesInputs, locationInputs } from "./create-fields";
-//import viewRegisterModal from "../../components/modal/Register";
 import { PrimaryButton } from "../../components/buttons/button.styles";
+import { Container, Form, InputGroup } from "react-bootstrap";
+import useAllVenues from "../../services/api/venues";
+import { updateVenue } from "../../services/api/update-venue";
+import { useNavigate, useParams } from "react-router-dom";
+import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
+import { API_URL_VENUES } from "../../services/api/constants";
 import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
-import { lowerize } from "../../helpers/formatting/lowercase";
-import { createVenue } from "../../services/api/create-venues";
-import { useNavigate } from "react-router-dom";
+  createInputs,
+  amenitiesInputs,
+  locationInputs,
+} from "../create-venue/create-fields";
+import { updateVenueSchema } from "../../validations/schemas/create&update";
 
-export default function CreateVenue() {
+export default function UpdateVenue() {
   const navigate = useNavigate();
+  const { venueId } = useParams();
+  const [initialDataLoaded, setInitialDataLoaded] = useState(false);
+  const url = `${API_URL_VENUES}/${venueId}?_owner=true&_bookings=true`;
+
   const [imageUrls, setImageUrls] = useState([]);
   const [imageUrlInput, setImageUrlInput] = useState("");
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     trigger,
   } = useForm({
-    resolver: yupResolver(createVenueSchema),
+    resolver: yupResolver(updateVenueSchema),
   });
+
+  const [venueData, isLoading, isError] = useAllVenues(url);
+
+  useEffect(() => {
+    if (venueData && venueData.length > 0) {
+      const data = venueData;
+      Object.keys(data).forEach((key) => {
+        if (data[key] !== null && data[key] !== undefined) {
+          setValue(key, data[key]);
+        }
+      });
+      setImageUrls(data.images || []);
+    }
+  }, [venueData, setValue]);
 
   const handleInputChange = async (e) => {
     const fieldName = e.target.name;
@@ -60,20 +76,28 @@ export default function CreateVenue() {
   async function onSubmit(data) {
     console.log(data);
 
-    const result = await createVenue(data, imageUrls);
+    const result = await updateVenue(venueId, data, imageUrls);
     if (result === true) {
-      navigate("/my-list");
+      navigate(`/${venueId}`);
     }
+  }
+
+  if (isLoading) {
+    return <SpinnerLoad />;
+  }
+
+  if (isError) {
+    return <ErrorLoad />;
   }
 
   return (
     <>
       <Helmet>
-        <title>Create Venue - Holidaze</title>
-        <meta name="description" content="Create a venue" />
+        <title>Update Venue - Holidaze</title>
+        <meta name="description" content="Update a venue" />
       </Helmet>
       <Container className="create-venue-container">
-        <h1>Create new venue</h1>
+        <h1>Update venue</h1>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div className="create-section px-4">
             {createInputs.map((input) => {
@@ -91,7 +115,7 @@ export default function CreateVenue() {
                     type={input.type}
                     size={input.size}
                     validate={register}
-                    autocomplete="off"
+                    autocomplete={"off"}
                     onChange={handleInputChange}
                   />
                   {errors[fieldName] && (
@@ -113,7 +137,7 @@ export default function CreateVenue() {
                     placeholder="http://www.example.com"
                     value={imageUrlInput}
                     onChange={handleImageUrlChange}
-                    autocomplete="off"
+                    autoComplete={"off"}
                     className="image-url-input"
                   />
                 </div>
@@ -152,7 +176,7 @@ export default function CreateVenue() {
                     type={input.type}
                     size={input.size}
                     validate={register}
-                    autocomplete="off"
+                    autocomplete={"off"}
                     onChange={(e) => handleInputChange(e)}
                   />
                   {errors[fieldinput] && (
@@ -190,9 +214,8 @@ export default function CreateVenue() {
             display={"block"}
             className="m-auto btn btn-animate mb-4"
             type="submit"
-            //onClick={() => handleState(null, true)}
           >
-            Create Venue
+            Update Venue
           </PrimaryButton>
         </Form>
       </Container>

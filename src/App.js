@@ -9,6 +9,7 @@ import LoginRegisterPage from "./pages/login&register/login-register";
 import MyList from "./pages/booking-venue-list/my-list";
 import CreateVenue from "./pages/create-venue/create-venue";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import UpdateVenue from "./pages/update-venue/update-venue";
 import ScrollPage from "./helpers/scroll-page";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/my-list" element={<MyList />} />
                 <Route path="/create-venue" element={<CreateVenue />} />
+                <Route path="/update-venue/:id" element={<UpdateVenue />} />
                 <Route path="/login-register" element={<LoginRegisterPage />} />
                 <Route path="/:id" element={<SpecificVenuePage />} />
                 <Route path="/*" element={<SpecificVenuePage />} />

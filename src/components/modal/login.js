@@ -22,11 +22,11 @@ export default function viewLoginModal(formSuccess) {
         userSuccess={"/"}
         showModalText={
           <div className="d-flex flex-column text-center">
-          {" "}
-          Welcome!
-          {loginManagerSuccessSVG}
-          As a venue manager you can now start renting out venues.
-        </div>
+            {" "}
+            Welcome!
+            {loginManagerSuccessSVG}
+            As a venue manager you can now start renting out venues.
+          </div>
         }
         ModalTitle={"You have successfuly logged in"}
       />

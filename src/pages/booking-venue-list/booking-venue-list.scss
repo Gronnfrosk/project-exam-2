@@ -17,11 +17,9 @@ main.list {
     row-gap: 50px;
     column-gap: 10px;
 
-
     & .card {
       margin-top: 30px;
       margin-bottom: 25px;
-
 
       & .price {
         width: min-content;
@@ -44,9 +42,6 @@ main.list {
       //width: 350px;
       box-shadow: 0 10px 10px rgba(0, 0, 0, 0.418);
     }
-
-
-
 
     & .list-group button {
       color: black;

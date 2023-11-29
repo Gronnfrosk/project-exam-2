@@ -26,13 +26,13 @@ export function ModalInfo(props) {
     ? () => registerSuccess()
     : console.log("Error");
 
-    const navigateToList = () => {
-      navigate('/my-list'); 
-    };
+  const navigateToList = () => {
+    navigate("/my-list");
+  };
 
   const bookingBtns = (
     <>
-      <Button variant="link"  onClick={navigateToList} className="modal-btn">
+      <Button variant="link" onClick={navigateToList} className="modal-btn">
         Go to booking your list.
       </Button>
       <PrimaryButton display={"block"} onClick={loginRegisterRoute}>

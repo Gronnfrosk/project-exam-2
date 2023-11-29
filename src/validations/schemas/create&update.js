@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const createVenueSchema = yup.object({
+const venueBaseSchema = yup.object({
   name: yup
     .string()
     .min(10, "Your name should be at least 15 characters.")
@@ -24,9 +24,7 @@ const createVenueSchema = yup.object({
     .required("Max guests is required"),
   country: yup.string().required("Country is required"),
   address: yup.string().required("Address is required"),
-  city: yup
-    .string()
-    .required("City is required"),
+  city: yup.string().required("City is required"),
   zip: yup
     .string()
     .min(4)
@@ -34,4 +32,13 @@ const createVenueSchema = yup.object({
     .typeError("Zip must be 4 a number")
     .required("Zip must be 4 numbers"),
 });
-export default createVenueSchema;
+
+// Schema for creating a venue
+export const createVenueSchema = yup.object().shape({
+  ...venueBaseSchema,
+});
+
+// Schema for updating a venue
+export const updateVenueSchema = yup.object().shape({
+  ...venueBaseSchema,
+});

@@ -1,16 +1,20 @@
 import { API_URL_VENUES } from "./constants.js";
 import { authFetch } from "./auth_fetch.js";
 
-export async function createVenue(data, imageUrls) {
-  const method = "post";
+export async function updateVenue(venueId, data, imageUrls) {
+  const method = "put"; // Using PUT for update, could be PATCH depending on your API
+
+  if (!venueId) {
+    throw new Error("Update venue requires a venueId!");
+  }
 
   if (!data) {
-    throw new Error("Create venue requires data!");
+    throw new Error("Update venue requires data!");
   }
 
   const rating = data.rating ? parseFloat(data.rating) : 0;
 
-  const response = await authFetch(API_URL_VENUES, {
+  const response = await authFetch(`${API_URL_VENUES}/${venueId}`, {
     method,
     body: JSON.stringify({
       name: data.name,
@@ -30,20 +34,18 @@ export async function createVenue(data, imageUrls) {
         city: data.city,
         zip: data.zip,
         country: data.country,
-        continent: "unknown",
-        lat: 0,
-        lng: 0,
+        // Assuming latitude and longitude are not changed during update
+        lat: data.lat,
+        lng: data.lng,
       },
     }),
   });
 
   if (response.ok) {
-    alert(
-      "You have created a new venue. You can see your venues in the venue list",
-    );
+    alert("Venue has been updated successfully.");
     return true;
   } else {
-    alert("Error! Venue was not created.");
+    alert("Error! Venue update failed.");
     return false;
   }
 }
