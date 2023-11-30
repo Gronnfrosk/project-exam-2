@@ -41,13 +41,9 @@ export default function MyList() {
     };
 
     fetchData();
-  }, [navigate]);
+  }, [navigate, profile, userType]);
 
   if (error) {
-    return <ErrorLoad />;
-  }
-
-  if (!profileResult) {
     return <ErrorLoad />;
   }
 
@@ -60,7 +56,7 @@ export default function MyList() {
         <meta name="description" content="Profile inventory list" />
       </Helmet>
       <main className="list">
-        {userType === false && profileResult.bookings ? (
+        {!profileResult ? <SpinnerLoad /> : userType === false && profileResult.bookings ? (
           <>
             <BookingList
               upcomingBookings={upcomingBookings}
@@ -78,7 +74,7 @@ export default function MyList() {
                 <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2">
                   Recent
                 </div>
-                <div className="d-flex flex-row flex-wrap align-items-end justify-content-center">
+                <div className="card-container d-flex flex-row flex-wrap justify-content-center">
                   {profileResult.venues.length > 0 ? (
                     profileResult.venues.map((venue, index) => (
                       <VenueCard key={index} data={venue} />

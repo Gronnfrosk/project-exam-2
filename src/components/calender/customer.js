@@ -3,7 +3,6 @@ import "react-calendar/dist/Calendar.css";
 import Calendar from "react-calendar";
 import { Form } from "react-bootstrap";
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createBookingSchema } from "../../validations/schemas/booking";
@@ -24,7 +23,6 @@ function isSameDay(a, b) {
 }
 
 export default function CustomerCalender(props) {
-  const UserStatus = props.userStatus;
   const bookings = props.venueData.bookings;
   const maxGuests = props.venueData.maxGuests;
   const bookingID = props.venueData.id;

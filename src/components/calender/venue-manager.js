@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Calendar from "react-calendar";
-import "./react-calender.scss"; // assuming this is your stylesheet
+import "./react-calender.scss";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useFormattedDateTime } from "../../helpers/formatting/useFormatDates";
-import useAllVenues from "../../services/api/venues";
 
 export default function CalenderManager(props) {
-  const [bookings, setBookings] = useState(props.venueData.bookings);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedBookings, setSelectedBookings] = useState([]);
+  const bookings = props.venueData.bookings
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const bookingRefs = useRef({});
   const listContainerRef = useRef(null);

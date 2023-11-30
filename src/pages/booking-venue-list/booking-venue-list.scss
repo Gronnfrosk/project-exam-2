@@ -14,6 +14,11 @@ main.list {
     align-items: center;
   }
 
+  & .card-container {
+    align-items: flex-start;
+    min-height: 300px;
+  }
+
   & .booking-list {
     width: 100%;
     display: flex;

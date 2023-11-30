@@ -1,6 +1,7 @@
 import { API_URL_BOOKINGS } from "./constants.js";
 import { authFetch } from "./auth_fetch.js";
 
+
 export async function getBookingInfoApi(params) {
   const bookingUrl = API_URL_BOOKINGS + params;
 

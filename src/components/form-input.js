@@ -4,7 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 //import { EditAvatar } from "./buttons/button.styles";
 
 export function InputBase(props) {
-  const { placeholder, type, label, validation } = props;
+  const { placeholder, type, label } = props;
 
   return (
     <Form.Group

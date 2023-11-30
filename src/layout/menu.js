@@ -33,7 +33,7 @@ const divider = (
 );
 
 export function SideMenu(props) {
-  const { profileSuccess, userStatus, profile, handleState } = props;
+  const { profileSuccess, userStatus, handleState } = props;
   const [toggled, setToggled] = React.useState(false);
   const [urlInput, setUrlInput] = useState("");
   const {
@@ -91,7 +91,7 @@ export function SideMenu(props) {
   ];
 
   const navbarCustomer = [
-    { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" },
+    { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" }
     ,
     {
       name: "All bookings",
