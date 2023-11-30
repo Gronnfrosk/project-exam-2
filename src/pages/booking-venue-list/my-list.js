@@ -1,6 +1,6 @@
 import "./booking-venue-list.scss";
 import { Helmet } from "react-helmet-async";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useMemo } from 'react';
 import { load } from "../../utilities/save_load_remove_local_storage";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
 import VenueCard from "../../components/venue-card";
@@ -12,15 +12,13 @@ import { useBookingFilter } from "../../hooks/useBookingFilter";
 export default function MyList() {
   const [profileResult, setProfileResult] = useState(null);
   const [error, setError] = useState(null);
-  const userType = load("venueManager");
-  const profile = load("profile");
+  const profile = useMemo(() => load("profile"), []);
+  const userType = useMemo(() => load("venueManager"), []);
   const navigate = useNavigate();
-  // Call useBookingFilter at the top level
-  const { upcomingBookings, previousBookings } = useBookingFilter(
-    profileResult ? profileResult.bookings : [],
-  );
-
+  
   useEffect(() => {
+    console.log("useEffect called in MyList");
+
     const fetchData = async () => {
       if (!profile) {
         navigate("/");
@@ -42,7 +40,12 @@ export default function MyList() {
     };
 
     fetchData();
+    console.log({ userType, profile });
   }, [navigate, profile, userType]);
+
+const { upcomingBookings, previousBookings } = useBookingFilter(
+    profileResult ? profileResult.bookings : [],
+  );
 
   if (error) {
     return <ErrorLoad />;
