@@ -1,7 +1,7 @@
 import "./menu.scss";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { schemaAvatar } from "../validations/schemas/editAvatar";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -24,6 +24,7 @@ import { AvatarImg } from "../components/profile-avatar";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
 import { useBookingFilter } from "../hooks/useBookingFilter";
 import { EditAvatarApi } from "../services/api/profile";
+import { useProfileData } from "../hooks/useProfileData";
 
 const { UpcomingIcon, PreviousIcon, Total, CreateIcon, EditAvatar } =
   NavbarIcon();
@@ -33,7 +34,8 @@ const divider = (
 );
 
 export function SideMenu(props) {
-  const { profileSuccess, userStatus, handleState } = props;
+  const { userStatus, handleState, profile } = props;
+  const [profileSuccess, setProfileSuccess] = useState(null);
   const [toggled, setToggled] = React.useState(false);
   const [urlInput, setUrlInput] = useState("");
   const {
@@ -47,13 +49,24 @@ export function SideMenu(props) {
     profileSuccess ? profileSuccess.bookings : [],
   );
 
-  if (!profileSuccess || profileSuccess === null) {
+  const profileFetchedData = useProfileData(profile);
+
+//console.log("Hello")
+
+useEffect(() => {
+  if (profileFetchedData) {
+    setProfileSuccess(profileFetchedData);
+  }
+}, [profileFetchedData]);
+
+  if (!profileSuccess) {
     return (
       <Link to="login-register">
         <ButtonExpandNavbar userButton={userStatus} nav={"Login or register"} />
       </Link>
     );
   }
+  
   const { name, email, avatar, bookings, venueManager, _count } =
     profileSuccess || {};
   const venues = _count ? _count.venues : 0;
@@ -156,7 +169,7 @@ export function SideMenu(props) {
       <MenuItem
         key={name}
         icon={icon}
-        component={<Link to={link} onClick={() => setToggled(!toggled)} />}
+        component={<Link to={link} onClick={() => setToggled(prevToggled => !prevToggled)} />}
       >
         {name}
       </MenuItem>

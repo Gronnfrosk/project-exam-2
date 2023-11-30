@@ -1,11 +1,10 @@
 import "./home.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
 import useAllVenues from "../../services/api/venues";
 import { PrimaryButton } from "../../components/buttons/button.styles";
 import { BrandLogo } from "../../assets/brand/logo";
-//import { InputBase } from "../../components/form-input";
 import { InputIcons } from "../../assets/icons/icons";
 import { API_URL_VENUES } from "../../services/api/constants";
 import VenueCard from "../../components/venue-card";
@@ -17,16 +16,15 @@ const { SearchIcon } = InputIcons();
 
 function MainPage() {
   const [search, setSearch] = useState("");
-  const [count, setCounter] = useState(3);
-  const initialUrl = `${API_URL_VENUES}?limit=15&sort=created&sortOrder=desc`;
+  const [count, setCounter] = useState(12);
   const [url, setUrl] = useState(
-    `${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=asc`,
+    `${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=desc`,
   );
-  const [data, isLoading, isError] = useAllVenues(initialUrl);
+  const [data, isLoading, isError] = useAllVenues(url);
 
   const increase = () => {
     setCounter((count) => {
-      const newCount = count + 3;
+      const newCount = count + 9;
       setUrl(`${API_URL_VENUES}?limit=${newCount}&sort=created&sortOrder=desc`);
       return newCount;
     });

@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-//import { load } from '../utilities/save_load_remove_local_storage';
 import { ProfileInfoApi } from "../services/api/profile";
 import { sortBookings } from "../utilities/sort-bookings";
 
-export const useProfileData = (profile, setProfileSuccess) => {
+export const useProfileData = (profile) => {
+  const [profileData, setProfileData] = useState(null);
+
   useEffect(() => {
-    //const loadedProfile = load("profile");
     async function fetchProfileInfo() {
       try {
         const result = await ProfileInfoApi(profile.name, "?_bookings=true");
         if (result) {
-          setProfileSuccess({
+          setProfileData({
             ...result,
             bookings: sortBookings(result.bookings),
           });
@@ -21,9 +21,9 @@ export const useProfileData = (profile, setProfileSuccess) => {
     }
 
     if (profile && profile.name) {
-      fetchProfileInfo(profile);
+      fetchProfileInfo();
     }
+  }, [profile]);
 
-    //console.log()
-  }, [profile, setProfileSuccess]);
+  return profileData;
 };

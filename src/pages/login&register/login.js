@@ -40,7 +40,7 @@ export function LoginForm() {
 
   useEffect(() => {
     setModal(viewModal);
-  }, [formSuccess]);
+  }, [formSuccess, viewModal]);
 
   return (
     <>

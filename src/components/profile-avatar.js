@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { AvatarIcon } from "../assets/icons/icons";
-import mainTop from "../assets/images/pexels-luis-leon-2564463.jpg";
 
 export const AvatarDisplay = styled.div`
   &.span-btn {

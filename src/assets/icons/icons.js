@@ -1,4 +1,3 @@
-import { useTheme } from "styled-components";
 import { BsSun, BsPersonFill } from "react-icons/bs";
 import {
   FaFacebookSquare,
@@ -66,13 +65,11 @@ export function FooterIcons() {
 
 // Icons displayed with the contact information
 export function ContactIcons() {
-  const theme = useTheme();
-
   const phoneIcon = (
-    <FaPhoneAlt style={{ color: [theme.color.primary], fontSize: "1.25em" }} />
+    <FaPhoneAlt style={{ color: "var(--primary_color)", fontSize: "1.25em" }} />
   );
   const mailIcon = (
-    <FaEnvelope style={{ color: [theme.color.primary], fontSize: "1.4em" }} />
+    <FaEnvelope style={{ color: "var(--primary_color)", fontSize: "1.4em" }} />
   );
 
   return { phoneIcon, mailIcon };

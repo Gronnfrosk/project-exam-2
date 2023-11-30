@@ -1,5 +1,4 @@
 export const sortBookings = (bookings) => {
-  // Get the current date to compare with booking dates
   const today = new Date();
 
   // Filter upcoming bookings: those where 'dateFrom' is in the future
@@ -11,11 +10,8 @@ export const sortBookings = (bookings) => {
     (booking) => new Date(booking.dateFrom) < today,
   );
 
-  // Sort upcoming bookings by 'dateFrom' in ascending order
   upcomingBookings.sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
-  // Sort past bookings by 'dateFrom' in ascending order
   pastBookings.sort((a, b) => new Date(b.dateFrom) - new Date(a.dateFrom));
 
-  // Concatenate upcoming and past bookings arrays and return them
   return [...upcomingBookings, ...pastBookings];
 };

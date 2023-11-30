@@ -1,15 +1,26 @@
 import * as yup from "yup";
 
 export const updateVenueSchema = yup.object().shape({
-  name: yup.string().required("Name is required"),
-  description: yup.string().required("Description is required"),
+  name: yup
+  .string()
+  .min(10, "Your name should be at least 15 characters.")
+  .max(50, "Your name cannot be longer than 50 characters.")
+  .required("Name is required"),
+  description: yup
+  .string()
+  .min(20, "Your description should be at least 20 characters.")
+  .max(500, "Your description cannot be longer than 500 characters.")
+  .required("Description is required"),
   maxGuests: yup
-    .number()
-    .required("Max guests is required")
-    .positive("Max guests must be a positive number"),
+  .number()
+  .typeError("Max guests must be a number")
+  .moreThan(0, "Number of guests must be more than 0")
+  .integer("Number of guests must be an integer")
+  .required("Max guests is required"),
   price: yup
     .number()
     .required("Price is required")
+    .max(100000000, "Price must be less")
     .positive("Price must be a positive number"),
   rating: yup
     .number()

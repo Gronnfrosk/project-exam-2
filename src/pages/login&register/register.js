@@ -13,7 +13,6 @@ import viewRegisterModal from "../../components/modal/Register";
 export function RegisterForm({ change }) {
   const [userType, setUserType] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
-  const [passConfirm, setConfirmPass] = useState("");
   const [modal, setModal] = useState("");
   const viewModal = viewRegisterModal(formSuccess, change);
 
@@ -44,7 +43,7 @@ export function RegisterForm({ change }) {
 
   useEffect(() => {
     setModal(viewModal);
-  }, [formSuccess]);
+  }, [formSuccess, viewModal]);
 
   return (
     <>
@@ -72,11 +71,11 @@ export function RegisterForm({ change }) {
                   type={type}
                   autocomplete={autocomplete}
                   validate={register}
-                  onChange={
-                    title === "Confirm"
-                      ? (e) => setConfirmPass(e.target.value)
-                      : ""
-                  }
+                  // onChange={
+                  //  title === "Confirm"
+                  //    ? (e) => setConfirmPass(e.target.value)
+                  //    : ""
+                  //}
                 />
                 <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
                   {validating}

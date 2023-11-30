@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Theme from "./theme";
 import GlobalLayout from "./layout/global";
 import Home from "./pages/home/home";
 import SpecificVenuePage from "./pages/specific/specific-venue";
@@ -26,7 +25,6 @@ function App() {
             <meta name="keywords" content="Booking, Venues, Travel, Holiday" />
           </Helmet>
           <ThemeMode />
-          <Theme>
             <ScrollPage />
             <Routes>
               <Route path="/" element={<GlobalLayout />}>
@@ -43,7 +41,6 @@ function App() {
                 <Route path="/*" element={<SpecificVenuePage />} />
               </Route>
             </Routes>
-          </Theme>
         </BrowserRouter>
       </div>
     </HelmetProvider>

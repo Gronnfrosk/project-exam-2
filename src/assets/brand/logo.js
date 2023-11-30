@@ -1,9 +1,6 @@
 import { LogoIcon } from "../icons/icons";
-import { useTheme } from "styled-components";
 
 export function BrandLogo() {
-  const theme = useTheme();
-
   return (
     <div
       className="logo-container"
@@ -18,7 +15,7 @@ export function BrandLogo() {
     >
       <LogoIcon
         style={{
-          color: `${theme.color.primary}`,
+          color: `var(--primary_color)`,
           fontSize: "1em",
           marginRight: "5px",
         }}

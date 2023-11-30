@@ -15,6 +15,7 @@ export const createVenueSchema = yup.object({
     .number()
     .typeError("Price must be a number")
     .positive("Price must be positive")
+    .max(100000000, "Price must be less")
     .required("Price is required"),
   maxGuests: yup
     .number()
