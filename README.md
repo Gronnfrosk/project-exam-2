@@ -1,7 +1,7 @@
-# Holidaze - Booking site study project
+# Holidaze - Booking site for study project
 
 ## Project overview
-Holidaze is suppose to be a modern front-end accommodation booking application developed for a newly launched site. It features a dual-interface catering to both customers and venue managers. Customers can book holidays, view venues, and manage their bookings, while venue managers can register, manage venues, and oversee bookings. 
+Holidaze is suppose to be a modern front-end accommodation booking application developed for a newly launched site. It features a dual-interface catering to both customers and venue managers. Customers can book holidays, view venues, and manage their bookings, while venue managers can register, manage venues, and oversee bookings. Please note that Holidaze is not a real company and is only used as an example for my project assignment.
  
  ### Key Features
 - View a list of venues.
