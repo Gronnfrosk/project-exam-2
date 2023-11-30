@@ -59,3 +59,15 @@ html {
     background: #555;
   }
 }
+
+
+//To hide the number input arrows in an HTML <input type="number">
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

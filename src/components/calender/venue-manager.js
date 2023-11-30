@@ -84,16 +84,21 @@ export default function CalenderManager(props) {
   };
 
   return (
-    <div className="venue-manager d-flex">
+    <div className="venue-manager d-flex column-gap-3 flex-wrap justify-content-center">
+        <div className="text-center mb-2">
+        <h2 className="fw-bold text-center mb-2">Bookings at this venue</h2>
+      <p>Click the booked date in calendar to find more details in the list.</p></div>
       <Calendar onClickDay={onClickDay} tileClassName={tileClassName} />
       <div
         ref={listContainerRef}
         className="scrollable-container"
         style={{
-          height: "275px",
-          overflowY: "auto",
-          marginTop: "20px",
-          scrollBehavior: "smooth",
+            width: "360px",
+            height: "275px",
+             overflowY: "auto",
+             marginTop: "20px",
+             padding: "0 10px",
+             scrollBehavior: "smooth",
         }}
       >
         <ListGroup style={{ display: "flex", flexDirection: "column-reverse" }}>
