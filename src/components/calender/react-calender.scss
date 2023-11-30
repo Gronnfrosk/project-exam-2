@@ -160,6 +160,13 @@
     background: #f8f8fa;
   }
 
+  & .react-calendar__tile--now {
+    background: var(--third_color) !important;
+    font-weight: 800 !important;
+    color: black !important;
+    border-radius: 0px !important;
+  }
+
   .react-calendar__tile--active {
     background: var(--body_backgroundColor) !important;
     border-radius: 0;
@@ -171,6 +178,7 @@
   & .react-calendar__tile--active:enabled:focus {
     background: var(--body_backgroundColor) !important;
     color: white !important;
+
   }
 
   & .react-calendar {
@@ -182,6 +190,15 @@
       &:hover {
         color: white !important;
         background-color: var(--body_backgroundColor) !important;
+      }
+    }
+
+    & .react-calendar__tile--disabled,
+    .react-calendar__tile:not(.booked-date) {
+      cursor: default;
+
+      &:hover {
+        font-weight: normal !important;
       }
     }
   }

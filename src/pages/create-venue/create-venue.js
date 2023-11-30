@@ -129,7 +129,7 @@ export default function CreateVenue() {
               ))}
             </div>
           </div>
-          <div className="divider mx-4"></div>
+          <div className="divider mx-4 my-4"></div>
           <div className="location-section">
             <h4>Location:</h4>
             {locationInputs.map((input) => {
@@ -177,7 +177,7 @@ export default function CreateVenue() {
               </div>
             ))}
           </div>
-          <div className="divider mx-4"></div>
+          <div className="divider mx-4 my-4"></div>
           <PrimaryButton
             display={"block"}
             className="m-auto btn btn-animate mb-4"

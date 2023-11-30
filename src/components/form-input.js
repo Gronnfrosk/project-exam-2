@@ -57,7 +57,7 @@ export function InputForm(props) {
           placeholder={placeholder}
           aria-label={title}
           aria-describedby="basic-addon1"
-          className="rounded-end-pill shadow-sm"
+          className="rounded-end-pill shadow-sm scrollable-container"
           type={type}
           autoComplete={autocomplete}
           onChange={onChange}
