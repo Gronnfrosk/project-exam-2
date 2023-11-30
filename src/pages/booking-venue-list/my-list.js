@@ -15,18 +15,19 @@ export default function MyList() {
   const userType = load("venueManager");
   const profile = load("profile");
   const navigate = useNavigate();
+  // Call useBookingFilter at the top level
   const { upcomingBookings, previousBookings } = useBookingFilter(
     profileResult ? profileResult.bookings : [],
   );
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        if (!profile) {
-          navigate("/");
-          return;
-        }
+      if (!profile) {
+        navigate("/");
+        return;
+      }
 
+      try {
         const params =
           userType === false
             ? "?_bookings=true&_sort=created&sortOrder=desc"
@@ -61,7 +62,7 @@ export default function MyList() {
             <BookingList
               upcomingBookings={upcomingBookings}
               previousBookings={previousBookings}
-              profileResult={upcomingBookings}
+              profileResult={profileResult.bookings}
             />
           </>
         ) : userType === true && profileResult.venues ? (

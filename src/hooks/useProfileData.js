@@ -6,10 +6,12 @@ export const useProfileData = (profile) => {
   const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
+    let isMounted = true; 
+
     async function fetchProfileInfo() {
       try {
         const result = await ProfileInfoApi(profile.name, "?_bookings=true");
-        if (result) {
+        if (result && isMounted) {
           setProfileData({
             ...result,
             bookings: sortBookings(result.bookings),
@@ -23,7 +25,11 @@ export const useProfileData = (profile) => {
     if (profile && profile.name) {
       fetchProfileInfo();
     }
-  }, [profile]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [profile.name, profile]); 
 
   return profileData;
 };
