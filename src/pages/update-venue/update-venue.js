@@ -40,29 +40,28 @@ export default function UpdateVenue() {
 
   useEffect(() => {
     if (venueData) {
-      setValue('name', venueData.name);
-      setValue('description', venueData.description);
-      setValue('maxGuests', venueData.maxGuests);
-      setValue('price', venueData.price);
-      setValue('rating', venueData.rating);
-  
+      setValue("name", venueData.name);
+      setValue("description", venueData.description);
+      setValue("maxGuests", venueData.maxGuests);
+      setValue("price", venueData.price);
+      setValue("rating", venueData.rating);
+
       if (venueData.location) {
-        setValue('address', venueData.location.address);
-        setValue('city', venueData.location.city);
-        setValue('zip', venueData.location.zip);
-        setValue('country', venueData.location.country);
+        setValue("address", venueData.location.address);
+        setValue("city", venueData.location.city);
+        setValue("zip", venueData.location.zip);
+        setValue("country", venueData.location.country);
       }
-  
+
       if (venueData.meta) {
-        setValue('breakfast', venueData.meta.breakfast);
-        setValue('parking', venueData.meta.parking);
-        setValue('pets', venueData.meta.pets); 
-        setValue('wifi', venueData.meta.wifi);
+        setValue("breakfast", venueData.meta.breakfast);
+        setValue("parking", venueData.meta.parking);
+        setValue("pets", venueData.meta.pets);
+        setValue("wifi", venueData.meta.wifi);
       }
-  
+
       setImageUrls(venueData.media || []);
     }
-
   }, [venueData, setValue]);
 
   const handleInputChange = async (e) => {

@@ -13,7 +13,6 @@ import { InputForm } from "../form-input";
 import ListGroup from "react-bootstrap/ListGroup";
 import { createBooking } from "../../services/api/booking";
 
-
 function isSameDay(a, b) {
   return a.toDateString() === b.toDateString();
 }
@@ -49,7 +48,7 @@ export default function ReactCalender(props) {
       );
     }
   }
- 
+
   const minDate = useMemo(() => new Date(), []);
   const maxDate = useMemo(
     () => new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
@@ -58,23 +57,22 @@ export default function ReactCalender(props) {
 
   return (
     <div className="user-calendar text-center flex-column justify-content-center">
-        <h2 className="fw-bold  mb-2">
-            Start booking today
-          </h2>
-          <p>Available bookings are shown in calendar below.</p>
-        <Calendar
+      <h2 className="fw-bold  mb-2">Start booking today</h2>
+      <p>Available bookings are shown in calendar below.</p>
+      <Calendar
         className="user"
         view="month"
         minDate={minDate}
         maxDate={maxDate}
         tileDisabled={tileDisabled}
-        />
-        <Link to="/login-register" className="text-center">
-          <ButtonExpandNavbar
-            custom={"Login or register"}
-            color={false}
-            arrow={"black"}
-          /> </Link>
-    </div>       
+      />
+      <Link to="/login-register" className="text-center">
+        <ButtonExpandNavbar
+          custom={"Login or register"}
+          color={false}
+          arrow={"black"}
+        />{" "}
+      </Link>
+    </div>
   );
 }

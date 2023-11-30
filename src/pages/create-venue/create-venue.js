@@ -5,13 +5,13 @@ import "./create-edit-venue.scss";
 import { InputForm } from "../../components/form-input";
 import { createVenueSchema } from "../../validations/schemas/create-venue";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { createInputs, amenitiesInputs, locationInputs } from "./create-update-fields";
-import { PrimaryButton } from "../../components/buttons/button.styles";
 import {
-  Container,
-  Form,
-  InputGroup,
-} from "react-bootstrap";
+  createInputs,
+  amenitiesInputs,
+  locationInputs,
+} from "./create-update-fields";
+import { PrimaryButton } from "../../components/buttons/button.styles";
+import { Container, Form, InputGroup } from "react-bootstrap";
 import { createVenue } from "../../services/api/create-venues";
 import { useNavigate } from "react-router-dom";
 

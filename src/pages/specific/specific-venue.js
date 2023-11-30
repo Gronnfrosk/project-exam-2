@@ -22,8 +22,8 @@ import { ModalInfo } from "../../components/modal/modal";
 import loginManagerSuccessSVG from "../../assets/images/login-manager";
 
 function SpecificVenuePage() {
-  const profile = load("profile")
-  const userStatus = load("venueManager")
+  const profile = load("profile");
+  const userStatus = load("venueManager");
   const navigate = useNavigate();
   const params = useParams();
   const urlBase = `${API_URL_VENUES}/${params.id}`;
@@ -32,11 +32,11 @@ function SpecificVenuePage() {
   const [modal, setModal] = useState(false);
 
   const handleEditClick = () => {
-    navigate(`/update-venue/${params.id}`); 
+    navigate(`/update-venue/${params.id}`);
   };
 
   const handleDelete = () => {
-    setModal(!modal); 
+    setModal(!modal);
   };
 
   const closeModal = () => {
@@ -46,13 +46,13 @@ function SpecificVenuePage() {
   const handleDeleteVenue = async () => {
     try {
       await deleteVenue(params.id);
-      console.log('Venue deleted successfully');
-      navigate('/my-list');
+      console.log("Venue deleted successfully");
+      navigate("/my-list");
     } catch (error) {
       // This block handles any errors that occur during deletion.
-      console.error('Error deleting venue:', error);
-      alert('Error deleting venue: ' + error.message);
-      setModal(false); 
+      console.error("Error deleting venue:", error);
+      alert("Error deleting venue: " + error.message);
+      setModal(false);
     }
   };
 
@@ -115,24 +115,33 @@ function SpecificVenuePage() {
               <div className="this-rating ms-2">{data.rating}/</div>
               <div className="max-rating">5</div>
             </div>
-            {profile.name === data.owner.name ?
-            <div className="user-feature">
-              <EditVenueBtn title="Edit venue" onClick={handleEditClick}>{EditIcon}</EditVenueBtn>
-              <DeleteVenueBtn title="Delete venue" onClick={handleDelete}>{DeleteIcon}</DeleteVenueBtn>
-            
-            {modal && <ModalInfo
-              userSuccess={"/"}
-              confirmDelete={true}
-              closeModal={closeModal}
-              onConfirmDelete={handleDeleteVenue}
-              showModalText={
-                <div className="d-flex flex-column text-center">
-                  {loginManagerSuccessSVG}
-                </div>
-              }
-              ModalTitle={"Are you sure you want to delete this venue?"}
-            />}
-            </div> : ""}
+            {profile.name === data.owner.name ? (
+              <div className="user-feature">
+                <EditVenueBtn title="Edit venue" onClick={handleEditClick}>
+                  {EditIcon}
+                </EditVenueBtn>
+                <DeleteVenueBtn title="Delete venue" onClick={handleDelete}>
+                  {DeleteIcon}
+                </DeleteVenueBtn>
+
+                {modal && (
+                  <ModalInfo
+                    userSuccess={"/"}
+                    confirmDelete={true}
+                    closeModal={closeModal}
+                    onConfirmDelete={handleDeleteVenue}
+                    showModalText={
+                      <div className="d-flex flex-column text-center">
+                        {loginManagerSuccessSVG}
+                      </div>
+                    }
+                    ModalTitle={"Are you sure you want to delete this venue?"}
+                  />
+                )}
+              </div>
+            ) : (
+              ""
+            )}
             <div className="rating">
               Max guests:{" "}
               <div className="fw-bold ms-2 me-3">{data.maxGuests}</div>
@@ -214,9 +223,13 @@ function SpecificVenuePage() {
           </div>
         </section>
         <section className="part-4 mt-5">
-        {userStatus === false ? <CustomerCalender userStatus={userStatus} venueData={data} /> : 
-        userStatus === true ? <CalenderManager userStatus={userStatus} venueData={data} /> : 
-        <ReactCalender userStatus={userStatus} venueData={data} />}
+          {userStatus === false ? (
+            <CustomerCalender userStatus={userStatus} venueData={data} />
+          ) : userStatus === true ? (
+            <CalenderManager userStatus={userStatus} venueData={data} />
+          ) : (
+            <ReactCalender userStatus={userStatus} venueData={data} />
+          )}
         </section>
       </main>
     </>

@@ -13,10 +13,13 @@ export function ModalInfo(props) {
     registerSuccess,
     bookingSuccess,
     onConfirmDelete,
-    closeModal
+    closeModal,
   } = props;
   const [show, setShow] = useState(true);
-  const handleClose = () => {setShow(false); closeModal()}
+  const handleClose = () => {
+    setShow(false);
+    closeModal();
+  };
   let navigate = useNavigate();
   const routeChange = () => {
     navigate(userSuccess);
@@ -38,10 +41,15 @@ export function ModalInfo(props) {
 
   const deleteBtns = (
     <div className="d-flex flex-row gap-3 w-100 justify-content-center">
-      <PrimaryButton onClick={handleClose}>
-        Cancel
-      </PrimaryButton>
-      <PrimaryButton display={"block"} onClick={handleDelete} style={{backgroundColor: "white", border: "2px solid var(--third_color)"}}>
+      <PrimaryButton onClick={handleClose}>Cancel</PrimaryButton>
+      <PrimaryButton
+        display={"block"}
+        onClick={handleDelete}
+        style={{
+          backgroundColor: "white",
+          border: "2px solid var(--third_color)",
+        }}
+      >
         Delete
       </PrimaryButton>
     </div>
@@ -70,7 +78,8 @@ export function ModalInfo(props) {
     </Button>
   );
 
-  const modalButton = onConfirmDelete ? deleteBtns
+  const modalButton = onConfirmDelete
+    ? deleteBtns
     : userError
     ? closeBtn
     : bookingSuccess && userSuccess

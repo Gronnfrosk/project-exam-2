@@ -79,10 +79,15 @@ export default function MyList() {
                   Recent
                 </div>
                 <div className="d-flex flex-row flex-wrap align-items-end justify-content-center">
-
-                  { profileResult.venues.length > 0 ? profileResult.venues.map((venue, index) => (
-                    <VenueCard key={index} data={venue} />
-                  )) : <div className="empty-list">You have no venues at the moment</div>}
+                  {profileResult.venues.length > 0 ? (
+                    profileResult.venues.map((venue, index) => (
+                      <VenueCard key={index} data={venue} />
+                    ))
+                  ) : (
+                    <div className="empty-list">
+                      You have no venues at the moment
+                    </div>
+                  )}
                 </div>
               </div>
             </section>

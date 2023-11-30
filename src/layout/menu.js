@@ -92,16 +92,17 @@ export function SideMenu(props) {
 
   const navbarCustomer = [
     { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" },
-   ,
+    ,
     {
       name: "All bookings",
       icon: Total,
       link: "/my-list#previous-bookings",
-    }, {
+    },
+    {
       name: "Previous bookings",
       icon: PreviousIcon,
       link: "/my-list#total-bookings",
-    }
+    },
   ];
 
   const navbarManagerProfile = [
@@ -181,7 +182,7 @@ export function SideMenu(props) {
               "&:hover": {
                 backgroundColor: "var(--body_backgroundColor)",
                 borderLeft: "6px solid var(--body_color)",
-                transition: "border 0.3s ease-in-out"
+                transition: "border 0.3s ease-in-out",
               },
             },
           }}

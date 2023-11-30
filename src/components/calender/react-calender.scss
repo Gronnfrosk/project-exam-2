@@ -154,7 +154,6 @@
 }
 
 .venue-manager {
-
   & .react-calendar__tile--hasActive:enabled:hover,
   & .react-calendar__tile--hasActive:enabled:focus {
     background: #f8f8fa;
@@ -178,12 +177,10 @@
   & .react-calendar__tile--active:enabled:focus {
     background: var(--body_backgroundColor) !important;
     color: white !important;
-
   }
 
   & .react-calendar {
     & .booked-date {
-
       background-color: var(--primary_color);
       transition: all 0.3s ease-in-out;
 

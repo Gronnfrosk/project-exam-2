@@ -117,83 +117,77 @@ export default function CustomerCalender(props) {
 
   return (
     <div className="booking-form mt-4 text-center">
-      <h2 className="fw-bold  mb-2">
-            Start booking today
-          </h2>
-          <p>Available bookings are shown in calendar below.</p>
-          <Form onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <Calendar
-                className="costumer"
-                view="month"
-                minDate={minDate}
-                maxDate={maxDate}
-                onChange={setDate}
-                selectRange={true}
-                tileDisabled={tileDisabled}
-              />
-            </div>
-            <div className="form">
-              <ListGroup as="ul">
-                <ListGroup.Item as="li" className="list-top text-center">
-                  Selected booking period
-                </ListGroup.Item>
-                <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between px-4"
-                >
-                  Check-in:{" "}
-                  <div>
-                    {date[0]
-                      ? date[0].toLocaleDateString("en-GB")
-                      : " dd/mm/yyyy"}
-                  </div>
-                </ListGroup.Item>
-                <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between px-4"
-                >
-                  Check-out:{" "}
-                  <div>
-                    {date[1]
-                      ? date[1].toLocaleDateString("en-GB")
-                      : " dd/mm/yyyy"}
-                  </div>
-                </ListGroup.Item>
-                <ListGroup.Item
-                  as="li"
-                  className="d-flex justify-content-between px-4"
-                >
-                  Duration:{" "}
-                  <div>
-                    {date.length > 1 ? dateCalc(date[0], date[1]) : "0 days"}
-                  </div>
-                </ListGroup.Item>
-              </ListGroup>
-              {dateError}
-              <Form.Group>
-                <InputForm
-                  name={"Guests"}
-                  title={"guests"}
-                  placeholder={"0"}
-                  type={"number"}
-                  validate={register}
-                />
-                <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
-                  {errors.guests?.message}
-                </Form.Text>
-              </Form.Group>
-              <div className="mt-4 text-center">
-                <ButtonExpandNavbar
-                  custom={"Place booking"}
-                  color={false}
-                  arrow={"black"}
-                  type={"submit"}
-                />
+      <h2 className="fw-bold  mb-2">Start booking today</h2>
+      <p>Available bookings are shown in calendar below.</p>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <Calendar
+            className="costumer"
+            view="month"
+            minDate={minDate}
+            maxDate={maxDate}
+            onChange={setDate}
+            selectRange={true}
+            tileDisabled={tileDisabled}
+          />
+        </div>
+        <div className="form">
+          <ListGroup as="ul">
+            <ListGroup.Item as="li" className="list-top text-center">
+              Selected booking period
+            </ListGroup.Item>
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between px-4"
+            >
+              Check-in:{" "}
+              <div>
+                {date[0] ? date[0].toLocaleDateString("en-GB") : " dd/mm/yyyy"}
               </div>
-            </div>
-          </Form>
-          {modal}
+            </ListGroup.Item>
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between px-4"
+            >
+              Check-out:{" "}
+              <div>
+                {date[1] ? date[1].toLocaleDateString("en-GB") : " dd/mm/yyyy"}
+              </div>
+            </ListGroup.Item>
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between px-4"
+            >
+              Duration:{" "}
+              <div>
+                {date.length > 1 ? dateCalc(date[0], date[1]) : "0 days"}
+              </div>
+            </ListGroup.Item>
+          </ListGroup>
+          {dateError}
+          <Form.Group>
+            <InputForm
+              name={"Guests"}
+              title={"guests"}
+              placeholder={"0"}
+              type={"number"}
+              validate={register}
+            />
+            <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
+              {errors.guests?.message}
+            </Form.Text>
+          </Form.Group>
+          <div className="mt-4 text-center">
+            <ButtonExpandNavbar
+              custom={"Place booking"}
+              color={false}
+              arrow={"black"}
+              type={"submit"}
+            />
+          </div>
+        </div>
+      </Form>
+      {modal}
     </div>
   );
 }
