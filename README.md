@@ -1,23 +1,41 @@
-# Getting Started with Create React App
+# Holidaze - Booking site study project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project overview
+Holidaze is suppose to be a modern front-end accommodation booking application developed for a newly launched site. It features a dual-interface catering to both customers and venue managers. Customers can book holidays, view venues, and manage their bookings, while venue managers can register, manage venues, and oversee bookings. 
+ 
+ ### Key Features
+- View a list of venues.
+- Search for specific venues.
+- View venue details and available dates.
+- Register and login with a stud.noroff.no email
+ 1.	**Customer-Facing Features**
+      - Register and view bookings (upcomming, total and previous bookings).
+      - Update user profile avatar.
+2.	**Venue-manager-Facing features**
+      - Venue management (create, update, delete).
+      - View bookings on venue.
+      - Update user profile avatar.
 
-## Available Scripts
+## Built With
 
-In the project directory, you can run:
+- [React](https://react.dev/)
+- [Bootstrap v.5.2.3](https://getbootstrap.com)
+- [SASS/SCSS v.1.62.0](https://sass-lang.com/)
+- [Prettier](https://prettier.io/)
+- [react-hook-form](https://www.npmjs.com/package/react-hook-form)
+- [yup](https://www.npmjs.com/package/yup)
 
-### `npm start`
-
-Runs the app in the development mode.\
+## Getting Started
+1. Clone the repo through github website or CLI command:
+```
+[git clone https://github.com/Gronnfrosk/Ja](https://github.com/Gronnfrosk/JavaScript-CA.git)
+```
+2. Run ```npm install``` to install all dependencies.
+3. Write ```npm run start``` to start runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You can format code with th extencien of Prettier or type:
+ ```npm run format```
 
 ### `npm run build`
 
@@ -29,42 +47,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Acknowledgments
+- Noroff School
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
