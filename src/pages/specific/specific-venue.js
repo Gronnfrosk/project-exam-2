@@ -7,7 +7,9 @@ import { VenueCardIcons, SpecificIcons } from "../../assets/icons/icons";
 import Carousel from "react-bootstrap/Carousel";
 import Image from "react-bootstrap/Image";
 import { AvatarImg } from "../../components/profile-avatar";
-import ReactCalender from "../../components/calender/customer";
+import ReactCalender from "../../components/calender/user";
+import CustomerCalender from "../../components/calender/customer";
+import CalenderManager from "../../components/calender/venue-manager";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   EditVenueBtn,
@@ -21,6 +23,7 @@ import loginManagerSuccessSVG from "../../assets/images/login-manager";
 
 function SpecificVenuePage() {
   const profile = load("profile")
+  const userStatus = load("venueManager")
   const navigate = useNavigate();
   const params = useParams();
   const urlBase = `${API_URL_VENUES}/${params.id}`;
@@ -211,10 +214,9 @@ function SpecificVenuePage() {
           </div>
         </section>
         <section className="part-4 mt-5">
-          <h2 className="fw-bold text-center mb-2 text-center position-relative">
-            Start booking today
-          </h2>
-          <ReactCalender userStatus={false} venueData={data} />
+        {userStatus === false ? <CustomerCalender userStatus={userStatus} venueData={data} /> : 
+        userStatus === true ? <CalenderManager userStatus={userStatus} venueData={data} /> : 
+        <ReactCalender userStatus={userStatus} venueData={data} />}
         </section>
       </main>
     </>

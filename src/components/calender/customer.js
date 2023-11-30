@@ -23,7 +23,7 @@ function isSameDay(a, b) {
   return a.toDateString() === b.toDateString();
 }
 
-export default function ReactCalender(props) {
+export default function CustomerCalender(props) {
   const UserStatus = props.userStatus;
   const bookings = props.venueData.bookings;
   const maxGuests = props.venueData.maxGuests;
@@ -116,17 +116,11 @@ export default function ReactCalender(props) {
   }, [formSuccess]);
 
   return (
-    <div className="booking-form column-gap-5 mt-4">
-      {UserStatus === null ? (
-        <Link to="/login-register">
-          <ButtonExpandNavbar
-            custom={"Login or register to place booking"}
-            color={false}
-            arrow={"black"}
-          />
-        </Link>
-      ) : (
-        <>
+    <div className="booking-form mt-4 text-center">
+      <h2 className="fw-bold  mb-2">
+            Start booking today
+          </h2>
+          <p>Available bookings are shown in calendar below.</p>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <Calendar
@@ -200,8 +194,6 @@ export default function ReactCalender(props) {
             </div>
           </Form>
           {modal}
-        </>
-      )}
     </div>
   );
 }

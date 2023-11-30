@@ -1,6 +1,7 @@
 .specific {
   max-width: 800px;
   margin: auto;
+  overflow: hidden;
 
   & .part-1 {
     max-width: 625px;
@@ -9,6 +10,7 @@
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+
 
     & .carousel {
       height: 400px;
@@ -101,7 +103,7 @@
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 25px;
+    gap: 20px;
     max-width: 500px;
     margin-top: 30px;
     padding: 0 10px;
@@ -172,11 +174,6 @@
 
   & .part-4 {
     margin-bottom: 50px;
-
-    & button.span-btn {
-      //width: 12rem;
-      width: 20rem;
-    }
 
     & form .gsahwO.span-btn {
       width: 12rem;
