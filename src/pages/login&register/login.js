@@ -13,7 +13,6 @@ import viewLoginModal from "../../components/modal/login";
 export function LoginForm() {
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
-  const viewModal = viewLoginModal(formSuccess);
 
   const {
     register,
@@ -35,12 +34,12 @@ export function LoginForm() {
 
     const result = await promiseAwait;
     setFormSuccess(result);
-    setModal(viewModal);
+    setModal(viewLoginModal(formSuccess));
   }
 
   useEffect(() => {
-    setModal(viewModal);
-  }, [formSuccess, viewModal]);
+    setModal(viewLoginModal(formSuccess));
+  }, [formSuccess]);
 
   return (
     <>

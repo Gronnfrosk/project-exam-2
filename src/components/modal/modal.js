@@ -13,12 +13,10 @@ export function ModalInfo(props) {
     registerSuccess,
     bookingSuccess,
     onConfirmDelete,
-    closeModal,
   } = props;
   const [show, setShow] = useState(true);
   const handleClose = () => {
     setShow(false);
-    closeModal();
   };
   let navigate = useNavigate();
   const routeChange = () => {
