@@ -12,7 +12,6 @@ export const ButtonExpand = styled.button`
   padding: 0;
   font-size: inherit;
   font-family: inherit;
-  font-weight: bold;
 
   &.span-btn {
     width: 12rem;

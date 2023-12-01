@@ -4,14 +4,18 @@ import BookingItem from "../../components/booking-list-card";
 
 export default function BookingList(props) {
   const { upcomingBookings, previousBookings, profileResult } = props;
-  const [openItemId, setOpenItemId] = useState(null);
+  const [openItem, setOpenItem] = useState({ id: null, section: null });
 
   if (!profileResult) {
     return <ErrorLoad />;
   }
 
-  const toggleCollapse = (id) => {
-    setOpenItemId(openItemId === id ? null : id);
+  const toggleCollapse = (id, section) => {
+    if (openItem.id === id && openItem.section === section) {
+      setOpenItem({ id: null, section: null }); // Close if it's the same booking
+    } else {
+      setOpenItem({ id: id, section: section }); // Open the clicked booking
+    }
   };
 
   return (
@@ -42,8 +46,8 @@ export default function BookingList(props) {
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
-                      isOpen={openItemId === booking.id}
-                      toggle={() => toggleCollapse(booking.id)}
+                      isOpen={openItem.id === booking.id && openItem.section === 'upcoming'}
+                      toggle={() => toggleCollapse(booking.id, 'upcoming')}
                     />
                   </div>
                 ))}
@@ -70,8 +74,8 @@ export default function BookingList(props) {
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
-                      isOpen={openItemId === booking.id}
-                      toggle={() => toggleCollapse(booking.id)}
+                      isOpen={openItem.id === booking.id && openItem.section === 'total'}
+                      toggle={() => toggleCollapse(booking.id, 'total')}
                     />
                   </div>
                 ))}
@@ -101,8 +105,8 @@ export default function BookingList(props) {
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
-                      isOpen={openItemId === booking.id}
-                      toggle={() => toggleCollapse(booking.id)}
+                      isOpen={openItem.id === booking.id && openItem.section === 'previous'}
+                      toggle={() => toggleCollapse(booking.id, 'previous')}
                     />
                   </div>
                 ))}

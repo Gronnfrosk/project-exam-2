@@ -4,7 +4,7 @@ import VenueCard from "./venue-card";
 import {
   useFormattedDateTime,
   useFormattedDate,
-} from "../helpers/formatting/useFormatDates"; // Import hooks correctly
+} from "../utilities/formatting/useFormatDates"; // Import hooks correctly
 import Collapse from "react-bootstrap/Collapse";
 import Button from "react-bootstrap/Button";
 

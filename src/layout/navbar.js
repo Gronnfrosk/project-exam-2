@@ -69,7 +69,11 @@ console.log("Navbar")
           </Link>
         )}
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav></Nav>
+          <Nav className="border-start ms-3">
+            <NavLink to="/my-list" className="ms-3 text-decoration-none text-white fs-6">
+              {userStatus=== false ? "Bookings" : userStatus === true ? "Venues" : ""}
+            </NavLink>
+            </Nav>
         </Navbar.Collapse>
         <NavLink
           to="/"

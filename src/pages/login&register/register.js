@@ -7,7 +7,7 @@ import { schemaRegister } from "../../validations/schemas/login-regstration";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerInputs } from "./input-fields";
 import { RegisterProfile } from "../../services/auth/register";
-import { lowerize } from "../../helpers/formatting/lowercase";
+import { lowerize } from "../../utilities/formatting/lowercase";
 import viewRegisterModal from "../../components/modal/Register";
 
 export function RegisterForm({ change }) {
@@ -71,11 +71,6 @@ export function RegisterForm({ change }) {
                   type={type}
                   autocomplete={autocomplete}
                   validate={register}
-                  // onChange={
-                  //  title === "Confirm"
-                  //    ? (e) => setConfirmPass(e.target.value)
-                  //    : ""
-                  //}
                 />
                 <Form.Text className="d-block text-danger fw-bold ps-5 mb-3">
                   {validating}

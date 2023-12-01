@@ -2,7 +2,7 @@ import "./venue-card.scss";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import { VenueCardIcons } from "../assets/icons/icons";
-import { useTextLessener } from "../helpers/formatting/textSlice";
+import { useTextLessener } from "../utilities/formatting/textSlice";
 
 export default function VenueCard(props) {
   const { WifiIcon, ParkIcon, BreakfastIcon, PetIcon } = VenueCardIcons();

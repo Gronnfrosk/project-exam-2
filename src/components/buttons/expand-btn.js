@@ -18,8 +18,8 @@ export function ButtonExpandNavbar(props) {
   } = props;
 
   //const colorSett = nav ? "var(--body_color)" : customer ? theme.customer.primary : manager ? theme.manager.primary : theme.manager.primary
-  const blueBtn = "var(--primary_color)";
-  const orangeBtn = "var(--primary_color)";
+  const blueBtn = "var(--secondary_color)";
+  const orangeBtn = "var(--third_color)";
   const colorBtn =
     color === true
       ? orangeBtn

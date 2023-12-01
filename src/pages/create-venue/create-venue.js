@@ -182,7 +182,6 @@ export default function CreateVenue() {
             display={"block"}
             className="m-auto btn btn-animate mb-4"
             type="submit"
-            //onClick={() => handleState(null, true)}
           >
             Create Venue
           </PrimaryButton>

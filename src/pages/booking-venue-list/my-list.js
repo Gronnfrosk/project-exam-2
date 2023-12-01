@@ -59,6 +59,7 @@ const { upcomingBookings, previousBookings } = useBookingFilter(
         </title>
         <meta name="description" content="Profile inventory list" />
       </Helmet>
+      
       <main className="list">
         {!profileResult ? <SpinnerLoad /> : userType === false && profileResult.bookings ? (
           <>
@@ -78,7 +79,7 @@ const { upcomingBookings, previousBookings } = useBookingFilter(
                 <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2">
                   Recent
                 </div>
-                <div className="card-container d-flex flex-row flex-wrap justify-content-center">
+                <div className="card-container d-flex flex-row flex-wrap justify-content-evenly">
                   {profileResult.venues.length > 0 ? (
                     profileResult.venues.map((venue, index) => (
                       <VenueCard key={index} data={venue} />

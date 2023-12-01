@@ -13,6 +13,7 @@
     min-height: 610px;
     margin: 100px auto;
     background-color: white;
+    transition: all 1s ease-in-out;
 
     & .log-reg {
       background-color: var(--body_backgroundColor);
