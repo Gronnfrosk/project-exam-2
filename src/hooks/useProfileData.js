@@ -10,7 +10,7 @@ export const useProfileData = (profile) => {
 
     async function fetchProfileInfo() {
       try {
-        const result = await ProfileInfoApi(profile.name, "/bookings?_bookings=true");
+        const result = await ProfileInfoApi(profile.name, "?_bookings=true");
         if (result && isMounted) {
           setProfileData({
             ...result,

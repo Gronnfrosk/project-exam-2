@@ -25,6 +25,7 @@ export default function UpdateVenue() {
 
   const [imageUrls, setImageUrls] = useState([]);
   const [imageUrlInput, setImageUrlInput] = useState("");
+  console.log("Hello")
 
   const {
     register,

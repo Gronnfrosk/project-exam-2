@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import "./navbar.scss";
 import { Link, NavLink } from "react-router-dom";
@@ -7,7 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { BrandLogo } from "../assets/brand/logo";
 import { ButtonExpandNavbar } from "../components/buttons/expand-btn";
-import { SideMenu } from "./menu";
+import MemoizedSideMenu from "./menu";
 import { remove, load } from "../utilities/save_load_remove_local_storage";
 import { useNavigate } from "react-router-dom";
 
@@ -16,24 +16,18 @@ export function CollapsibleNavbar() {
   const location = useLocation();
   const [userStatus, setUserStatus] = useState(load("venueManager"));
   const [profile, setProfile] = useState(load("profile"));
-  const [displayBtn, setdisplayBtn] = useState("");
 
-console.log("Navbar")
+  console.log("Hello navbar")
 
   useEffect(() => {
     const loadedProfile = load("profile");
 
-    if (location.pathname === "/login-register") {
-      setdisplayBtn("d-none");
-    } else {
-      setdisplayBtn("");
-    }
-    if (loadedProfile && loadedProfile.name) {
+    if (loadedProfile !== profile) {
       setProfile(loadedProfile);
     }
-  }, [location]);
+  }, [location.pathname]);
 
-  function handleState(result, isLogout = false) {
+  function handleUserStatusChange(result, isLogout = false) {
     if (isLogout) {
       // Handle logout
       remove("profile", "token", "venueManager");
@@ -45,7 +39,7 @@ console.log("Navbar")
       setProfile(result);
       setUserStatus(load("venueManager"));
     }
-  }
+  } 
 
   return (
     <Navbar
@@ -55,13 +49,12 @@ console.log("Navbar")
       bg={"dark"}
       className="bg-body-tertiary"
     >
-      <Container className={displayBtn}>
+      <Container>
         {profile && profile !== null ? (
-          <SideMenu
+          <MemoizedSideMenu
             userStatus={userStatus}
             profile={profile}
-            displayBtn={displayBtn}
-            handleState={handleState}
+            handleState={handleUserStatusChange}
           />
         ) : (
           <Link to="login-register">

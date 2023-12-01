@@ -33,7 +33,7 @@ const divider = (
   <span className="d-flex text-white fs-2 align-items-center mt-3">|</span>
 );
 
-export function SideMenu(props) {
+function SideMenu(props) {
   const { userStatus, handleState, profile} = props;
   const [toggled, setToggled] = useState(false);
   const [urlInput, setUrlInput] = useState("");
@@ -41,7 +41,14 @@ export function SideMenu(props) {
   const profileSuccess = profileFetchedData || {};
   const { name, email, bookings = [], venueManager, _count = {} } = profileSuccess;
   const venues = _count.venues || 0;
-  const { upcomingBookings, previousBookings } = useBookingFilter(bookings);
+  const bookingFilterResult = useBookingFilter(bookings ? bookings : []);
+
+console.log(profileSuccess)
+
+const { upcomingBookings, previousBookings } = useMemo(() => ({
+  upcomingBookings: bookingFilterResult.upcomingBookings,
+  previousBookings: bookingFilterResult.previousBookings
+}), [bookingFilterResult]);
 
   const {
     register,
@@ -172,6 +179,7 @@ export function SideMenu(props) {
  if (!profileSuccess) {
   return <Link to="login-register"><ButtonExpandNavbar userButton={userStatus} nav={"Login or register"} /></Link>;
 }
+
   return (
     <div>
       <Sidebar
@@ -263,3 +271,7 @@ export function SideMenu(props) {
     </div>
   );
 }
+
+const MemoizedSideMenu = React.memo(SideMenu);
+
+export default MemoizedSideMenu;
