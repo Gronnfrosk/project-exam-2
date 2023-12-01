@@ -10,11 +10,19 @@ export async function getBookingInfoApi(params) {
   return await response.json();
 }
 
+export async function getBookingDetail(id) {
+  const bookingUrl = API_URL_BOOKINGS + id + "?_customer=true";
+
+  const response = await authFetch(bookingUrl);
+
+  return await response.json();
+}
+
 export async function createBooking(data) {
   const method = "post";
 
   if (!data) {
-    throw new Error("Get requires a booking data!");
+    throw new Error("Post requires a booking data!");
   }
 
   const response = await authFetch(API_URL_BOOKINGS, {

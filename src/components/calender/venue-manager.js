@@ -2,10 +2,12 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import Calendar from "react-calendar";
 import "./react-calender.scss";
 import ListGroup from "react-bootstrap/ListGroup";
+import { getBookingDetail } from "../../services/api/booking";
 
 export default function CalenderManager(props) {
   const bookings = props.venueData.bookings
   const [selectedBookingId, setSelectedBookingId] = useState(null);
+  const [bookingDetails, setBookingDetails] = useState({});
   const bookingRefs = useRef({});
   const listContainerRef = useRef(null);
 
@@ -40,15 +42,15 @@ export default function CalenderManager(props) {
         const endDateStr = endDate.toISOString().split("T")[0];
 
         if (dateStr === startDateStr) {
-          classNames.push("start-date"); // Class for start date
+          classNames.push("start-date"); 
         }
         if (dateStr === endDateStr) {
-          classNames.push("end-date"); // Class for end date
+          classNames.push("end-date");
         }
       });
 
       if (bookingDetailsByDate[dateStr]) {
-        classNames.push("booked-date"); // General class for booked dates
+        classNames.push("booked-date");
       }
 
       return classNames.join(" ");
@@ -62,7 +64,7 @@ export default function CalenderManager(props) {
       return acc;
     }, {});
   }, [bookings]);
-
+   
   const onClickDay = (value) => {
     const dateStr = value.toISOString().split("T")[0];
     const dayBookings = bookingDetailsByDate[dateStr];
@@ -78,6 +80,27 @@ export default function CalenderManager(props) {
       }
     }
   };
+
+  const onBookingClick = async (bookingId) => {
+    setSelectedBookingId(bookingId);
+
+    if (!bookingDetails[bookingId]) {
+      try {
+        const details = await getBookingDetail(bookingId);
+        console.log(details)
+        setBookingDetails(prev => ({ ...prev, [bookingId]: details }));
+      } catch (error) {
+        console.error('Error fetching booking details:', error);
+      }
+    }
+  };
+
+  const sortedBookings = useMemo(() => {
+    if (bookings && bookings.length > 0) {
+      return [...bookings].sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
+    }
+    return [];
+  }, [bookings]);
 
   return (
     <div className="venue-manager d-flex column-gap-3 flex-wrap justify-content-center">
@@ -97,17 +120,18 @@ export default function CalenderManager(props) {
              scrollBehavior: "smooth",
         }}
       >
-        <ListGroup style={{ display: "flex", flexDirection: "column-reverse" }}>
+        <ListGroup style={{ display: "flex" }}>
           {bookings
-            ? bookings.map((booking) => {
+            ? sortedBookings.map((booking) => {
                 const checkIn = new Date(booking.dateFrom);
                 const checkOut = new Date(booking.dateTo);
-
+                const details = bookingDetails[booking.id];
                 const isActive = booking.id === selectedBookingId;
 
                 return (
                   <ListGroup.Item
                     action
+                    onClick={() => onBookingClick(booking.id)}
                     variant={isActive ? "secondary" : "light"}
                     key={booking.id}
                     ref={bookingRefs.current[booking.id]}
@@ -117,9 +141,17 @@ export default function CalenderManager(props) {
                       borderRadius: "0",
                     }}
                   >
-                    Booking ID: {booking.id} <br /> Guests: {booking.guests}{" "}
-                    <br /> From: {checkIn.toLocaleDateString("en-GB")} <br />{" "}
-                    To: {checkOut.toLocaleDateString("en-GB")}
+                    - Booking ID: {booking.id}<br />   
+                    - From: {checkIn.toLocaleDateString("en-GB")}<br />
+                    - To: {checkOut.toLocaleDateString("en-GB")}<br />
+                    - Guests: {booking.guests}
+                    {isActive && details && (
+                <div>
+                  {/* Render additional details here */}
+                  <p>Customer: <br/> {" "}- Name: {details.customer.name}<br/>- Email {details.customer.email}<br/></p>
+                </div>
+              )}
+
                   </ListGroup.Item>
                 );
               })
