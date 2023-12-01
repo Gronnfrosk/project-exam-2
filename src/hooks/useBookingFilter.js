@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react";
+import { useMemo } from 'react';
 
 export const useBookingFilter = (bookings) => {
-  const [upcomingBookings, setUpcomingBookings] = useState([]);
-  const [previousBookings, setPreviousBookings] = useState([]);
+  const { upcomingBookings, previousBookings } = useMemo(() => {
 
-  useEffect(() => {
-    if (bookings) {
-      const today = new Date();
-      const upcoming = bookings.sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom)).filter(
-        (booking) => new Date(booking.dateFrom) >= today,
-        bookings
-      );
-      const previous = bookings.sort((a, b) => new Date(b.dateFrom) - new Date(a.dateFrom)).filter(
-        (booking) => new Date(booking.dateFrom) < today,
-      );
-
-      setUpcomingBookings(upcoming);
-      setPreviousBookings(previous);
+    if (!bookings) {
+      return { upcomingBookings: [], previousBookings: [] };
     }
+
+      const today = new Date();
+
+      const sortedBookings = bookings.sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
+
+      const upcoming = sortedBookings.filter((booking) => new Date(booking.dateFrom) >= today);
+      const previous = sortedBookings.filter((booking) => new Date(booking.dateFrom) < today);
+
+      return { upcomingBookings: upcoming, previousBookings: previous };
   }, [bookings]);
 
   return { upcomingBookings, previousBookings };

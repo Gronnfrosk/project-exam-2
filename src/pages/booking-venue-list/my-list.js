@@ -11,14 +11,13 @@ import { useBookingFilter } from "../../hooks/useBookingFilter";
 
 export default function MyList() {
   const [profileResult, setProfileResult] = useState(null);
+   const bookingFilterResult = useBookingFilter(profileResult ? profileResult.bookings : []);
   const [error, setError] = useState(null);
   const profile = useMemo(() => load("profile"), []);
   const userType = useMemo(() => load("venueManager"), []);
   const navigate = useNavigate();
   
   useEffect(() => {
-    console.log("useEffect called in MyList");
-
     const fetchData = async () => {
       if (!profile) {
         navigate("/");
@@ -28,9 +27,9 @@ export default function MyList() {
       try {
         const params =
           userType === false
-            ? "?_bookings=true&_sort=created&sortOrder=desc"
+            ? "?_bookings=true"
             : userType === true
-            ? "?_venues=true&_sort=created&sortOrder=desc"
+            ? "?_venues=true"
             : "";
         const result = await ProfileInfoApi(profile.name, params);
         setProfileResult(result);
@@ -40,12 +39,12 @@ export default function MyList() {
     };
 
     fetchData();
-    console.log({ userType, profile });
   }, [navigate, profile, userType]);
 
-const { upcomingBookings, previousBookings } = useBookingFilter(
-    profileResult ? profileResult.bookings : [],
-  );
+  const { upcomingBookings, previousBookings } = useMemo(() => ({
+    upcomingBookings: bookingFilterResult.upcomingBookings,
+    previousBookings: bookingFilterResult.previousBookings
+  }), [bookingFilterResult]);
 
   if (error) {
     return <ErrorLoad />;

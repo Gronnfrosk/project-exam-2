@@ -38,7 +38,7 @@ export default function BookingList(props) {
                       : "0"}
                   </b>
                 </div>
-                Recent{" "}
+                Next booking{" "}
               </div>
 
               <div className="upcoming-bookings">
@@ -67,9 +67,9 @@ export default function BookingList(props) {
                     {profileResult.length > 0 ? profileResult.length : "0"}
                   </b>
                 </div>
-                Recent{" "}
+                Recently booked{" "}
               </div>
-              <div className="previous-bookings">
+              <div className="all-bookings">
                 {profileResult.map((booking) => (
                   <div key={booking.id}>
                     <BookingItem
@@ -83,7 +83,7 @@ export default function BookingList(props) {
             </div>
           </section>
           <section id="total-bookings">
-            <div className="booking-title fs-1 px-5">
+            <div className="booking-title fs-1 px-5 ">
               Previous <div>Bookings</div>
             </div>
             <div className="container">
@@ -97,10 +97,10 @@ export default function BookingList(props) {
                       : "0"}
                   </b>
                 </div>
-                Recent{" "}
+                Recent stays{" "}
               </div>
 
-              <div className="all-bookings">
+              <div className="previous-bookings">
                 {previousBookings.map((booking) => (
                   <div key={booking.id}>
                     <BookingItem

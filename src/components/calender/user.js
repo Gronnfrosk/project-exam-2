@@ -12,7 +12,6 @@ function isSameDay(a, b) {
 export default function ReactCalender(props) {
   const bookings = props.venueData.bookings;
   const userStatus = props.userStatus;
-  console.log(userStatus)
 
   const disabledDates = useMemo(() => {
     return bookings

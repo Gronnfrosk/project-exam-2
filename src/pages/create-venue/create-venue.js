@@ -83,7 +83,7 @@ export default function CreateVenue() {
                     type={input.type}
                     size={input.size}
                     validate={register}
-                    autocomplete="off"
+                    autoComplete="off"
                     onChange={handleInputChange}
                   />
                   {errors[fieldName] && (
@@ -105,7 +105,7 @@ export default function CreateVenue() {
                     placeholder="http://www.example.com"
                     value={imageUrlInput}
                     onChange={handleImageUrlChange}
-                    autocomplete="off"
+                    autoComplete="off"
                     className="image-url-input"
                   />
                 </div>
@@ -144,7 +144,7 @@ export default function CreateVenue() {
                     type={input.type}
                     size={input.size}
                     validate={register}
-                    autocomplete="off"
+                    autoComplete="off"
                     onChange={(e) => handleInputChange(e)}
                   />
                   {errors[fieldinput] && (
