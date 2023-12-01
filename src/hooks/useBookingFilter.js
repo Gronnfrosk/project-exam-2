@@ -7,10 +7,11 @@ export const useBookingFilter = (bookings) => {
   useEffect(() => {
     if (bookings) {
       const today = new Date();
-      const upcoming = bookings.filter(
+      const upcoming = bookings.sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom)).filter(
         (booking) => new Date(booking.dateFrom) >= today,
+        bookings
       );
-      const previous = bookings.filter(
+      const previous = bookings.sort((a, b) => new Date(b.dateFrom) - new Date(a.dateFrom)).filter(
         (booking) => new Date(booking.dateFrom) < today,
       );
 
