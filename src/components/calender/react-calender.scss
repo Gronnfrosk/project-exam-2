@@ -3,6 +3,10 @@
   flex-wrap: wrap;
   justify-content: center;
 
+  & .top-calendar {
+    max-width: 600px;
+  }
+
   & .react-calendar {
     width: 400px;
     height: 310px;

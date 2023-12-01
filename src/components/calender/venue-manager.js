@@ -104,9 +104,9 @@ export default function CalenderManager(props) {
 
   return (
     <div className="venue-manager d-flex column-gap-3 flex-wrap justify-content-center">
-        <div className="text-center mb-2">
+        <div className="top-calendar mb-2 mx-4">
         <h2 className="fw-bold text-center mb-2">Bookings at this venue</h2>
-      <p>Click the booked date in calendar to find more details in the list.</p></div>
+      <p>To view booking details, please browse the list below. For specific customer details, simply click on the desired booking in the list. If you're unable to locate a particular booking, use the calendar for assistance.</p></div>
       <Calendar onClickDay={onClickDay} tileClassName={tileClassName} />
       <div
         ref={listContainerRef}
@@ -141,7 +141,7 @@ export default function CalenderManager(props) {
                       borderRadius: "0",
                     }}
                   >
-                    - Booking ID: {booking.id}<br />   
+                    <b>Booking ID: {booking.id}</b><br />   
                     - From: {checkIn.toLocaleDateString("en-GB")}<br />
                     - To: {checkOut.toLocaleDateString("en-GB")}<br />
                     - Guests: {booking.guests}

@@ -11,6 +11,8 @@ function isSameDay(a, b) {
 
 export default function ReactCalender(props) {
   const bookings = props.venueData.bookings;
+  const userStatus = props.userStatus;
+  console.log(userStatus)
 
   const disabledDates = useMemo(() => {
     return bookings
@@ -51,13 +53,13 @@ export default function ReactCalender(props) {
         maxDate={maxDate}
         tileDisabled={tileDisabled}
       />
-      <Link to="/login-register" className="text-center">
+      {userStatus === true ? <p>You are currently logged in as Venue manager. <br/> Please log in with a customer account to enable the option to place bookings.</p> : <Link to="/login-register" className="text-center">
         <ButtonExpandNavbar
           custom={"Login or register"}
           color={false}
           arrow={"black"}
         />{" "}
-      </Link>
+      </Link>}
     </div>
   );
 }

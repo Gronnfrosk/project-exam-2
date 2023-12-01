@@ -202,12 +202,12 @@ function SpecificVenuePage() {
                 </li>
               </ul>
             </div>
-            <div className="w-100 me-5">
+            <div className="w-100 mx-auto">
               <div className="title my-2">Description:</div>
               {data.description}
             </div>
-            <div className="w-100 me-5">
-              General booking info: On this site you can book a venue a year
+            <div className="w-100">
+              <u>General booking info:</u> On this site you can book a venue a year
               into the future. At this venue it is posssible to checkin after
               13:00 and checkout must be before 11:00.
             </div>
@@ -225,7 +225,7 @@ function SpecificVenuePage() {
         <section className="part-4 mt-5">
           {userStatus === false ? (
             <CustomerCalender userStatus={userStatus} venueData={data} />
-          ) : userStatus === true ? (
+          ) : userStatus === true && profile.name === data.owner.name ? (
             <CalenderManager userStatus={userStatus} venueData={data} />
           ) : (
             <ReactCalender userStatus={userStatus} venueData={data} />
