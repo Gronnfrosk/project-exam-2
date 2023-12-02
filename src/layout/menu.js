@@ -43,8 +43,6 @@ function SideMenu(props) {
   const venues = _count.venues || 0;
   const bookingFilterResult = useBookingFilter(bookings ? bookings : []);
 
-console.log(profileSuccess)
-
 const { upcomingBookings, previousBookings } = useMemo(() => ({
   upcomingBookings: bookingFilterResult.upcomingBookings,
   previousBookings: bookingFilterResult.previousBookings
@@ -246,7 +244,7 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
 
           <div className="menu-bottom position-absolute bottom-0 mb-4 w-100">
             <div style={{ height: "80px" }}>
-              <Navbar.Brand href="/" className="p-0 m-5">
+              <Navbar.Brand to="/" className="p-0 m-5">
                 <BrandLogo />
               </Navbar.Brand>
             </div>

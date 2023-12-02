@@ -16,9 +16,16 @@ export function CollapsibleNavbar() {
   const location = useLocation();
   const [userStatus, setUserStatus] = useState(load("venueManager"));
   const [profile, setProfile] = useState(load("profile"));
+  const [displayBtn, setdisplayBtn] = useState("");
 
   useEffect(() => {
     const loadedProfile = load("profile");
+    if (location.pathname === "/login-register") {
+      setdisplayBtn("d-none");
+    } else {
+      // Reset button display state for other pages
+      setdisplayBtn("");
+    }
 
     if (loadedProfile !== profile) {
       setProfile(loadedProfile);
@@ -47,7 +54,7 @@ export function CollapsibleNavbar() {
       bg={"dark"}
       className="bg-body-tertiary"
     >
-      <Container>
+      <Container className={displayBtn}>
         {profile && profile !== null ? (
           <MemoizedSideMenu
             userStatus={userStatus}

@@ -171,7 +171,7 @@ export default function CustomerCalender(props) {
               type={"number"}
               validate={register}
             />
-            <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
+            <Form.Text className="d-block text-danger fw-bold mb-3">
               {errors.guests?.message}
             </Form.Text>
           </Form.Group>

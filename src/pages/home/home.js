@@ -1,5 +1,5 @@
 import "./home.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import { Helmet } from "react-helmet-async";
 import useAllVenues from "../../services/api/venues";
@@ -29,6 +29,16 @@ function MainPage() {
       return newCount;
     });
   };
+
+  useEffect(() => {
+    if (search !== "") {
+      // When searching, use a URL that doesn't limit the results
+      setUrl(`${API_URL_VENUES}?sort=created&sortOrder=desc`);
+    } else {
+      // When not searching, reset to the original URL with a limit
+      setUrl(`${API_URL_VENUES}?limit=${count}&sort=created&sortOrder=desc`);
+    }
+  }, [search, count]);
 
   let filterName = data.filter((venue) => {
     return search.toLowerCase() === ""
@@ -92,6 +102,7 @@ function MainPage() {
                 aria-label="Search by venues or country..."
                 aria-describedby="search-bar"
                 className="border shadow-none border-black "
+                onClick={increase}
                 onChange={(e) => setSearch(e.target.value.toLowerCase())}
               />
               <Button
@@ -104,7 +115,7 @@ function MainPage() {
             </InputGroup>
           </Form>
         </section>
-        <div className="divider dropdown-toggle gap-2 ps-3">Recent</div>
+        <div className="divider dropdown-toggle gap-2 ps-3">Recently added</div>
         <section className="all-venues d-flex flex-wrap gap-5 justify-content-center">
           {isLoading ? (
             <SpinnerLoad />
@@ -125,5 +136,3 @@ function MainPage() {
 }
 
 export default MainPage;
-
-//<div className="search-icon">{SearchIcon}</div>
