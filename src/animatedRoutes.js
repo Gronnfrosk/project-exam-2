@@ -5,7 +5,8 @@ import LoginRegisterPage from "./pages/login&register/login-register";
 import MyList from "./pages/booking-venue-list/my-list";
 import CreateVenue from "./pages/create-venue/create-venue";
 import UpdateVenue from "./pages/update-venue/update-venue";
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
+// eslint-disable-next-line
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
