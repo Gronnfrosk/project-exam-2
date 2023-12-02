@@ -113,7 +113,7 @@ export default function UpdateVenue() {
       <Container className="create-venue-container">
         <h1>Update venue</h1>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <div className="create-section px-4">
+          <div className="create-section px-3">
             {createInputs.map((input) => {
               const fieldName =
                 input.title === "Max guests"
@@ -157,7 +157,7 @@ export default function UpdateVenue() {
                 </div>
                 <PrimaryButton
                   type="button"
-                  className="m-auto mb-4 w-25 rounded-pill"
+                  className="m-auto mb-4 rounded-pill"
                   onClick={addImageUrl}
                 >
                   Add Image
@@ -176,7 +176,7 @@ export default function UpdateVenue() {
             </div>
           </div>
           <div className="divider mx-4 my-4"></div>
-          <div className="location-section">
+          <div className="location-section ps-3">
             <h4>Location:</h4>
             {locationInputs.map((input) => {
               const fieldinput = input.title.toLocaleLowerCase();
@@ -202,7 +202,7 @@ export default function UpdateVenue() {
               );
             })}
           </div>
-          <div className="amenities-section">
+          <div className="amenities-section ps-3">
             <h4>Amenities:</h4>
             {amenitiesInputs.map((input) => (
               <div className="input-wrapper" key={input.title}>

@@ -11,10 +11,12 @@ import VenueCard from "../../components/venue-card";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
 import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
+import { load } from "../../utilities/save_load_remove_local_storage";
 
 const { SearchIcon } = InputIcons();
 
 function MainPage() {
+  const venueManager = load("venueManager");
   const [search, setSearch] = useState("");
   const [count, setCounter] = useState(12);
   const [url, setUrl] = useState(
@@ -83,7 +85,7 @@ function MainPage() {
                   height="50"
                 ></rect>
               </svg>
-              <span>Start Booking Adventure</span>
+              <span>{venueManager === true ? "See registered venues" : "Start Booking Adventure"}</span>
               <i className="arrow down"></i>
             </a>
           </div>

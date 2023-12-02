@@ -32,8 +32,7 @@
   form {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 25px;
+    column-gap: 40px;
 
     .error-message {
       color: red;
@@ -138,11 +137,17 @@
       width: 210px !important;
     }
   }
+}
 
-  /*mobile styles*/
-  @media only screen and (max-width: 700px) {
-    .create-venue-container {
-      padding: 0 !important;
+/*mobile styles*/
+@media only screen and (max-width: 700px) {
+  .create-venue-container {
+    box-shadow: none;
+    //padding: 0 !important;
+
+    & form .create-section {
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 }

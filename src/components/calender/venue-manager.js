@@ -101,18 +101,23 @@ export default function CalenderManager(props) {
     return [];
   }, [bookings]);
 
+  if(bookings.length === 0) {
+    return  <h2 className="fw-bold text-center mb-2">No bookings at this venue</h2>
+  }
+
   return (
+
     <div className="venue-manager d-flex column-gap-3 flex-wrap justify-content-center">
-        <div className="top-calendar mb-2 mx-4">
+        <div className="top-calendar mb-2 mx-3">
         <h2 className="fw-bold text-center mb-2">Bookings at this venue</h2>
-      <p>To view booking details, please browse the list below. For specific customer details, simply click on the desired booking in the list. If you're unable to locate a particular booking, use the calendar for assistance.</p></div>
+      <p>To view booking details, please browse the list below. For specific customer details, simply click on the desired booking in the list. <br/><br/> If you're unable to locate a particular booking, use the calendar for assistance.</p></div>
       <Calendar onClickDay={onClickDay} tileClassName={tileClassName} />
       <div
         ref={listContainerRef}
         className="scrollable-container"
         style={{
             width: "360px",
-            height: "275px",
+            maxHeight: "275px",
              overflowY: "auto",
              marginTop: "20px",
              padding: "0 10px",
@@ -146,11 +151,9 @@ export default function CalenderManager(props) {
                     - Guests: {booking.guests}
                     {isActive && details && (
                 <div>
-                  {/* Render additional details here */}
                   <p>Customer: <br/> {" "}- Name: {details.customer.name}<br/>- Email {details.customer.email}<br/></p>
                 </div>
               )}
-
                   </ListGroup.Item>
                 );
               })

@@ -105,3 +105,15 @@ main.list {
     width: 1188px;
   }
 }
+
+/*mobile styles*/
+@media only screen and (max-width: 700px) {
+  main.list .booking-list section {
+    box-shadow: none;
+
+    & .container {
+      padding: 0;
+    }
+  }
+
+}

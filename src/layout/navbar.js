@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./navbar.scss";
 import { Link, NavLink } from "react-router-dom";
@@ -18,18 +18,19 @@ export function CollapsibleNavbar() {
   const [profile, setProfile] = useState(load("profile"));
   const [displayBtn, setdisplayBtn] = useState("");
 
+
   useEffect(() => {
     const loadedProfile = load("profile");
     if (location.pathname === "/login-register") {
       setdisplayBtn("d-none");
     } else {
-      // Reset button display state for other pages
       setdisplayBtn("");
     }
 
     if (loadedProfile !== profile) {
       setProfile(loadedProfile);
     }
+    // eslint-disable-next-line
   }, [location.pathname]);
 
   function handleUserStatusChange(result, isLogout = false) {

@@ -31,6 +31,7 @@ function SpecificVenuePage() {
   const url = `${urlBase}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
  
+  console.log(userStatus)
 
   const handleEditClick = () => {
     navigate(`/update-venue/${params.id}`);
