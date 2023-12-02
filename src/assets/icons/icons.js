@@ -10,6 +10,7 @@ import {
   FaRegClock,
   FaPlusCircle,
   FaAngleRight,
+  FaAngleUp,
   FaRegImage,
   FaSearch,
   FaTimes,
@@ -78,6 +79,11 @@ export function ContactIcons() {
 export function RightArrow() {
   return <FaAngleRight />;
 }
+
+export function UpArrow() {
+  return <FaAngleUp />;
+}
+
 
 export function InputIcons() {
   const SearchIcon = <FaSearch />;

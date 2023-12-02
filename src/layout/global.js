@@ -4,6 +4,7 @@ import { CollapsibleNavbar } from "./navbar";
 import Footer from "./footer";
 import { motion } from 'framer-motion';
 import { pageVariants, pageTransition } from '../config/animation-config';
+import { ScrollToTopButton } from "../components/buttons/scroll-top"
 
 export default function GlobalLayout() {
   return (
@@ -15,6 +16,7 @@ export default function GlobalLayout() {
     transition={pageTransition}
   >
       <CollapsibleNavbar />
+      <ScrollToTopButton />
       <Outlet />
       <Footer />
       </motion.div>

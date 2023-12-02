@@ -11,10 +11,7 @@ export const PrimaryButton = styled.button`
   width: 179px;
   cursor: pointer;
   box-sizing: inherit;
-  transition-property: all;
-  transition-duration: 0.6s;
-  transition-timing-function: ease;
-  //transition: opacity linear 200ms;
+  transition: all 0.6s ease;
 
   &:hover {
     background-color: var(--primary_color);
