@@ -22,14 +22,15 @@ import { ModalInfo } from "../../components/modal/modal";
 import loginManagerSuccessSVG from "../../assets/images/login-manager";
 
 function SpecificVenuePage() {
+  const params = useParams();
+  const navigate = useNavigate();
   const profile = load("profile");
   const userStatus = load("venueManager");
-  const navigate = useNavigate();
-  const params = useParams();
+  const [modal, setModal] = useState(false);
   const urlBase = `${API_URL_VENUES}/${params.id}`;
   const url = `${urlBase}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
-  const [modal, setModal] = useState(false);
+ 
 
   const handleEditClick = () => {
     navigate(`/update-venue/${params.id}`);
@@ -49,7 +50,6 @@ function SpecificVenuePage() {
       console.log("Venue deleted successfully");
       navigate("/my-list");
     } catch (error) {
-      // This block handles any errors that occur during deletion.
       console.error("Error deleting venue:", error);
       alert("Error deleting venue: " + error.message);
       setModal(false);
@@ -62,16 +62,17 @@ function SpecificVenuePage() {
   );
   const { EditIcon, DeleteIcon } = useMemo(() => SpecificIcons(), []);
 
-  const description = useMemo(
-    () => `Info about the venue - ${data?.name}`,
-    [data],
-  );
-
   if (isLoading) {
     return <SpinnerLoad />;
   }
-
-  if (isError || !data?.name) {
+  
+  // Debugging
+  //console.log("Data:", data);
+  //console.log("Is Error:", isError);
+  //console.log("Profile:", profile);
+  
+  if (isError) {
+    console.log("Rendering due to isError");
     return <ErrorLoad />;
   }
 
@@ -79,7 +80,7 @@ function SpecificVenuePage() {
     <>
       <Helmet>
         <title>Venue - {data.name}</title>
-        <meta name="description" content={description} />
+        <meta name="description" content={`Info about the venue - ${data?.name}`} />
       </Helmet>
       <main className="specific mb-5 mt-3">
         <section className="part-1">
@@ -115,7 +116,7 @@ function SpecificVenuePage() {
               <div className="this-rating ms-2">{data.rating}/</div>
               <div className="max-rating">5</div>
             </div>
-            {profile.name === data.owner.name ? (
+            {profile && profile.name === data.owner.name ? (
               <div className="user-feature">
                 <EditVenueBtn title="Edit venue" onClick={handleEditClick}>
                   {EditIcon}

@@ -17,8 +17,6 @@ export function CollapsibleNavbar() {
   const [userStatus, setUserStatus] = useState(load("venueManager"));
   const [profile, setProfile] = useState(load("profile"));
 
-  console.log("Hello navbar")
-
   useEffect(() => {
     const loadedProfile = load("profile");
 

@@ -11,7 +11,7 @@ import { useBookingFilter } from "../../hooks/useBookingFilter";
 
 export default function MyList() {
   const [profileResult, setProfileResult] = useState(null);
-   const bookingFilterResult = useBookingFilter(profileResult ? profileResult.bookings : []);
+  const bookingFilterResult = useBookingFilter(profileResult ? profileResult.bookings : []);
   const [error, setError] = useState(null);
   const profile = useMemo(() => load("profile"), []);
   const userType = useMemo(() => load("venueManager"), []);
