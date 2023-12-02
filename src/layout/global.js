@@ -14,6 +14,7 @@ export default function GlobalLayout() {
     exit="out"
     variants={pageVariants}
     transition={pageTransition}
+    className="layout"
   >
       <CollapsibleNavbar />
       <ScrollToTopButton />

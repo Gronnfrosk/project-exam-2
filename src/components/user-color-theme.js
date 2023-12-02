@@ -29,8 +29,5 @@ export const ThemeMode = () => {
     document.querySelector("body").setAttribute("data-theme", "manager");
   };
 
-  // Logging for debugging purpose
-  // console.log(userType);
-
   return null;
 };

@@ -10,7 +10,7 @@ import { RegisterProfile } from "../../services/auth/register";
 import { lowerize } from "../../utilities/formatting/lowercase";
 import viewRegisterModal from "../../components/modal/Register";
 
-export function RegisterForm() {
+export function RegisterForm({ change }) {
   const [userType, setUserType] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
@@ -37,16 +37,16 @@ export function RegisterForm() {
 
     const result = await promiseAwait;
     setFormSuccess(result);
-    setModal(viewRegisterModal(formSuccess));
   }
 
   useEffect(() => {
     setModal(viewRegisterModal(formSuccess));
-  }, [formSuccess]);
+    if(formSuccess === true || formSuccess === false) {change()}
+  }, [formSuccess, change]);
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)} className="input-login">
+      <Form onSubmit={handleSubmit(onSubmit)} className="input-register">
         <div className="mx-2 mt-3">
           {registerInputs.map((inputContent) => {
             const { title, placeholder, type, autocomplete } = inputContent;

@@ -41,7 +41,8 @@
       }
     }
 
-    & .input-login {
+    & .input-login,
+    .input-register {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;

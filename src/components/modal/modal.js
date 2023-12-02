@@ -10,7 +10,6 @@ export function ModalInfo(props) {
     ModalTitle,
     userError,
     userSuccess,
-    registerSuccess,
     bookingSuccess,
     onConfirmDelete,
   } = props;
@@ -25,9 +24,7 @@ export function ModalInfo(props) {
   };
   const loginRegisterRoute = userSuccess
     ? routeChange
-    : registerSuccess
-    ? () => registerSuccess()
-    : console.log("Error");
+    : console.log("Error! register of user failed. Please try again");
 
   const navigateToList = () => {
     navigate("/my-list");
@@ -83,8 +80,6 @@ export function ModalInfo(props) {
     : bookingSuccess && userSuccess
     ? bookingBtns
     : userSuccess
-    ? userBtn
-    : registerSuccess
     ? userBtn
     : "";
 

@@ -30,8 +30,6 @@ function SpecificVenuePage() {
   const urlBase = `${API_URL_VENUES}/${params.id}`;
   const url = `${urlBase}?_owner=true&_bookings=true`;
   const [data, isLoading, isError] = useAllVenues(url);
- 
-  console.log(userStatus)
 
   const handleEditClick = () => {
     navigate(`/update-venue/${params.id}`);
@@ -66,11 +64,6 @@ function SpecificVenuePage() {
   if (isLoading) {
     return <SpinnerLoad />;
   }
-  
-  // Debugging
-  //console.log("Data:", data);
-  //console.log("Is Error:", isError);
-  //console.log("Profile:", profile);
   
   if (isError) {
     console.log("Rendering due to isError");

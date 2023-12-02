@@ -22,11 +22,11 @@
 
 body,
 button {
-  font-family: "Mukta", "roboto", "sans-serif" !important;
+  font-family: "Mukta", "muli", "roboto", "sans-serif" !important;
 }
 
 h1 {
-  font-family: "Inter", "PT sans", "sans-serif";
+  font-family: "Inter", "PT sans", "sans-serif", "verdana";
 }
 
 html {
@@ -60,6 +60,11 @@ html {
   }
 }
 
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 //To hide the number input arrows in an HTML <input type="number">
 input::-webkit-outer-spin-button,

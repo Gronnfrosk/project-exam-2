@@ -14,9 +14,9 @@ function Footer() {
   ];
 
   return (
-    <>
+    <div className="position-relative bottom-0">
       {FooterSVG}
-      <footer className="text-light bg-dark fs-6 w-100" data-bs-theme="dark">
+      <footer className="text-light fs-6 w-100" style={{backgroundColor: "var(--body_backgroundColor)"}}>
         <div className="py-4 mx-auto " style={{ maxWidth: "1320px" }}>
           <div className="d-flex flex-wrap justify-content-between gap-2 align-items-center">
             <div>
@@ -56,7 +56,7 @@ function Footer() {
         </div>
         <p className="text-center mb-0 pb-1">&copy; 2023 Holidaze</p>
       </footer>
-    </>
+    </div>
   );
 }
 

@@ -43,9 +43,9 @@ export function LoginForm() {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)} className="input-login">
-        <div>
-          <div className="fw-bold fs-4 text-center">Welcome back!</div>
+      <Form onSubmit={handleSubmit(onSubmit)} className="input-login mx-auto">
+        <div className="text-center">
+          <div className="fw-bold fs-4">Welcome back!</div>
           <p>Login to gain access to booking or renting venues.</p>
         </div>
 
