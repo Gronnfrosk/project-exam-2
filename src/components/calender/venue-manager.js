@@ -87,7 +87,6 @@ export default function CalenderManager(props) {
     if (!bookingDetails[bookingId]) {
       try {
         const details = await getBookingDetail(bookingId);
-        console.log(details)
         setBookingDetails(prev => ({ ...prev, [bookingId]: details }));
       } catch (error) {
         console.error('Error fetching booking details:', error);

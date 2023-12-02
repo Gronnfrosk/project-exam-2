@@ -53,6 +53,17 @@ export default function CustomerCalender(props) {
     }
   }
 
+  function isDateRangeOverlap(start, end) {
+    let day = new Date(start);
+    while (day <= end) {
+      if (disabledDates.some(disabledDate => isSameDay(disabledDate, day))) {
+        return true;
+      }
+      day.setDate(day.getDate() + 1);
+    }
+    return false;
+  }
+
   const bookingValidationSchema = useMemo(
     () => createBookingSchema(maxGuests),
     [maxGuests],
@@ -94,6 +105,16 @@ export default function CustomerCalender(props) {
     data.checkIn = new Date(date[0]);
     data.checkOut = new Date(date[1]);
     data.venueId = bookingID;
+
+    // Check if the selected date range overlaps with disabled dates
+    if (isDateRangeOverlap(data.checkIn, data.checkOut)) {
+      setDateError(
+        <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
+          * Selected dates are not available for booking.
+        </Form.Text>
+      );
+      return;
+    }
 
     try {
       const result = await createBooking(data);
