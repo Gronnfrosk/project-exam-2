@@ -1,10 +1,9 @@
 import { ModalInfo } from "./modal";
 
-export default function viewRegisterModal(formSuccess, change) {
+export default function viewRegisterModal(formSuccess) {
   const modalContent =
     formSuccess === false ? (
       <ModalInfo
-        registerSuccess={change}
         showModalText={
           "Welcome! You can now login and start booking venues for your next trip."
         }
@@ -12,7 +11,6 @@ export default function viewRegisterModal(formSuccess, change) {
       />
     ) : formSuccess === true ? (
       <ModalInfo
-        registerSuccess={change}
         showModalText={
           "Welcome! You can now login as a venue manager and start renting out venues."
         }

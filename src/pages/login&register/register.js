@@ -10,11 +10,10 @@ import { RegisterProfile } from "../../services/auth/register";
 import { lowerize } from "../../utilities/formatting/lowercase";
 import viewRegisterModal from "../../components/modal/Register";
 
-export function RegisterForm({ change }) {
+export function RegisterForm() {
   const [userType, setUserType] = useState("");
   const [formSuccess, setFormSuccess] = useState("");
   const [modal, setModal] = useState("");
-  const viewModal = viewRegisterModal(formSuccess, change);
 
   const {
     register,
@@ -38,12 +37,12 @@ export function RegisterForm({ change }) {
 
     const result = await promiseAwait;
     setFormSuccess(result);
-    setModal(viewModal);
+    setModal(viewRegisterModal(formSuccess));
   }
 
   useEffect(() => {
-    setModal(viewModal);
-  }, [formSuccess, viewModal]);
+    setModal(viewRegisterModal(formSuccess));
+  }, [formSuccess]);
 
   return (
     <>
