@@ -1,4 +1,6 @@
 # Holidaze - Booking site for study project
+![holidaze-homepage](https://github.com/Gronnfrosk/project-exam-2/assets/91615712/21e7d316-6119-4f7e-ad42-e7caf9efff13)
+(Image shows homepage on phone and desktop view.)
 
 ## Project Overview
 Holidaze is a modern front-end accommodation booking application developed for a newly launched site. This project serves as a practical example for educational purposes. It offers a dual-interface for both customers and venue managers. Customers can book holidays, view venues, and manage their bookings. Venue managers can register, manage venues, and oversee bookings. Please note that Holidaze is a hypothetical entity and is solely for use in this project assignment.
