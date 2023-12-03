@@ -88,6 +88,7 @@ export function ModalInfo(props) {
       show={show}
       backdrop={bookingSuccess ? "true" : "static"}
       keyboard={false}
+      centered
     >
       <Modal.Header>
         <Modal.Title>{ModalTitle}</Modal.Title>

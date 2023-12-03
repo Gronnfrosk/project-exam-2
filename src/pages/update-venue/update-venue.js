@@ -176,7 +176,7 @@ export default function UpdateVenue() {
             </div>
           </div>
           <div className="divider mx-4 my-4"></div>
-          <div className="location-section ps-3">
+          <div className="location-section px-3">
             <h4>Location:</h4>
             {locationInputs.map((input) => {
               const fieldinput = input.title.toLocaleLowerCase();

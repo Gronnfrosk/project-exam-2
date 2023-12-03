@@ -207,7 +207,7 @@ function SpecificVenuePage() {
               13:00 and checkout must be before 11:00.
             </div>
           </div>
-          <div className="venue-manager-profile">
+          <div className="venue-manager-profile mx-4">
             <AvatarImg
               Avatar={data.owner.avatar}
               Name={data.owner.name}

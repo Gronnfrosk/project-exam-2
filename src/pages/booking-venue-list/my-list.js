@@ -75,8 +75,15 @@ export default function MyList() {
                 Venues <div className="text-center ps-5 ms-5">managed</div>
               </div>
               <div className="container">
-                <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2">
-                  Recent
+                <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2 gap-2 px-1 mt-3 mb-2 d-flex w-100 flex-row-reverse">
+                <div className="w-100 text-end">
+                  Total{" "}
+                  <b>
+                    {" "}
+                    {profileResult.venues.length > 0 ? profileResult.venues.length : "0"}
+                  </b>
+                </div>
+                  Recently created
                 </div>
                 <div className="card-container d-flex flex-row flex-wrap justify-content-evenly">
                   {profileResult.venues.length > 0 ? (
