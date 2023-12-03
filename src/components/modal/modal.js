@@ -26,10 +26,6 @@ export function ModalInfo(props) {
     ? routeChange
     : console.log("Error! register of user failed. Please try again");
 
-  const navigateToList = () => {
-    navigate("/my-list");
-  };
-
   const handleDelete = () => {
     onConfirmDelete();
   };
