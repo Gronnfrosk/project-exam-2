@@ -179,7 +179,7 @@ export default function CustomerCalender(props) {
             >
               Duration:{" "}
               <div>
-                {date.length > 1 ? dateCalc(date[0], date[1]) : "0 days"}
+                {date.length > 1 ? dateCalc(date[0], date[1]) : "0 nights"}
               </div>
             </ListGroup.Item>
           </ListGroup>

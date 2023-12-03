@@ -52,9 +52,6 @@ export function ModalInfo(props) {
 
   const bookingBtns = (
     <>
-      <Button variant="link" onClick={navigateToList} className="modal-btn">
-        Go to booking your list.
-      </Button>
       <PrimaryButton display={"block"} onClick={loginRegisterRoute}>
         Back to venue list
       </PrimaryButton>
