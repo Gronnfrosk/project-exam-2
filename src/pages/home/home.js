@@ -85,7 +85,11 @@ function MainPage() {
                   height="50"
                 ></rect>
               </svg>
-              <span>{venueManager === true ? "See registered venues" : "Start Booking Adventure"}</span>
+              <span>
+                {venueManager === true
+                  ? "See registered venues"
+                  : "Start Booking Adventure"}
+              </span>
               <i className="arrow down"></i>
             </a>
           </div>

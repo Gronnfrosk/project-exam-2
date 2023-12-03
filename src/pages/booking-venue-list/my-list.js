@@ -1,6 +1,6 @@
 import "./booking-venue-list.scss";
 import { Helmet } from "react-helmet-async";
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from "react";
 import { load } from "../../utilities/save_load_remove_local_storage";
 import { SpinnerLoad, ErrorLoad } from "../../components/error-load";
 import VenueCard from "../../components/venue-card";
@@ -11,12 +11,14 @@ import { useBookingFilter } from "../../hooks/useBookingFilter";
 
 export default function MyList() {
   const [profileResult, setProfileResult] = useState(null);
-  const bookingFilterResult = useBookingFilter(profileResult ? profileResult.bookings : []);
+  const bookingFilterResult = useBookingFilter(
+    profileResult ? profileResult.bookings : [],
+  );
   const [error, setError] = useState(null);
   const profile = useMemo(() => load("profile"), []);
   const userType = useMemo(() => load("venueManager"), []);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     const fetchData = async () => {
       if (!profile) {
@@ -41,10 +43,13 @@ export default function MyList() {
     fetchData();
   }, [navigate, profile, userType]);
 
-  const { upcomingBookings, previousBookings } = useMemo(() => ({
-    upcomingBookings: bookingFilterResult.upcomingBookings,
-    previousBookings: bookingFilterResult.previousBookings
-  }), [bookingFilterResult]);
+  const { upcomingBookings, previousBookings } = useMemo(
+    () => ({
+      upcomingBookings: bookingFilterResult.upcomingBookings,
+      previousBookings: bookingFilterResult.previousBookings,
+    }),
+    [bookingFilterResult],
+  );
 
   if (error) {
     return <ErrorLoad />;
@@ -58,9 +63,11 @@ export default function MyList() {
         </title>
         <meta name="description" content="Profile inventory list" />
       </Helmet>
-      
+
       <main className="list">
-        {!profileResult ? <SpinnerLoad /> : userType === false && profileResult.bookings ? (
+        {!profileResult ? (
+          <SpinnerLoad />
+        ) : userType === false && profileResult.bookings ? (
           <>
             <BookingList
               upcomingBookings={upcomingBookings}
@@ -76,13 +83,15 @@ export default function MyList() {
               </div>
               <div className="container">
                 <div className="divider w-100 dropdown-toggle gap-2 ps-3 mt-3 mb-2 gap-2 px-1 mt-3 mb-2 d-flex w-100 flex-row-reverse">
-                <div className="w-100 text-end">
-                  Total{" "}
-                  <b>
-                    {" "}
-                    {profileResult.venues.length > 0 ? profileResult.venues.length : "0"}
-                  </b>
-                </div>
+                  <div className="w-100 text-end">
+                    Total{" "}
+                    <b>
+                      {" "}
+                      {profileResult.venues.length > 0
+                        ? profileResult.venues.length
+                        : "0"}
+                    </b>
+                  </div>
                   Recently created
                 </div>
                 <div className="card-container d-flex flex-row flex-wrap justify-content-evenly">

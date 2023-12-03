@@ -1,9 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter} from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { ThemeMode } from "./components/user-color-theme";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import ScrollPage from "./utilities/scroll-page";
-import AnimatedRoutes from "./animatedRoutes"
+import AnimatedRoutes from "./animatedRoutes";
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
             <meta name="keywords" content="Booking, Venues, Travel, Holiday" />
           </Helmet>
           <ThemeMode />
-            <ScrollPage />
-            <AnimatedRoutes />
+          <ScrollPage />
+          <AnimatedRoutes />
         </BrowserRouter>
       </div>
     </HelmetProvider>

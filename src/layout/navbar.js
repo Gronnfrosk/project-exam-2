@@ -18,7 +18,6 @@ export function CollapsibleNavbar() {
   const [profile, setProfile] = useState(load("profile"));
   const [displayBtn, setdisplayBtn] = useState("");
 
-
   useEffect(() => {
     const loadedProfile = load("profile");
     if (location.pathname === "/login-register") {
@@ -45,7 +44,7 @@ export function CollapsibleNavbar() {
       setProfile(result);
       setUserStatus(load("venueManager"));
     }
-  } 
+  }
 
   return (
     <Navbar
@@ -69,10 +68,17 @@ export function CollapsibleNavbar() {
         )}
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="border-start ms-3">
-            <NavLink to="/my-list" className="ms-3 text-decoration-none text-white fs-6">
-              {userStatus=== false ? "Bookings" : userStatus === true ? "Venues" : ""}
+            <NavLink
+              to="/my-list"
+              className="ms-3 text-decoration-none text-white fs-6"
+            >
+              {userStatus === false
+                ? "Bookings"
+                : userStatus === true
+                ? "Venues"
+                : ""}
             </NavLink>
-            </Nav>
+          </Nav>
         </Navbar.Collapse>
         <NavLink
           to="/"

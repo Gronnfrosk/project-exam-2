@@ -2,7 +2,7 @@ import { ModalInfo } from "./modal";
 
 export default function viewRegisterModal(formResult) {
   const modalContent =
-     formResult === null ? (
+    formResult === null ? (
       <ModalInfo
         userError={true}
         showModalText={

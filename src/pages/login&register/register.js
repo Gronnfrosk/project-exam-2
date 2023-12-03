@@ -41,7 +41,9 @@ export function RegisterForm({ change }) {
 
   useEffect(() => {
     setModal(viewRegisterModal(formSuccess));
-    if(formSuccess === true || formSuccess === false) {change()}
+    if (formSuccess === true || formSuccess === false) {
+      change();
+    }
   }, [formSuccess, change]);
 
   return (

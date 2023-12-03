@@ -84,7 +84,6 @@ export function UpArrow() {
   return <FaAngleUp />;
 }
 
-
 export function InputIcons() {
   const SearchIcon = <FaSearch />;
   const XIcon = <FaTimes />;

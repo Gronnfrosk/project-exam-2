@@ -5,7 +5,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { getBookingDetail } from "../../services/api/booking";
 
 export default function CalenderManager(props) {
-  const bookings = props.venueData.bookings
+  const bookings = props.venueData.bookings;
   const [selectedBookingId, setSelectedBookingId] = useState(null);
   const [bookingDetails, setBookingDetails] = useState({});
   const bookingRefs = useRef({});
@@ -42,7 +42,7 @@ export default function CalenderManager(props) {
         const endDateStr = endDate.toISOString().split("T")[0];
 
         if (dateStr === startDateStr) {
-          classNames.push("start-date"); 
+          classNames.push("start-date");
         }
         if (dateStr === endDateStr) {
           classNames.push("end-date");
@@ -64,7 +64,7 @@ export default function CalenderManager(props) {
       return acc;
     }, {});
   }, [bookings]);
-   
+
   const onClickDay = (value) => {
     const dateStr = value.toISOString().split("T")[0];
     const dayBookings = bookingDetailsByDate[dateStr];
@@ -87,41 +87,51 @@ export default function CalenderManager(props) {
     if (!bookingDetails[bookingId]) {
       try {
         const details = await getBookingDetail(bookingId);
-        setBookingDetails(prev => ({ ...prev, [bookingId]: details }));
+        setBookingDetails((prev) => ({ ...prev, [bookingId]: details }));
       } catch (error) {
-        console.error('Error fetching booking details:', error);
+        console.error("Error fetching booking details:", error);
       }
     }
   };
 
   const sortedBookings = useMemo(() => {
     if (bookings && bookings.length > 0) {
-      return [...bookings].sort((a, b) => new Date(a.dateFrom) - new Date(b.dateFrom));
+      return [...bookings].sort(
+        (a, b) => new Date(a.dateFrom) - new Date(b.dateFrom),
+      );
     }
     return [];
   }, [bookings]);
 
-  if(bookings.length === 0) {
-    return  <h2 className="fw-bold text-center mb-2">No bookings at this venue</h2>
+  if (bookings.length === 0) {
+    return (
+      <h2 className="fw-bold text-center mb-2">No bookings at this venue</h2>
+    );
   }
 
   return (
-
     <div className="venue-manager d-flex column-gap-3 flex-wrap justify-content-center">
-        <div className="top-calendar mb-2 mx-3">
+      <div className="top-calendar mb-2 mx-3">
         <h2 className="fw-bold text-center mb-2">Bookings at this venue</h2>
-      <p>To view booking details, please browse the list below. For specific customer details, simply click on the desired booking in the list. <br/><br/> If you're unable to locate a particular booking, use the calendar for assistance.</p></div>
+        <p>
+          To view booking details, please browse the list below. For specific
+          customer details, simply click on the desired booking in the list.{" "}
+          <br />
+          <br /> If you're unable to locate a particular booking, use the
+          calendar for assistance.
+        </p>
+      </div>
       <Calendar onClickDay={onClickDay} tileClassName={tileClassName} />
       <div
         ref={listContainerRef}
         className="scrollable-container"
         style={{
-            width: "360px",
-            maxHeight: "275px",
-             overflowY: "auto",
-             marginTop: "20px",
-             padding: "0 10px",
-             scrollBehavior: "smooth",
+          width: "360px",
+          maxHeight: "275px",
+          overflowY: "auto",
+          marginTop: "20px",
+          padding: "0 10px",
+          scrollBehavior: "smooth",
         }}
       >
         <ListGroup style={{ display: "flex" }}>
@@ -145,15 +155,19 @@ export default function CalenderManager(props) {
                       borderRadius: "0",
                     }}
                   >
-                    <b>Booking ID: {booking.id}</b><br />   
-                    - From: {checkIn.toLocaleDateString("en-GB")}<br />
-                    - To: {checkOut.toLocaleDateString("en-GB")}<br />
-                    - Guests: {booking.guests}
+                    <b>Booking ID: {booking.id}</b>
+                    <br />- From: {checkIn.toLocaleDateString("en-GB")}
+                    <br />- To: {checkOut.toLocaleDateString("en-GB")}
+                    <br />- Guests: {booking.guests}
                     {isActive && details && (
-                <div>
-                  <p>Customer: <br/> {" "}- Name: {details.customer.name}<br/>- Email {details.customer.email}<br/></p>
-                </div>
-              )}
+                      <div>
+                        <p>
+                          Customer: <br /> - Name: {details.customer.name}
+                          <br />- Email {details.customer.email}
+                          <br />
+                        </p>
+                      </div>
+                    )}
                   </ListGroup.Item>
                 );
               })

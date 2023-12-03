@@ -16,10 +16,8 @@ export default function ScrollPage() {
       }
     };
 
-   
     const delay = 600;
     setTimeout(attemptScroll, delay);
-
   }, [location]);
 
   return null;

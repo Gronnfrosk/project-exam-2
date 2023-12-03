@@ -64,7 +64,7 @@ function SpecificVenuePage() {
   if (isLoading) {
     return <SpinnerLoad />;
   }
-  
+
   if (isError) {
     console.log("Rendering due to isError");
     return <ErrorLoad />;
@@ -74,7 +74,10 @@ function SpecificVenuePage() {
     <>
       <Helmet>
         <title>Venue - {data.name}</title>
-        <meta name="description" content={`Info about the venue - ${data?.name}`} />
+        <meta
+          name="description"
+          content={`Info about the venue - ${data?.name}`}
+        />
       </Helmet>
       <main className="specific mb-5 mt-3">
         <section className="part-1">
@@ -202,9 +205,9 @@ function SpecificVenuePage() {
               {data.description}
             </div>
             <div className="w-100">
-              <u>General booking info:</u> On this site you can book a venue a year
-              into the future. At this venue it is posssible to checkin after
-              13:00 and checkout must be before 11:00.
+              <u>General booking info:</u> On this site you can book a venue a
+              year into the future. At this venue it is posssible to checkin
+              after 13:00 and checkout must be before 11:00.
             </div>
           </div>
           <div className="venue-manager-profile mx-4">

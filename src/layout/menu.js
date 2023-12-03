@@ -34,19 +34,28 @@ const divider = (
 );
 
 function SideMenu(props) {
-  const { userStatus, handleState, profile} = props;
+  const { userStatus, handleState, profile } = props;
   const [toggled, setToggled] = useState(false);
   const [urlInput, setUrlInput] = useState("");
   const profileFetchedData = useProfileData(profile);
   const profileSuccess = profileFetchedData || {};
-  const { name, email, bookings = [], venueManager, _count = {} } = profileSuccess;
+  const {
+    name,
+    email,
+    bookings = [],
+    venueManager,
+    _count = {},
+  } = profileSuccess;
   const venues = _count.venues || 0;
   const bookingFilterResult = useBookingFilter(bookings ? bookings : []);
 
-const { upcomingBookings, previousBookings } = useMemo(() => ({
-  upcomingBookings: bookingFilterResult.upcomingBookings,
-  previousBookings: bookingFilterResult.previousBookings
-}), [bookingFilterResult]);
+  const { upcomingBookings, previousBookings } = useMemo(
+    () => ({
+      upcomingBookings: bookingFilterResult.upcomingBookings,
+      previousBookings: bookingFilterResult.previousBookings,
+    }),
+    [bookingFilterResult],
+  );
 
   const {
     register,
@@ -55,27 +64,28 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
   } = useForm({
     resolver: yupResolver(schemaAvatar),
   });
-  
-  const navbarProfileCustomer = useMemo(() => [
-    {
-      name: "Upcoming",
-      amount: upcomingBookings.length > 0 ? upcomingBookings.length : "0",
-    },
-    {
-      name: "Total",
-      amount: `${bookings.length}`,
-      dividerNav: divider,
-    },
-    {
-      name: "Previous",
-      amount: previousBookings.length > 0 ? previousBookings.length : "0",
-    },
-  ], [bookings, upcomingBookings.length, previousBookings.length]);
 
+  const navbarProfileCustomer = useMemo(
+    () => [
+      {
+        name: "Upcoming",
+        amount: upcomingBookings.length > 0 ? upcomingBookings.length : "0",
+      },
+      {
+        name: "Total",
+        amount: `${bookings.length}`,
+        dividerNav: divider,
+      },
+      {
+        name: "Previous",
+        amount: previousBookings.length > 0 ? previousBookings.length : "0",
+      },
+    ],
+    [bookings, upcomingBookings.length, previousBookings.length],
+  );
 
   const navbarCustomer = [
-    { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" }
-    ,
+    { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" },
     {
       name: "Total bookings",
       icon: Total,
@@ -88,11 +98,10 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
     },
   ];
 
-  const navbarManagerProfile = useMemo(() => [
-    {},
-    { name: "Total", amount: `${venues}`, dividerNav: divider },
-    {},
-  ], [venues]);
+  const navbarManagerProfile = useMemo(
+    () => [{}, { name: "Total", amount: `${venues}`, dividerNav: divider }, {}],
+    [venues],
+  );
 
   const navbarManager = [
     { name: "See your venues", icon: Total, link: "/my-list" },
@@ -100,35 +109,40 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
   ];
 
   const toggleSidebar = useCallback(() => {
-    setToggled(prevToggled => !prevToggled);
+    setToggled((prevToggled) => !prevToggled);
   }, []);
 
   const handleLogout = useCallback(() => {
     handleState(null, true);
   }, [handleState]);
 
-  const handleAvatarChange = useCallback(async (data) => {
-    setUrlInput("");
-    let result;
-    try {
-      const result = await EditAvatarApi(name, data);
+  const handleAvatarChange = useCallback(
+    async (data) => {
+      setUrlInput("");
+      let result;
+      try {
+        const result = await EditAvatarApi(name, data);
+        if (result) {
+          handleState(result);
+        } else {
+          console.log("EditAvatarApi returned undefined or null");
+        }
+      } catch (error) {
+        console.error("Error fetching profile avatar:", error);
+      }
       if (result) {
         handleState(result);
-      } else {
-        console.log("EditAvatarApi returned undefined or null");
       }
-    } catch (error) {
-      console.error("Error fetching profile avatar:", error);
-    }
-    if (result) {
-      handleState(result);
-    }
-  }, [name, handleState]);
+    },
+    [name, handleState],
+  );
 
   const navbarLink = venueManager === false ? navbarCustomer : navbarManager;
 
   const navLinkUserType = useMemo(() => {
-    const navbarProfile = venueManager ? navbarManagerProfile : navbarProfileCustomer;
+    const navbarProfile = venueManager
+      ? navbarManagerProfile
+      : navbarProfileCustomer;
     return navbarProfile.map((navLink, index) => {
       const { name, amount, dividerNav } = navLink;
       return (
@@ -158,25 +172,39 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
       </div>
     </div>
   );
-  
+
   // eslint-disable-next-line
-  const userLinks = useMemo(() => navbarLink.map((navLink) => {
-    const { name, icon, link } = navLink;
+  const userLinks = useMemo(() =>
+    navbarLink.map(
+      (navLink) => {
+        const { name, icon, link } = navLink;
 
+        return (
+          <MenuItem
+            key={name}
+            icon={icon}
+            component={
+              <NavLink
+                to={link}
+                onClick={() => setToggled((prevToggled) => !prevToggled)}
+              />
+            }
+          >
+            {name}
+          </MenuItem>
+        );
+      },
+      [navbarLink, setToggled],
+    ),
+  );
+
+  if (!profileSuccess) {
     return (
-      <MenuItem
-        key={name}
-        icon={icon}
-        component={<NavLink to={link} onClick={() => setToggled(prevToggled => !prevToggled)} />}
-      >
-        {name}
-      </MenuItem>
+      <Link to="login-register">
+        <ButtonExpandNavbar userButton={userStatus} nav={"Login or register"} />
+      </Link>
     );
-  }, [navbarLink, setToggled]));
-
- if (!profileSuccess) {
-  return <Link to="login-register"><ButtonExpandNavbar userButton={userStatus} nav={"Login or register"} /></Link>;
-}
+  }
 
   return (
     <div>
@@ -212,9 +240,7 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
             <div className="divider-line border-bottom border-white"></div>
             {navProfile}
           </div>
-          <div className="mt-4 pt-3">
-          {userLinks}
-          </div>
+          <div className="mt-4 pt-3">{userLinks}</div>
           <SubMenu icon={EditAvatar} label="Edit avatar" className="bg-dark">
             <MenuItem style={{ overflow: "hidden" }}>
               <Form onSubmit={handleSubmit(handleAvatarChange)}>
@@ -244,10 +270,10 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
           <div className="menu-bottom position-absolute bottom-0 mb-4 w-100">
             <div style={{ height: "80px" }}>
               <NavLink to="/" className="text-decoration-none">
-              <Navbar.Brand className="p-0 m-5">
-                <BrandLogo />
-              </Navbar.Brand>
-              </NavLink >
+                <Navbar.Brand className="p-0 m-5">
+                  <BrandLogo />
+                </Navbar.Brand>
+              </NavLink>
             </div>
             <PrimaryButton
               display={"block"}
@@ -259,7 +285,7 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
           </div>
         </Menu>
       </Sidebar>
-      <div className="toggleBtn"onClick={toggleSidebar}>
+      <div className="toggleBtn" onClick={toggleSidebar}>
         <ButtonExpandNavbar
           userStatus={venueManager}
           avatar={profile.avatar}

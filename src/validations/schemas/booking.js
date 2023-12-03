@@ -7,7 +7,10 @@ export const createBookingSchema = (maxGuests) => {
         .number()
         .typeError("* How many guests?")
         .min(1, "* How many guests?")
-        .max(maxGuests, `*There can not be more than ${maxGuests} guests at this venues.`)
+        .max(
+          maxGuests,
+          `*There can not be more than ${maxGuests} guests at this venues.`,
+        )
         .required("* Please enter amount of guests."),
     })
     .required();

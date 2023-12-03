@@ -46,8 +46,11 @@ export default function BookingList(props) {
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
-                      isOpen={openItem.id === booking.id && openItem.section === 'upcoming'}
-                      toggle={() => toggleCollapse(booking.id, 'upcoming')}
+                      isOpen={
+                        openItem.id === booking.id &&
+                        openItem.section === "upcoming"
+                      }
+                      toggle={() => toggleCollapse(booking.id, "upcoming")}
                     />
                   </div>
                 ))}
@@ -74,8 +77,11 @@ export default function BookingList(props) {
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
-                      isOpen={openItem.id === booking.id && openItem.section === 'total'}
-                      toggle={() => toggleCollapse(booking.id, 'total')}
+                      isOpen={
+                        openItem.id === booking.id &&
+                        openItem.section === "total"
+                      }
+                      toggle={() => toggleCollapse(booking.id, "total")}
                     />
                   </div>
                 ))}
@@ -105,8 +111,11 @@ export default function BookingList(props) {
                   <div key={booking.id}>
                     <BookingItem
                       booking={booking}
-                      isOpen={openItem.id === booking.id && openItem.section === 'previous'}
-                      toggle={() => toggleCollapse(booking.id, 'previous')}
+                      isOpen={
+                        openItem.id === booking.id &&
+                        openItem.section === "previous"
+                      }
+                      toggle={() => toggleCollapse(booking.id, "previous")}
                     />
                   </div>
                 ))}

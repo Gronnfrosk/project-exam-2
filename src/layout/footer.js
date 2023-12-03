@@ -16,7 +16,10 @@ function Footer() {
   return (
     <div className="position-relative bottom-0">
       {FooterSVG}
-      <footer className="text-light fs-6 w-100" style={{backgroundColor: "var(--body_backgroundColor)"}}>
+      <footer
+        className="text-light fs-6 w-100"
+        style={{ backgroundColor: "var(--body_backgroundColor)" }}
+      >
         <div className="py-4 mx-auto " style={{ maxWidth: "1320px" }}>
           <div className="d-flex flex-wrap justify-content-between gap-2 align-items-center">
             <div>

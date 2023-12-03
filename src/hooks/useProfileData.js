@@ -6,7 +6,7 @@ export const useProfileData = (profile) => {
   const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    let isMounted = true; 
+    let isMounted = true;
 
     async function fetchProfileInfo() {
       try {
@@ -29,7 +29,7 @@ export const useProfileData = (profile) => {
     return () => {
       isMounted = false;
     };
-  }, [profile.name, profile]); 
+  }, [profile.name, profile]);
 
   return profileData;
 };

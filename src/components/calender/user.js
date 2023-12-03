@@ -52,13 +52,20 @@ export default function ReactCalender(props) {
         maxDate={maxDate}
         tileDisabled={tileDisabled}
       />
-      {userStatus === true ? <p>You are currently logged in as Venue manager. <br/> Please log in with a customer account to enable the option to place bookings.</p> : <Link to="/login-register" className="text-center">
-        <ButtonExpandNavbar
-          custom={"Login or register"}
-          color={false}
-          arrow={"black"}
-        />{" "}
-      </Link>}
+      {userStatus === true ? (
+        <p>
+          You are currently logged in as Venue manager. <br /> Please log in
+          with a customer account to enable the option to place bookings.
+        </p>
+      ) : (
+        <Link to="/login-register" className="text-center">
+          <ButtonExpandNavbar
+            custom={"Login or register"}
+            color={false}
+            arrow={"black"}
+          />{" "}
+        </Link>
+      )}
     </div>
   );
 }

@@ -56,7 +56,7 @@ export default function CustomerCalender(props) {
   function isDateRangeOverlap(start, end) {
     let day = new Date(start);
     while (day <= end) {
-      if (disabledDates.some(disabledDate => isSameDay(disabledDate, day))) {
+      if (disabledDates.some((disabledDate) => isSameDay(disabledDate, day))) {
         return true;
       }
       day.setDate(day.getDate() + 1);
@@ -111,7 +111,7 @@ export default function CustomerCalender(props) {
       setDateError(
         <Form.Text className="d-block text-danger fw-bold ps-2 mb-3">
           * Selected dates are not available for booking.
-        </Form.Text>
+        </Form.Text>,
       );
       return;
     }
