@@ -12,7 +12,7 @@ import {
   SubMenu,
   menuClasses,
 } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { NavbarIcon } from "../assets/icons/icons";
 import Navbar from "react-bootstrap/Navbar";
 import { BrandLogo } from "../assets/brand/logo";
@@ -77,7 +77,7 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
     { name: "Upcoming booking", icon: UpcomingIcon, link: "/my-list" }
     ,
     {
-      name: "All bookings",
+      name: "Total bookings",
       icon: Total,
       link: "/my-list#previous-bookings",
     },
@@ -159,7 +159,7 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
     </div>
   );
   
-// eslint-disable-next-line
+  // eslint-disable-next-line
   const userLinks = useMemo(() => navbarLink.map((navLink) => {
     const { name, icon, link } = navLink;
 
@@ -167,12 +167,12 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
       <MenuItem
         key={name}
         icon={icon}
-        component={<Link to={link} onClick={() => setToggled(prevToggled => !prevToggled)} />}
+        component={<NavLink to={link} onClick={() => setToggled(prevToggled => !prevToggled)} />}
       >
         {name}
       </MenuItem>
     );
-  }, [venueManager]));
+  }, [navbarLink, setToggled]));
 
  if (!profileSuccess) {
   return <Link to="login-register"><ButtonExpandNavbar userButton={userStatus} nav={"Login or register"} /></Link>;
@@ -212,7 +212,7 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
             <div className="divider-line border-bottom border-white"></div>
             {navProfile}
           </div>
-          <div className="mt-5 pt-3">
+          <div className="mt-4 pt-3">
           {userLinks}
           </div>
           <SubMenu icon={EditAvatar} label="Edit avatar" className="bg-dark">
@@ -241,12 +241,13 @@ const { upcomingBookings, previousBookings } = useMemo(() => ({
               {errors.Avatar?.message}
             </Form.Text>
           </SubMenu>
-
           <div className="menu-bottom position-absolute bottom-0 mb-4 w-100">
             <div style={{ height: "80px" }}>
-              <Navbar.Brand to="/" className="p-0 m-5">
+              <NavLink to="/" className="text-decoration-none">
+              <Navbar.Brand className="p-0 m-5">
                 <BrandLogo />
               </Navbar.Brand>
+              </NavLink >
             </div>
             <PrimaryButton
               display={"block"}

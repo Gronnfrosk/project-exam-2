@@ -48,7 +48,7 @@ export function AvatarImg(props) {
         className="profile-type"
         style={{ fontSize: "var(--textSmall_fontSize)" }}
       >
-        {UserType}
+        {UserType === true ? "Venue manager" : ""}
       </div>
       <AvatarDisplay className="span-btn my-3">
         <span
