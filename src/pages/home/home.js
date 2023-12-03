@@ -114,6 +114,7 @@ function MainPage() {
               <Button
                 variant="dark"
                 id="search-bar"
+                title="Search button"
                 onClick={(event) => event.preventDefault()}
               >
                 {SearchIcon}
