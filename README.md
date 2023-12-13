@@ -27,7 +27,7 @@ Holidaze is a modern front-end accommodation booking application developed for a
 - [yup](https://www.npmjs.com/package/yup)
 
 ## Getting Started
-1. Clone the repo: git clone https://github.com/Gronnfrosk/JavaScript-CA.git
+1. Clone the repo: git clone https://github.com/Gronnfrosk/project-exam-2.git
 2. Make your own .env file that has the REACT_APP_API_URL set to the correct API.
 3. Run `npm install` to install all dependencies.
 4. Write `npm run start` to start the app in development mode.
